@@ -1,0 +1,12 @@
+﻿@page
+@model ComesticShop.Pages.Salers.ProductPage.IndexModel
+@{
+}
+@if (@Model.Role == "2")
+{
+    <h1>Hello Saler</h1>
+   
+}
+else{
+    Response.Redirect("/Authenticate/Login");
+}

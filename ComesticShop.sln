@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComesticShop", "ComesticShop\ComesticShop.csproj", "{B2BFAA07-FA47-4B30-9D72-E3E12F58CD64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComesticShop", "ComesticShop\ComesticShop.csproj", "{B2BFAA07-FA47-4B30-9D72-E3E12F58CD64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObject", "BusinessObject\BusinessObject.csproj", "{61FB1BA9-6E08-44A2-BEF2-71972D86FD50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObject", "BusinessObject\BusinessObject.csproj", "{61FB1BA9-6E08-44A2-BEF2-71972D86FD50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessObject", "DataAccessObject\DataAccessObject.csproj", "{DA170E93-3461-4C24-9A04-AAA047E696C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessObject", "DataAccessObject\DataAccessObject.csproj", "{DA170E93-3461-4C24-9A04-AAA047E696C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{D52197E8-688B-472C-A274-D13C10D6F374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{D52197E8-688B-472C-A274-D13C10D6F374}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

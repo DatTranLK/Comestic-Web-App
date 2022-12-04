@@ -21,7 +21,14 @@ namespace BusinessObject.Models
         public bool? IsActive { get; set; }
         public string Avatar { get; set; }
         public int? CategoryId { get; set; }
+        public int? BrandId { get; set; }
+        public string Summary { get; set; }
+        public int? AmountSold { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public string Element { get; set; }
+        public string UserManual { get; set; }
 
+        public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

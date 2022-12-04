@@ -20,11 +20,13 @@ namespace BusinessObject.Models
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -63,11 +65,23 @@ namespace BusinessObject.Models
                     .HasConstraintName("FK_Account_Role");
             });
 
+            modelBuilder.Entity<Brand>(entity =>
+            {
+                entity.ToTable("Brand");
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.ToTable("Category");
 
-                entity.Property(e => e.Name).HasMaxLength(150);
+                entity.Property(e => e.Name).HasMaxLength(200);
+
+                entity.HasOne(d => d.Type)
+                    .WithMany(p => p.Categories)
+                    .HasForeignKey(d => d.TypeId)
+                    .HasConstraintName("FK_Category_Type");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -114,11 +128,24 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.Code).HasMaxLength(50);
 
+                entity.Property(e => e.DateCreated).HasColumnType("date");
+
                 entity.Property(e => e.Description).HasColumnType("ntext");
+
+                entity.Property(e => e.Element).HasColumnType("ntext");
 
                 entity.Property(e => e.Name).HasMaxLength(150);
 
                 entity.Property(e => e.Price).HasColumnType("money");
+
+                entity.Property(e => e.Summary).HasColumnType("ntext");
+
+                entity.Property(e => e.UserManual).HasColumnType("ntext");
+
+                entity.HasOne(d => d.Brand)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.BrandId)
+                    .HasConstraintName("FK_Products_Brand");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)
@@ -129,6 +156,13 @@ namespace BusinessObject.Models
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("Role");
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Type>(entity =>
+            {
+                entity.ToTable("Type");
 
                 entity.Property(e => e.Name).HasMaxLength(50);
             });

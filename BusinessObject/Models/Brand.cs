@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace BusinessObject.Models
 {
-    public partial class Category
+    public partial class Brand
     {
-        public Category()
+        public Brand()
         {
             Products = new HashSet<Product>();
         }
@@ -15,9 +15,7 @@ namespace BusinessObject.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public bool? IsActive { get; set; }
-        public int? TypeId { get; set; }
 
-        public virtual Type Type { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -5,19 +5,17 @@ using System.Collections.Generic;
 
 namespace BusinessObject.Models
 {
-    public partial class Category
+    public partial class Type
     {
-        public Category()
+        public Type()
         {
-            Products = new HashSet<Product>();
+            Categories = new HashSet<Category>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public bool? IsActive { get; set; }
-        public int? TypeId { get; set; }
 
-        public virtual Type Type { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

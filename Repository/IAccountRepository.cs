@@ -11,5 +11,6 @@ namespace Repository
     {
         Task<Account> CheckLogin(string email, string password);
         Task<Account> GetAccountByEmail(string email);
+        Task<Account> Register(string name, string email, string password);
     }
 }

@@ -13,5 +13,7 @@ namespace Repository
         public Task<Account> CheckLogin(string email, string password) => AccountDAO.Instance.CheckLogin(email, password);
 
         public Task<Account> GetAccountByEmail(string email) => AccountDAO.Instance.GetAccountByEmail(email);
+
+        public Task<Account> Register(string name, string email, string password) => AccountDAO.Instance.Register(name, email, password);
     }
 }

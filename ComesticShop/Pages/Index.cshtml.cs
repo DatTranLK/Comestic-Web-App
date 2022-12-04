@@ -15,6 +15,7 @@ namespace ComesticShop.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly IAccountRepository _accountRepository;
+        private readonly IProductRepository _productRepository;
 
         public string Msg { get; set; }
         public Account Account { get; set; }
@@ -22,10 +23,15 @@ namespace ComesticShop.Pages
         public string Email { get; set; }
         public string Role { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IAccountRepository accountRepository)
+        public IEnumerable<Product> ProductsAmountSold { get; set; }
+        public IEnumerable<Product> ProductsNewest { get; set; }
+        public IEnumerable<Product> ProductsRecommend { get; set; }
+
+        public IndexModel(ILogger<IndexModel> logger, IAccountRepository accountRepository, IProductRepository productRepository)
         {
             _logger = logger;
             _accountRepository = accountRepository;
+            _productRepository = productRepository;
         }
 
         public async Task OnGet()
@@ -33,19 +39,9 @@ namespace ComesticShop.Pages
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
-            /*Store = _storeRepository.GetStoresNoDes();
-            Books = _bookRepository.GetBooksInStore();
-            if (Store == null)
-            {
-                Msg = "There is no store in here";
-            }
-            if (!string.IsNullOrEmpty(SearchString))
-            {
-                List<Book> bookSearchList = _bookRepository.SearchBook(SearchString.Trim()).ToList();
-                Books = bookSearchList;
-            }*/
-
-
+            ProductsAmountSold = await _productRepository.GetProductAmountSold();
+            ProductsNewest = await _productRepository.GetProductNewest();
+            ProductsRecommend = await _productRepository.GetProductRecomend();
         }
         public IActionResult OnGetLogout()
         {

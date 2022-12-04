@@ -23,7 +23,7 @@ namespace BusinessObject.Models
         public int? RoleId { get; set; }
         public string Phone { get; set; }
 
-        public virtual Role Role { get; set; }
+        public virtual Role? Role { get; set; }
         public virtual ICollection<Order> OrderCustomers { get; set; }
         public virtual ICollection<Order> OrderStaffs { get; set; }
     }

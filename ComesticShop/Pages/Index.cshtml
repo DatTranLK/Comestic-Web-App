@@ -58,7 +58,7 @@
 
                         @if (@Model.Email != null)
                         {
-                            <a href="cart.html" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                            <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
                                 <i class="fas fa-shopping-cart"></i>
                                 Add to Cart
                             </a>
@@ -123,7 +123,7 @@
 
                         @if (@Model.Email != null)
                         {
-                            <a href="cart.html" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                            <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
                                 <i class="fas fa-shopping-cart"></i>
                                 Add to Cart
                             </a>
@@ -188,7 +188,7 @@
 
                         @if (@Model.Email != null)
                         {
-                            <a href="cart.html" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                            <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
                                 <i class="fas fa-shopping-cart"></i>
                                 Add to Cart
                             </a>

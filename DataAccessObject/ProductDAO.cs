@@ -166,5 +166,25 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<Product> GetProductById(int id)
+        {
+            try
+            {
+                var pro = await _dbContext.Products
+                    .Include(x => x.Category)
+                    .Include(x => x.Brand)
+                    .FirstOrDefaultAsync(x => x.Id == id);
+                if (pro != null)
+                {
+                    return pro;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

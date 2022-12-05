@@ -34,6 +34,8 @@ namespace ComesticShop
             services.AddScoped<ITypeRepository, TypeRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

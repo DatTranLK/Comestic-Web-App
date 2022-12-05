@@ -10,5 +10,9 @@ namespace Repository
     public interface IBrandRepository
     {
         Task<IEnumerable<Brand>> GetBrands();
+        Task<Brand> GetBrandById(int id);
+        Task DeleteBrand(int id);
+        Task AddNewBrand(Brand brand);
+        Task UpdateBrand(Brand brand);
     }
 }

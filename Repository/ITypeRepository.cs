@@ -10,5 +10,9 @@ namespace Repository
     {
         Task<IEnumerable<BusinessObject.Models.Type>> GetTypes();
         Task<IEnumerable<BusinessObject.Models.Type>> GetListTypes();
+        Task<BusinessObject.Models.Type> GetTypeById(int id);
+        Task DeleteType(int id);
+        Task AddNewType(BusinessObject.Models.Type type);
+        Task UpdateType(BusinessObject.Models.Type type);
     }
 }

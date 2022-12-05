@@ -51,5 +51,76 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<Category> GetCategoryById(int id)
+        {
+            try
+            {
+                var cate = await _dbContext.Categories
+                    .Include(x => x.Type)
+                    .FirstOrDefaultAsync(x => x.Id == id);
+                if (cate != null)
+                {
+                    return cate;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task DeleteCategory(int id)
+        {
+            try
+            {
+                var cate = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
+                if (cate != null)
+                {
+                    if (cate.IsActive == true)
+                    {
+                        cate.IsActive = false;
+                        await _dbContext.SaveChangesAsync();
+                    }
+                    else if (cate.IsActive == false)
+                    {
+                        cate.IsActive = true;
+                        await _dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task AddNewCate(Category category)
+        {
+            try
+            {
+                _dbContext.Categories.Add(category);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task UpdateCate(Category category)
+        {
+            try
+            {
+                _dbContext.ChangeTracker.Clear();
+                _dbContext.Entry(category).State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -10,6 +10,14 @@ namespace Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
+        public Task AddNewCate(Category category) => CategoryDAO.Instance.AddNewCate(category);
+
+        public Task DeleteCategory(int id) => CategoryDAO.Instance.DeleteCategory(id);
+
         public Task<IEnumerable<Category>> GetCategories() => CategoryDAO.Instance.GetCategories();
+
+        public Task<Category> GetCategoryById(int id) => CategoryDAO.Instance.GetCategoryById(id);
+
+        public Task UpdateCate(Category category) => CategoryDAO.Instance.UpdateCate(category);
     }
 }

@@ -13,5 +13,9 @@ namespace Repository
         Task<Account> GetAccountByEmail(string email);
         Task<Account> Register(string name, string email, string password);
         Task<IEnumerable<Account>> GetAccounts();
+        Task<Account> GetAccountById(int id);
+        Task DeleteAccount(int id);
+        Task AddNewAccount(Account account);
+        Task UpdateAccount(Account account);
     }
 }

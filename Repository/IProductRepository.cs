@@ -13,5 +13,8 @@ namespace Repository
         Task<IEnumerable<Product>> GetProductNewest();
         Task<IEnumerable<Product>> GetProductRecomend();
         Task<IEnumerable<Product>> GetProducts();
+        Task<IEnumerable<Product>> GetListProductAmountSold();
+        Task<IEnumerable<Product>> GetListProductNewest();
+        Task<IEnumerable<Product>> GetListProductRecomend();
     }
 }

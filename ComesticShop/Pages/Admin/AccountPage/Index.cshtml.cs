@@ -11,15 +11,18 @@ namespace ComesticShop.Pages.Admin.AccountPage
     public class IndexModel : PageModel
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly ITypeRepository _typeRepository;
 
         public string Email { get; set; }
         public string Role { get; set; }
         public Account Account { get; set; }
         public string Msg { get; set; }
         public IEnumerable<Account> Accounts { get; set; }
-        public IndexModel(IAccountRepository accountRepository)
+        public IEnumerable<BusinessObject.Models.Type> Type { get; set; }
+        public IndexModel(IAccountRepository accountRepository, ITypeRepository typeRepository)
         {
             _accountRepository = accountRepository;
+            _typeRepository = typeRepository;
         }
         public async Task OnGet()
         {
@@ -27,6 +30,7 @@ namespace ComesticShop.Pages.Admin.AccountPage
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
             Accounts = await _accountRepository.GetAccounts();
+            Type = await _typeRepository.GetListTypes();
         }
         public IActionResult OnGetLogout()
         {

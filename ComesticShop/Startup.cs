@@ -31,6 +31,9 @@ namespace ComesticShop
             services.AddDbContext<ComesticDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ITypeRepository, TypeRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

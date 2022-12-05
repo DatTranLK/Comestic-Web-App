@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Customers\" />
+    <Folder Include="Pages\Scaffold\" />
   </ItemGroup>
 
 </Project>

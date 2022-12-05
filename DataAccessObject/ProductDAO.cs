@@ -50,6 +50,25 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Product>> GetListProductAmountSold()
+        {
+            try
+            {
+                var lst = await _dbContext.Products
+                    .Where(x => x.IsActive == true && x.Amount > 0)
+                    .OrderByDescending(x => x.AmountSold).ToListAsync();
+                if (lst != null)
+                {
+                    return lst;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<IEnumerable<Product>> GetProductNewest()
         {
             try
@@ -69,17 +88,54 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Product>> GetListProductNewest()
+        {
+            try
+            {
+                var lst = await _dbContext.Products
+                    .Where(x => x.IsActive == true && x.Amount > 0)
+                    .OrderByDescending(x => x.DateCreated).ToListAsync();
+                if (lst != null)
+                {
+                    return lst;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<IEnumerable<Product>> GetProductRecomend()
         {
             try
             {
                 var lst = await _dbContext.Products
-                    .Where(x => x.IsActive == true && x.Amount > 0).CountAsync();
-                Random rand = new Random();
-                int toSkip = rand.Next(6,lst);
+                    .Where(x => x.IsActive == true && x.Amount > 0).ToListAsync();
+                /*Random rand = new Random();
+                int toSkip = rand.Next(6,lst);*/
                 if (lst != null)
                 {
-                    return _dbContext.Products.Skip(toSkip).Take(6);
+                    return lst.OrderBy(x => Guid.NewGuid()).Take(6);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Product>> GetListProductRecomend()
+        {
+            try
+            {
+                var lst = await _dbContext.Products
+                    .Where(x => x.IsActive == true && x.Amount > 0).ToListAsync();
+                if (lst != null)
+                {
+                    return lst.OrderBy(x => Guid.NewGuid());
                 }
                 return null;
             }

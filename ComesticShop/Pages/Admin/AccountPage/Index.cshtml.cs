@@ -6,29 +6,27 @@ using Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ComesticShop.Pages.Admin.ProductPage
+namespace ComesticShop.Pages.Admin.AccountPage
 {
     public class IndexModel : PageModel
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IProductRepository _productRepository;
 
         public string Email { get; set; }
         public string Role { get; set; }
         public Account Account { get; set; }
         public string Msg { get; set; }
-        public IEnumerable<Product> Products { get; set; }
-        public IndexModel(IAccountRepository accountRepository, IProductRepository productRepository)
+        public IEnumerable<Account> Accounts { get; set; }
+        public IndexModel(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
-            _productRepository = productRepository;
         }
         public async Task OnGet()
         {
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
-            Products = await _productRepository.GetProducts();
+            Accounts = await _accountRepository.GetAccounts();
         }
         public IActionResult OnGetLogout()
         {

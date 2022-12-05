@@ -92,5 +92,25 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Account>> GetAccounts()
+        {
+            try
+            {
+                var lst = await _dbContext.Accounts
+                    .Include(x => x.Role)
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (lst != null)
+                {
+                    return lst;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

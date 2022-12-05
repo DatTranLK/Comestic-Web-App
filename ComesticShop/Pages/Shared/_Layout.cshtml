@@ -5,39 +5,48 @@
 
 <!-- Mirrored from technext.github.io/fruitkha/index_2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Dec 2022 04:43:03 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+                         <head>
+                             <meta charset="UTF-8">
+                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                             <meta name="viewport" content="width=device-width, initial-scale=1">
+                             <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
-	<!-- title -->
-	<title>TinaNguyen - Beauty & Fashion</title>
+                             <!-- title -->
+                             <title>TinaNguyen - Beauty & Fashion</title>
 
-	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.png">
-	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&amp;display=swap" rel="stylesheet">
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="~/assets/css/all.min.css">
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
-	<!-- owl carousel -->
-	<link rel="stylesheet" href="~/assets/css/owl.carousel.css">
-	<!-- magnific popup -->
-	<link rel="stylesheet" href="~/assets/css/magnific-popup.css">
-	<!-- animate css -->
-	<link rel="stylesheet" href="~/assets/css/animate.css">
-	<!-- mean menu css -->
-	<link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
-	<!-- main style -->
-	<link rel="stylesheet" href="~/assets/css/main.css">
-	<!-- responsive -->
-	<link rel="stylesheet" href="~/assets/css/responsive.css">
+                             <!-- favicon -->
+                             <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.png">
+                             <!-- google font -->
+                             <link rel="preconnect" href="https://fonts.googleapis.com">
+                             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                             <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                             <!-- fontawesome -->
+                             <link rel="stylesheet" href="~/assets/css/all.min.css">
+                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+                                   integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+                                   crossorigin="anonymous" referrerpolicy="no-referrer" />
+                             <!-- bootstrap -->
+                             <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+                             <!-- owl carousel -->
+                             <link rel="stylesheet" href="~/assets/css/owl.carousel.css">
+                             <!-- magnific popup -->
+                             <link rel="stylesheet" href="~/assets/css/magnific-popup.css">
+                             <!-- animate css -->
+                             <link rel="stylesheet" href="~/assets/css/animate.css">
+                             <!-- mean menu css -->
+                             <link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
+                             <!-- main style -->
+                             <link rel="stylesheet" href="~/assets/css/main.css">
+                             <!-- responsive -->
+                             <link rel="stylesheet" href="~/assets/css/responsive.css">
 
-</head>
+                         </head>
 <body>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+    </style>
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -46,7 +55,7 @@
     </div>
     <!--PreLoader Ends-->
     <!-- header -->
-    <div class="top-header-area" id="sticker">
+    <div class="top-header-area" id="sticker" style="font-family: 'Quicksand', sans-serif;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-sm-12 text-center">
@@ -63,23 +72,28 @@
                         <nav class="main-menu">
                             <ul>
                                 <li class="current-list-item">
-                                    <a href="#">Home</a>
+                                    <a asp-page="">Home</a>
                                     <ul class="sub-menu">
-                                        <li><a href="index.html">Static Home</a></li>
-                                        <li><a href="index_2.html">Slider Home</a></li>
+                                        <li><a asp-page="">Sản phẩm bán chạy</a></li>
+                                        <li><a asp-page="">Sản phẩm mới nhất</a></li>
+                                        <li><a asp-page="">Sản phẩm gợi ý</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="about.html">About</a></li>
                                 <li>
-                                    <a href="#">Pages</a>
+                                    <a asp-page="">Comestic</a>
                                     <ul class="sub-menu">
-                                        <li><a href="404.html">404 page</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Check Out</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="news.html">News</a></li>
-                                        <li><a href="shop.html">Shop</a></li>
+                                        <li><a asp-page="">Chăm sóc da</a></li>
+                                        <li><a asp-page="">Trang điểm</a></li>
+                                        <li><a asp-page="">Dưỡng thể</a></li>
+                                        <li><a asp-page="">Thức uống đẹp da</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a asp-page="">Fashion</a>
+                                    <ul class="sub-menu">
+                                        <li><a asp-page="">Quần áo phụ nữ</a></li>
+                                        <li><a asp-page="">Túi xách</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -111,7 +125,7 @@
                                             <a asp-page="/Authenticate/SignUp"
                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                title="Register">
-                                            <i class="fas fa-user-plus"></i>
+                                                <i class="fas fa-user-plus"></i>
                                             </a>
                                             <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                         </div>

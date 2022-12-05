@@ -89,5 +89,26 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Product>> GetProducts()
+        {
+            try
+            {
+                var lst = await _dbContext.Products
+                    .Include(x => x.Category)
+                    .Include(x => x.Brand)
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (lst != null)
+                {
+                    return lst;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

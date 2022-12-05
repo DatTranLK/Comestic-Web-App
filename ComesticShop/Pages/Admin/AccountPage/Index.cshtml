@@ -1,0 +1,84 @@
+﻿@page
+@model ComesticShop.Pages.Admin.AccountPage.IndexModel
+@{
+}
+@if (@Model.Role == "1")
+{
+    <h1>Accounts</h1>
+
+<p>
+    <a asp-page="Create">Create New Account</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Email
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                DateOfBirth
+            </th>
+            <th>
+                IsActive
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="list-wrapper">
+@foreach (var item in Model.Accounts) {
+        <tr class="list-item">
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.Name)
+            </td>
+                    @if (item.Role.Name == "Admin")
+                    {
+                        <td hidden>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+                    
+        </tr>
+}
+    </tbody>
+</table>
+<div id="pagination-container"></div>
+}
+else
+{
+    Response.Redirect("/Authenticate/Login");
+}

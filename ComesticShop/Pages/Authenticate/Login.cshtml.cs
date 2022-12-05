@@ -25,7 +25,7 @@ namespace ComesticShop.Pages.Authenticate
         }
         public void OnGet()
         {
-
+            HttpContext.Session.Clear();
         }
         public async Task<IActionResult> OnPost()
         {
@@ -57,7 +57,7 @@ namespace ComesticShop.Pages.Authenticate
             }
             else
             {
-                ViewData["ErrorMessage"] = "Invalid email or password.";
+                ViewData["ErrorMessage"] = "Login Unsuccessfully!!!";
                 return Page();
             }
 

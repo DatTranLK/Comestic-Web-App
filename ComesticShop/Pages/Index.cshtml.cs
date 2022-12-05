@@ -36,7 +36,7 @@ namespace ComesticShop.Pages
 
         public async Task OnGet()
         {
-            HttpContext.Session.Clear();
+            
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);

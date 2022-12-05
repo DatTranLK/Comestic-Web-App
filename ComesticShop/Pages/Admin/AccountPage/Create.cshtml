@@ -1,0 +1,69 @@
+﻿@page
+@model ComesticShop.Pages.Admin.AccountPage.CreateModel
+@{
+}
+@if (@Model.Role == "1")
+{
+    <h1>Create</h1>
+
+<h4>Account</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Accounts.Email" class="control-label"></label>
+                <input asp-for="Accounts.Email" class="form-control" required/>
+                <span asp-validation-for="Accounts.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accounts.Password" class="control-label"></label>
+                <input asp-for="Accounts.Password" class="form-control" required/>
+                <span asp-validation-for="Accounts.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accounts.Name" class="control-label"></label>
+                <input asp-for="Accounts.Name" class="form-control" required/>
+                <span asp-validation-for="Accounts.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accounts.Avatar" class="control-label"></label>
+                <input asp-for="Accounts.Avatar" class="form-control" required/>
+                <span asp-validation-for="Accounts.Avatar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accounts.Phone" class="control-label"></label>
+                <input asp-for="Accounts.Phone" class="form-control" required/>
+                <span asp-validation-for="Accounts.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accounts.DateOfBirth" class="control-label"></label>
+                <input asp-for="Accounts.DateOfBirth" class="form-control" required/>
+                <span asp-validation-for="Accounts.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accounts.RoleId" class="control-label"></label>
+                <select asp-for="Accounts.RoleId" class ="form-control" asp-items="ViewBag.RoleId" required></select>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+}
+else
+{
+    Response.Redirect("/Authenticate/Login");
+}

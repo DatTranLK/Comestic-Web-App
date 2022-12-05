@@ -70,7 +70,7 @@
 <li class="mm-active">
 <a class="has-arrow" href="#" aria-expanded="false">
 <div class="icon_menu">
-<img src="~/admin/~/admin/img/menu-icon/dashboard.svg" alt="">
+<img src="~/admin/img/menu-icon/dashboard.svg" alt="">
 </div>
 <span>Dashboard</span>
 </a>
@@ -105,6 +105,41 @@
 </a>
 </li>
 
+<li class="">
+<a class="has-arrow" asp-page="/Admin/TypePage/Index" aria-expanded="false">
+<div class="icon_menu">
+<img src="~/admin/img/menu-icon/10.svg" alt="">
+</div>
+<span>Type</span>
+</a>
+</li>
+
+<li class="">
+<a class="has-arrow" asp-page="/Admin/CategoryPage/Index" aria-expanded="false">
+<div class="icon_menu">
+<img src="~/admin/img/menu-icon/2.svg" alt="">
+</div>
+<span>Category</span>
+</a>
+</li>
+
+<li class="">
+<a class="has-arrow" asp-page="/Admin/BrandPage/Index" aria-expanded="false">
+<div class="icon_menu">
+<img src="~/admin/img/menu-icon/5.svg" alt="">
+</div>
+<span>Brand</span>
+</a>
+</li>
+
+<li class="">
+<a class="has-arrow" asp-page="/Admin/OrderPage/Index" aria-expanded="false">
+<div class="icon_menu">
+<img src="~/admin/img/menu-icon/6.svg" alt="">
+</div>
+<span>Order</span>
+</a>
+</li>
 
 <li class="">
 <a class="has-arrow" href="#" aria-expanded="false">
@@ -119,7 +154,17 @@
 </ul>
 </li>
 </ul>
+<hr>
+<h4 style="text-align:center">Add Product With Type</h4>
+<ul style="text-align: center; font-size:19px">
+    @foreach (var item in Model.Type)
+        {
+            <li><a asp-page="#" asp-route-id="@item.Id" style="color: black">@item.Name</a></li>
+        }
+</ul>
+
 </nav>
+
 
 <section class="main_content dashboard_part large_header_bg">
 
@@ -245,7 +290,7 @@
 </div>
 
 <div class="main_content_iner ">
-<div class="container-fluid p-0">
+<div class="container-fluid p-0" >
     @RenderBody()
 </div>
 </div>
@@ -525,4 +570,4 @@ How can I help you?</P>
 </body>
 
 <!-- Mirrored from demo.dashboardpack.com/sales-html/data_table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Dec 2022 14:22:35 GMT -->
-</html>
+</html> 

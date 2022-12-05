@@ -62,7 +62,7 @@
                     <div class="main-menu-wrap">
                         <!-- logo -->
                         <div class="site-logo" style="width: 150px; height: 55px; padding-bottom: 30px">
-                            <a href="index.html">
+                            <a asp-page="/Index">
                                 <img src="~/assets/img/Frame_1-removebg-preview.png" alt="TinaNguyen" style="
 									width: 150px; height: 55px">
                             </a>
@@ -366,6 +366,7 @@
     <script src="~/assets/js/sticker.js"></script>
     <!-- main js -->
     <script src="~/assets/js/main.js"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

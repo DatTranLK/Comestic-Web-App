@@ -1,19 +1,17 @@
-﻿using BusinessObject.Models;
+using BusinessObject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages
 {
-    public class IndexModel : PageModel
+    public class ProductAmountSoldModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<ProductAmountSoldModel> _logger;
         private readonly IAccountRepository _accountRepository;
         private readonly IProductRepository _productRepository;
 
@@ -24,10 +22,8 @@ namespace ComesticShop.Pages
         public string Role { get; set; }
 
         public IEnumerable<Product> ProductsAmountSold { get; set; }
-        public IEnumerable<Product> ProductsNewest { get; set; }
-        public IEnumerable<Product> ProductsRecommend { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IAccountRepository accountRepository, IProductRepository productRepository)
+        public ProductAmountSoldModel(ILogger<ProductAmountSoldModel> logger, IAccountRepository accountRepository, IProductRepository productRepository)
         {
             _logger = logger;
             _accountRepository = accountRepository;
@@ -36,13 +32,10 @@ namespace ComesticShop.Pages
 
         public async Task OnGet()
         {
-            HttpContext.Session.Clear();
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
-            ProductsAmountSold = await _productRepository.GetProductAmountSold();
-            ProductsNewest = await _productRepository.GetProductNewest();
-            ProductsRecommend = await _productRepository.GetProductRecomend();
+            ProductsAmountSold = await _productRepository.GetListProductAmountSold();
         }
         public IActionResult OnGetLogout()
         {
@@ -50,7 +43,6 @@ namespace ComesticShop.Pages
             HttpContext.Session.Remove("Role");
             HttpContext.Session.Remove("cartCus");
             HttpContext.Session.Remove("CusID");
-            HttpContext.Session.Clear();
             return RedirectToPage("/Index");
         }
     }

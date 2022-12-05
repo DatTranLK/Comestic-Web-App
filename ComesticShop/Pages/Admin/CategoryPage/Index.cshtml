@@ -1,0 +1,53 @@
+﻿@page
+@model ComesticShop.Pages.Admin.CategoryPage.IndexModel
+@{
+}
+@if (@Model.Role == "1")
+{
+<h1>Category</h1>
+
+<p>
+    <a asp-page="Create">Create New Category</a>
+</p>
+<table class="table" style="background-color: white; border-radius: 10px">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                IsActive
+            </th>
+            <th>
+                Type
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="list-wrapper">
+@foreach (var item in Model.Category) {
+        <tr class="list-item">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type.Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div id="pagination-container"></div>
+}
+else
+{
+    Response.Redirect("/Authenticate/Login");
+}

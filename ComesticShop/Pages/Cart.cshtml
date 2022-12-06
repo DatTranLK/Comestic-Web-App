@@ -1,127 +1,151 @@
-﻿@page
+@page
 @model ComesticShop.Pages.CartModel
 @{
 }
-<section class="h-100 h-custom" style="background-color: #d2c9ff;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-          <div class="card-body p-0">
-            <div class="row g-0">
-              <div class="col-lg-8">
-                <div class="p-5">
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                  </div>
-                  @if (ViewBag.ErrorMessage != null)
-                    {
-                        <div class="alert alert-danger text-center" role="alert">
-                            @ViewBag.ErrorMessage
-                        </div>
-                    }
-                @foreach (var item in Model.cartCus)
-                {
-                    Model.Total += (item.Product.Price * item.Quantity) + Model.ShippingFee;
-                  <hr class="my-4">
-                  <div class="row mb-4 d-flex justify-content-between align-items-center">
-                    <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img src="@item.Product.Avatar"
-                        class="img-fluid rounded-3" alt="Book ava">
-                    </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/assets/css/all.min.css">
 
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h6 class="text-muted">@item.Product.Name</h6>
-                      <h6 class="text-black mb-0">@item.Product.Price</h6>
-                    </div>
-
-                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-
-                    <a class="btn" asp-page="cart"
-                    asp-page-handler="decrease" asp-route-id="@item.Product.Id">
-                    <i class="fas fa-fw fa-minus"></i></a>
-
-
-                     <div class="border" style="padding: 5px; width:60px;">@item.Quantity</div>
-
-                    <a class="btn"
-                    asp-page="cart" asp-page-handler="increase"
-                    asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-plus"></i></a>
-
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                     <h6 class="mb-0">@(item.Product.Price * item.Quantity)</h6>
-                    </div>
-
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a class="text-muted" asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Product.Id"><i class="fas fa-times"></i></a>
-                    </div>
-                  </div>
-                  <hr class="my-4">
-                  }
-                  <div class="pt-5">
-                    <h6 class="mb-0">
-                        <a asp-page="index" class="text-body">
-                            <i class="fas fa-long-arrow-alt-left me-2"></i> Back to shop
-                        </a>
-                    </h6>
-                  </div>
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p style="font-family: 'Quicksand', sans-serif;">Beauty & Fashion</p>
+                    <h1 style="font-family: 'Quicksand', sans-serif;">Cart</h1>
                 </div>
-              </div>
-              <div class="col-lg-4 bg-grey">
-                <div class="p-5">
-                  <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                  <hr class="my-4">
-                    <div class="d-flex justify-content-between mb-5">
-                        <h5 class="text-uppercase">Shipping Fee</h5>
-                        <h5> @Model.ShippingFee</h5>
-                    </div>
-                    <div class="d-flex justify-content-between mb-5">
-                        <h5 class="text-uppercase">Total price</h5>
-                        <h5> @Model.Total</h5>
-                    </div>
-
-                 <hr class="my-4">
-                 <h5 class="text-uppercase mb-3">Shipping Address</h5>
-
-                <form method="post">
-                <div class="mb-5">
-                    <div class="form-outline">
-                        <textarea id="w3review" name="w3review" rows="7" cols="30" asp-for="@Model.ShippingAddress" name="SubShippingAddr" required></textarea>
-                        <span asp-validation-for="@Model.ShippingAddress" class="text-danger"></span>
-                        <label class="form-label" for="form3Examplea2">Enter your address</label>
-                    </div>
-                </div>
-                @if (Model.cartCus == null)
-                {
-                    <input type="text" name="SubTotal" value="@Model.Total" hidden />
-                    <button asp-for="@Model.Total" type="submit" class="btn btn-dark btn-block btn-lg"
-                        data-mdb-ripple-color="dark" disabled>
-                        Checkout
-                    </button>
-                }
-                else
-                {
-                    <input type="text" name="SubTotal" value="@Model.Total" hidden />
-                    <button asp-for="@Model.Total" type="submit" class="btn btn-dark btn-block btn-lg"
-                        data-mdb-ripple-color="dark">
-                        Checkout
-                    </button>
-                }
-                </form>
-
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
+</div>
+<!-- end breadcrumb section -->
+
+<div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+
+        <div class="col-12">
+            <div class="card card-registration card-registration-2" style="border-radius: 10px; border: 1px solid rgb(200, 198, 198);">
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <div class="col-lg-8">
+                            <div class="p-5">
+                                <div class="d-flex justify-content-between align-items-center mb-5">
+                                    <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                                </div>
+                                @if (ViewBag.ErrorMessage != null)
+                                {
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        @ViewBag.ErrorMessage
+                                    </div>
+                                }
+                                @foreach (var item in Model.cartCus)
+                                {
+                                    Model.Total += (item.Product.Price * item.Quantity) + Model.ShippingFee;
+                                    <hr class="my-4" style="border: 1px solid rgb(200, 198, 198);">
+                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                        <div class="col-md-2 col-lg-2 col-xl-2">
+                                            <img src="@item.Product.Avatar"
+                                                 class="img-fluid rounded-3" alt="Book ava">
+                                        </div>
+
+                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                            <h6 class="text-muted">@item.Product.Name</h6>
+                                            <h6 class="text-black mb-0">@item.Product.Price</h6>
+                                        </div>
+
+                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                                            <a class="btn" asp-page="cart"
+                                               asp-page-handler="decrease" asp-route-id="@item.Product.Id">
+                                                <i class="fas fa-fw fa-minus"></i>
+                                            </a>
+
+
+                                            <div class="border" style="padding: 5px; width:60px;">@item.Quantity</div>
+
+                                            <a class="btn"
+                                               asp-page="cart" asp-page-handler="increase"
+                                               asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-plus"></i></a>
+
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <h6 class="mb-0">@(item.Product.Price * item.Quantity)</h6>
+                                        </div>
+
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                            <a class="text-muted" asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Product.Id"><i class="fas fa-times"></i></a>
+                                        </div>
+                                    </div>
+                                    <hr class="my-4" style="border: 1px solid rgb(200, 198, 198);">
+                                }
+                                <div class="pt-5">
+                                    <h6 class="mb-0">
+                                        <a asp-page="index" class="text-body">
+                                            <i class="fas fa-long-arrow-alt-left me-2"></i> Back to shop
+                                        </a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 bg-grey">
+                            <div class="p-5">
+                                <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                <hr class="my-4" style="border: 1px solid rgb(200, 198, 198);">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <h5 class="text-uppercase">Shipping Fee</h5>
+                                    <h5> @Model.ShippingFee</h5>
+                                </div>
+                                <div class="d-flex justify-content-between mb-5">
+                                    <h5 class="text-uppercase">Total price</h5>
+                                    <h5> @Model.Total</h5>
+                                </div>
+
+                                <hr class="my-4" style="border: 1px solid rgb(200, 198, 198);">
+                                <h5 class="text-uppercase mb-3">Shipping Address</h5>
+
+
+                                <form method="post">
+                                    <div class="mb-5">
+                                        <div class="form-outline">
+                                            <textarea id="w3review" name="w3review" rows="7" cols="30" asp-for="@Model.ShippingAddress" name="SubShippingAddr" required></textarea>
+                                            <span asp-validation-for="@Model.ShippingAddress" class="text-danger"></span>
+                                            <label class="form-label" for="form3Examplea2">Enter your address</label>
+                                        </div>
+                                    </div>
+
+                                    @if (Model.cartCus == null)
+                                    {
+                                        <input type="text" name="SubTotal" value="@Model.Total" hidden />
+                                        <button asp-for="@Model.Total" type="submit" class="btn btn-dark btn-block btn-lg"
+                                                data-mdb-ripple-color="dark" disabled>
+                                            Checkout
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <input type="text" name="SubTotal" value="@Model.Total" hidden />
+                                        <button asp-for="@Model.Total" type="submit" class="btn btn-dark btn-block btn-lg"
+                                                data-mdb-ripple-color="dark">
+                                            Checkout
+                                        </button>
+                                    }
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    }
+}

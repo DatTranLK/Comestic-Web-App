@@ -10,5 +10,7 @@ namespace Repository
     public interface IOrderRepository
     {
         Task<int> CreateNewOrder(Order order);
+        Task<IEnumerable<Order>> GetOrders();
+        Task ChangeStatusToAccept(int orderId);
     }
 }

@@ -36,43 +36,52 @@ namespace ComesticShop.Pages
             _orderDetailRepository = orderDetailRepository;
         }
 
-        public async Task OnGet(int id)
+        public async Task OnGet(int? id)
         {
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
             cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
 
-            var product = await _productRepository.GetProductById(id);
-            if (cartCus == null)
+            if (id == null)
             {
-                cartCus = new List<Item>();
-                cartCus.Add(new Item
-                {
-                    Product = product,
-                    Quantity = 1
-                });
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
+                cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
 
             }
-            else
+            else 
             {
-                int index = Exists(cartCus, id);
-                if (index == -1)
+                var product = await _productRepository.GetProductById((int)id);
+                if (cartCus == null)
                 {
+                    cartCus = new List<Item>();
                     cartCus.Add(new Item
                     {
                         Product = product,
                         Quantity = 1
                     });
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
                 }
                 else
                 {
-                    cartCus[index].Quantity++;
-                }
+                    int index = Exists(cartCus, (int)id);
+                    if (index == -1)
+                    {
+                        cartCus.Add(new Item
+                        {
+                            Product = product,
+                            Quantity = 1
+                        });
+                    }
+                    else
+                    {
+                        cartCus[index].Quantity++;
+                    }
 
-                SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
+                }
             }
+            
+            
         }
 
         private int Exists(List<Item> cart, int id)
@@ -149,7 +158,7 @@ namespace ComesticShop.Pages
             for (int i = 0; i < cartCus.Count; i++)
             {
                 var checkOutOfStock = await _productRepository.GetProductById(cartCus[i].Product.Id);
-                if (checkOutOfStock.Amount <= 0 || cartCus[i].Quantity - checkOutOfStock.Amount < 0)
+                if (checkOutOfStock.Amount <= 0 || checkOutOfStock.Amount - cartCus[i].Quantity < 0)
                 {
                     ViewData["ErrorMessage"] = "Số lượng hàng không đủ để đáp ứng";
                     return Page();

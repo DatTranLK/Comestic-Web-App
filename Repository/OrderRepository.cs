@@ -10,6 +10,10 @@ namespace Repository
 {
     public class OrderRepository : IOrderRepository
     {
+        public Task ChangeStatusToAccept(int orderId) => OrderDAO.Instance.ChangeStatusToAccept(orderId);
+
         public Task<int> CreateNewOrder(Order order) => OrderDAO.Instance.CreateNewOrder(order);
+
+        public Task<IEnumerable<Order>> GetOrders() => OrderDAO.Instance.GetOrders();
     }
 }

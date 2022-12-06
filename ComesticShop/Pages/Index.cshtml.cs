@@ -34,7 +34,7 @@ namespace ComesticShop.Pages
             _productRepository = productRepository;
         }
 
-        public async Task OnGet()
+        public async Task OnGetAsync()
         {
             
             Email = HttpContext.Session.GetString("Email");

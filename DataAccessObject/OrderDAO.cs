@@ -1,4 +1,5 @@
 ﻿using BusinessObject.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,45 @@ namespace DataAccessObject
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrders()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task ChangeStatusToAccept(int orderId)
+        {
+            try
+            {
+                var order = await _dbContext.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
+                if (order != null && order.OrderStatus == "Processing")
+                {
+                    order.OrderStatus = "Accepted";
+                    await _dbContext.SaveChangesAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
             }
         }
     }

@@ -1,0 +1,128 @@
+﻿@page
+@model ComesticShop.Pages.ProductDetailModel
+@{
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/assets/css/all.min.css">
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>See more Details</p>
+                    <h1>This Name Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+<!-- single product -->
+<div class="single-product mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-product-img">
+                    <img src="https://japana.vn/uploads/product/2021/09/01/1630464426-at-sk-ii-facial-treatment-gentle-cleanser-120g.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="single-product-content">
+                    <h3 style="font-family: 'Quicksand', sans-serif;">SK-II Skin Signature 3D Redefining Mask - Mặt nạ nâng cơ, xoá nhăn</h3>
+                    <p style="font-family: 'Quicksand', sans-serif;">
+                        <strong style="font-family: 'Quicksand', sans-serif;">
+                            Thương hiệu:
+                            <span class="orange-text" style="font-family: 'Quicksand', sans-serif;">
+                                SK-II
+                            </span>
+                        </strong>
+                    </p>
+                    <p style="font-family: 'Quicksand', sans-serif;">
+                        <strong style="font-family: 'Quicksand', sans-serif;">
+                            Categories:
+                            <span class="orange-text" style="font-family: 'Quicksand', sans-serif;">
+                                Name of category
+                            </span>
+                        </strong>
+                    </p>
+                    <p class="single-product-pricing" style="font-family: 'Quicksand', sans-serif; font-weight: 500">
+                        690000 VND
+                    </p>
+                    <p style="font-family: 'Quicksand', sans-serif;">Summary ...........</p>
+                    <div class="single-product-form">
+                        @*<form action="index.html">
+                                <input type="number" placeholder="0">
+                          </form>*@
+                        <a href="cart.html" class="cart-btn" style="font-family: 'Quicksand', sans-serif;"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+
+                    </div>
+                    @*<h4>Share:</h4>
+        <ul class="product-share">
+            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href=""><i class="fab fa-twitter"></i></a></li>
+            <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+            <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+        </ul>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end single product -->
+<!-- more products -->
+<div class="more-products mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">Related Products</span></h3>
+                    <p>Những sản phẩm cùng Category sẽ xuất hiện (nhớ copy UI list sản phẩm bên Index)</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a asp-page="/ProductAmountSold" class="d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: black">
+                See more
+                <i style="padding-left: 5px; padding-top: 5px" class="fas fa-angle-right"></i>
+            </a>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                    </div>
+                    <h3>Strawberry</h3>
+                    <p class="product-price"><span>Per Kg</span> 85$ </p>
+                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                    </div>
+                    <h3>Berry</h3>
+                    <p class="product-price"><span>Per Kg</span> 70$ </p>
+                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                    </div>
+                    <h3>Lemon</h3>
+                    <p class="product-price"><span>Per Kg</span> 35$ </p>
+                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end more products -->

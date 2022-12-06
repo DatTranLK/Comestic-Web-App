@@ -1,50 +1,81 @@
 ﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
 
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from technext.github.io/fruitkha/index_2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Dec 2022 04:43:03 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-                         <head>
-                             <meta charset="UTF-8">
-                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                             <meta name="viewport" content="width=device-width, initial-scale=1">
-                             <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
-                             <!-- title -->
-                             <title>TinaNguyen - Beauty & Fashion</title>
+    <!-- title -->
+    <title>TinaNguyen - Beauty & Fashion</title>
 
-                             <!-- favicon -->
-                             <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.png">
-                             <!-- google font -->
-                             <link rel="preconnect" href="https://fonts.googleapis.com">
-                             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                             <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-                             <!-- fontawesome -->
-                             <link rel="stylesheet" href="~/assets/css/all.min.css">
-                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-                                   integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-                                   crossorigin="anonymous" referrerpolicy="no-referrer" />
-                             <!-- bootstrap -->
-                             <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
-                             <!-- owl carousel -->
-                             <link rel="stylesheet" href="~/assets/css/owl.carousel.css">
-                             <!-- magnific popup -->
-                             <link rel="stylesheet" href="~/assets/css/magnific-popup.css">
-                             <!-- animate css -->
-                             <link rel="stylesheet" href="~/assets/css/animate.css">
-                             <!-- mean menu css -->
-                             <link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
-                             <!-- main style -->
-                             <link rel="stylesheet" href="~/assets/css/main.css">
-                             <!-- responsive -->
-                             <link rel="stylesheet" href="~/assets/css/responsive.css">
-
-                         </head>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="~/assets/img/favicon.png">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.css">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="~/assets/css/magnific-popup.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+    <!-- mean menu css -->
+    <link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
+    <!-- main style -->
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <!-- responsive -->
+    <link rel="stylesheet" href="~/assets/css/responsive.css">
+    @RenderSection("styles", false)
+</head>
 <body>
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
+        }
+        .page {
+            padding: 0px 10px;
+        }
+
+        .pagination {
+            padding: 20px;
+            &, *
+
+        {
+            user-select: none;
+        }
+
+        a {
+            display: inline-block;
+            padding: 0 10px;
+            cursor: pointer;
+            &.disabled
+
+        {
+            opacity: .3;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        &.current {
+            background: #F28123;
+        }
+
         }
     </style>
     <!--PreLoader-->
@@ -71,15 +102,16 @@
                         <!-- menu start -->
                         <nav class="main-menu">
                             <ul>
-                                <li class="current-list-item">
+                                <li>
                                     <a asp-page="">Home</a>
                                     <ul class="sub-menu">
-                                        <li><a asp-page="">Sản phẩm bán chạy</a></li>
-                                        <li><a asp-page="">Sản phẩm mới nhất</a></li>
-                                        <li><a asp-page="">Sản phẩm gợi ý</a></li>
+                                        <li><a asp-page="/ProductAmountSold">Sản phẩm bán chạy</a></li>
+                                        <li><a asp-page="/ProductNewest">Sản phẩm mới nhất</a></li>
+                                        <li><a asp-page="/ProductRecommend">Sản phẩm gợi ý</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="about.html">About</a></li>
+                                <li><a asp-page="/ProductDetail">Product Detail</a></li>
                                 <li>
                                     <a asp-page="">Comestic</a>
                                     <ul class="sub-menu">
@@ -168,112 +200,33 @@
         </div>
     </div>
     <!-- end search area -->
-    <!-- home page slider -->
-    <div class="homepage-slider">
-        <!-- single home slider -->
-        <div class="single-homepage-slider homepage-bg-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
-                        <div class="hero-text">
-                            <div class="hero-text-tablecell">
-                                <p class="subtitle">Fresh & Organic</p>
-                                <h1>Delicious Seasonal Fruits</h1>
-                                <div class="hero-btns">
-                                    <a href="shop.html" class="boxed-btn">Fruit Collection</a>
-                                    <a href="contact.html" class="bordered-btn">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- single home slider -->
-        <div class="single-homepage-slider homepage-bg-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1 text-center">
-                        <div class="hero-text">
-                            <div class="hero-text-tablecell">
-                                <p class="subtitle">Fresh Everyday</p>
-                                <h1>100% Organic Collection</h1>
-                                <div class="hero-btns">
-                                    <a href="shop.html" class="boxed-btn">Visit Shop</a>
-                                    <a href="contact.html" class="bordered-btn">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- single home slider -->
-        <div class="single-homepage-slider homepage-bg-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1 text-right">
-                        <div class="hero-text">
-                            <div class="hero-text-tablecell">
-                                <p class="subtitle">Mega Sale Going On!</p>
-                                <h1>Get December Discount</h1>
-                                <div class="hero-btns">
-                                    <a href="shop.html" class="boxed-btn">Visit Shop</a>
-                                    <a href="contact.html" class="bordered-btn">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end home page slider -->
-    <!-- features list section -->
-    <div class="list-section pt-80 pb-80">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="list-box d-flex align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
-                        <div class="content">
-                            <h3>Free Shipping</h3>
-                            <p>When order over $75</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="list-box d-flex align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-phone-volume"></i>
-                        </div>
-                        <div class="content">
-                            <h3>24/7 Support</h3>
-                            <p>Get support all day</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="list-box d-flex justify-content-start align-items-center">
-                        <div class="list-icon">
-                            <i class="fas fa-sync"></i>
-                        </div>
-                        <div class="content">
-                            <h3>Refund</h3>
-                            <p>Get refund within 3 days!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- end features list section -->
-    <!-- product section -->
     @RenderBody()
+    <!-- logo carousel -->
+    <div class="logo-carousel-section" style="font-family: 'Quicksand', sans-serif;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo-carousel-inner">
+                        <div class="single-logo-item">
+                            <img src="~/assets/img/company-logos/1.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/assets/img/company-logos/2.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/assets/img/company-logos/3.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/assets/img/company-logos/4.png" alt="">
+                        </div>
+                        <div class="single-logo-item">
+                            <img src="~/assets/img/company-logos/5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- end logo carousel -->
     <!-- footer -->
     <div class="footer-area">
@@ -366,7 +319,128 @@
     <script src="~/assets/js/sticker.js"></script>
     <!-- main js -->
     <script src="~/assets/js/main.js"></script>
-    
+    <script>
+        (function ($) {
+            var pagify = {
+                items: {},
+                container: null,
+                totalPages: 1,
+                perPage: 3,
+                currentPage: 0,
+                createNavigation: function () {
+                    this.totalPages = Math.ceil(this.items.length / this.perPage);
+
+                    $('.pagination', this.container.parent()).remove();
+                    var pagination = $('<div class="pagination align-items-center justify-content-center" ></div>').append('<a class="nav prev disabled" data-next="false"><</a>');
+
+                    for (var i = 0; i < this.totalPages; i++) {
+                        var pageElClass = "page";
+                        if (!i)
+                            pageElClass = "page current";
+                        var pageEl = '<a class="' + pageElClass + '" data-page="' + (
+                            i + 1) + '">' + (
+                                i + 1) + "</a>";
+                        pagination.append(pageEl);
+                    }
+                    pagination.append('<a class="nav next" data-next="true">></a>');
+
+                    this.container.after(pagination);
+
+                    var that = this;
+                    $("body").off("click", ".nav");
+                    this.navigator = $("body").on("click", ".nav", function () {
+                        var el = $(this);
+                        that.navigate(el.data("next"));
+                    });
+
+                    $("body").off("click", ".page");
+                    this.pageNavigator = $("body").on("click", ".page", function () {
+                        var el = $(this);
+                        that.goToPage(el.data("page"));
+                    });
+                },
+                navigate: function (next) {
+                    // default perPage to 5
+                    if (isNaN(next) || next === undefined) {
+                        next = true;
+                    }
+                    $(".pagination .nav").removeClass("disabled");
+                    if (next) {
+                        this.currentPage++;
+                        if (this.currentPage > (this.totalPages - 1))
+                            this.currentPage = (this.totalPages - 1);
+                        if (this.currentPage == (this.totalPages - 1))
+                            $(".pagination .nav.next").addClass("disabled");
+                    }
+                    else {
+                        this.currentPage--;
+                        if (this.currentPage < 0)
+                            this.currentPage = 0;
+                        if (this.currentPage == 0)
+                            $(".pagination .nav.prev").addClass("disabled");
+                    }
+
+                    this.showItems();
+                },
+                updateNavigation: function () {
+
+                    var pages = $(".pagination .page");
+                    pages.removeClass("current");
+                    $('.pagination .page[data-page="' + (
+                        this.currentPage + 1) + '"]').addClass("current");
+                },
+                goToPage: function (page) {
+
+                    this.currentPage = page - 1;
+
+                    $(".pagination .nav").removeClass("disabled");
+                    if (this.currentPage == (this.totalPages - 1))
+                        $(".pagination .nav.next").addClass("disabled");
+
+                    if (this.currentPage == 0)
+                        $(".pagination .nav.prev").addClass("disabled");
+                    this.showItems();
+                },
+                showItems: function () {
+                    this.items.hide();
+                    var base = this.perPage * this.currentPage;
+                    this.items.slice(base, base + this.perPage).show();
+
+                    this.updateNavigation();
+                },
+                init: function (container, items, perPage) {
+                    this.container = container;
+                    this.currentPage = 0;
+                    this.totalPages = 1;
+                    this.perPage = perPage;
+                    this.items = items;
+                    this.createNavigation();
+                    this.showItems();
+                }
+            };
+
+            // stuff it all into a jQuery method!
+            $.fn.pagify = function (perPage, itemSelector) {
+                var el = $(this);
+                var items = $(itemSelector, el);
+
+                // default perPage to 5
+                if (isNaN(perPage) || perPage === undefined) {
+                    perPage = 3;
+                }
+
+                // don't fire if fewer items than perPage
+                if (items.length <= perPage) {
+                    return true;
+                }
+
+                pagify.init(el, items, perPage);
+            };
+        })(jQuery);
+
+        $(".list-wrapper").pagify(9, ".list-item");
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

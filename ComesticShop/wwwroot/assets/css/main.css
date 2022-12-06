@@ -1458,19 +1458,7 @@ input[type="submit"] {
   cursor: pointer;
   padding: 15px 25px;
   border-radius: 3px;
-}
-
-.homepage-bg-1 {
-  background-image: url(../img/hero-bg.jpg);
-}
-
-.homepage-bg-2 {
-  background-image: url(../img/hero-bg-2.jpg);
-}
-
-.homepage-bg-3 {
-  background-image: url(../img/hero-bg-3.jpg);
-}
+}.homepage-bg-1 {    background-image: url(https://img4.thuthuatphanmem.vn/uploads/2020/12/25/anh-bia-nhung-my-pham-cuc-dep_094453730.jpg);}.homepage-bg-2 {    background-image: url(https://cdn.trangcongnghe.vn/uploads/posts/2018-06/cach-chup-anh-quan-ao-ban-hang-online-tuyet-dep-cac-shop-nen-hoc-hoi_3.jpg);}.homepage-bg-3 {    background-image: url(https://cdn3.dhht.vn/wp-content/uploads/2021/09/anhbia-dia-chi-15-cua-hang-thoi-trang-uy-tin-dep-nhat-hien-nay.jpg);}
 
 .homepage-slider {
   height: 100%;
@@ -2444,7 +2432,8 @@ a.cart-btn i {
 .single-product-img img {
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px #ddd;
-  box-shadow: 0 0 20px #ddd;
+  /*box-shadow: 0 0 20px #ddd;*/
+  box-shadow: 0 0 20px #726868;
 }
 
 .single-product-content h3 {

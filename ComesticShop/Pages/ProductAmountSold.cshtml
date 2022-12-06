@@ -1,528 +1,88 @@
 ﻿@page
 @using Microsoft.AspNetCore.Http
 @model ComesticShop.Pages.ProductAmountSoldModel
-@{
-    Layout = "";
-}
-<!DOCTYPE html>
-<html lang="en">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
 
-<!-- Mirrored from technext.github.io/fruitkha/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Dec 2022 04:43:03 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
-
-	<!-- title -->
-	<title>Shop</title>
-
-	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="~/~/assets/img/favicon.png">
-	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&amp;display=swap" rel="stylesheet">
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="~/assets/css/all.min.css">
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
-	<!-- owl carousel -->
-	<link rel="stylesheet" href="~/assets/css/owl.carousel.css">
-	<!-- magnific popup -->
-	<link rel="stylesheet" href="~/assets/css/magnific-popup.css">
-	<!-- animate css -->
-	<link rel="stylesheet" href="~/assets/css/animate.css">
-	<!-- mean menu css -->
-	<link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
-	<!-- main style -->
-	<link rel="stylesheet" href="~/assets/css/main.css">
-	<!-- responsive -->
-	<link rel="stylesheet" href="~/assets/css/responsive.css">
-	<style>
-        .page {
-            padding: 0px 10px;
-        }
-
-        .pagination {
-            padding: 20px;
-            &, *
-
-        {
-            user-select: none;
-        }
-
-        a {
-            display: inline-block;
-            padding: 0 10px;
-            cursor: pointer;
-            &.disabled
-
-        {
-            opacity: .3;
-            pointer-events: none;
-            cursor: not-allowed;
-        }
-
-        &.current {
-            background: #f3f3f3;
-        }
-
-        }
-    </style>
-</head>
-<body>
-	
-	<!--PreLoader-->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p style="font-family: 'Quicksand', sans-serif;">Beauty & Fashion</p>
+                        <h1 style="font-family: 'Quicksand', sans-serif;">Sản phẩm bán chạy</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!--PreLoader Ends-->
-	
-	<!-- header -->
-	<div class="top-header-area" id="sticker">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-sm-12 text-center">
-					<div class="main-menu-wrap">
-						<!-- logo -->
-						<div class="site-logo">
-							<a asp-page="/Index">
-								<img src="~/assets/img/Frame_1-removebg-preview.png" alt="TinaNguyen" style="
-									width: 150px; height: 55px">
-							</a>
-						</div>
-						<!-- logo -->
+    <!-- end breadcrumb section -->
+    <!-- products -->
+    <div class="product-section mt-150 mb-150">
+        <div class="container">
 
-						<!-- menu start -->
-						<nav class="main-menu">
+            @*<div class="row">
+                    <div class="col-md-12">
+                        <div class="product-filters">
                             <ul>
-                                <li class="current-list-item">
-                                    <a asp-page="">Home</a>
-                                    <ul class="sub-menu">
-                                        <li><a asp-page="">Sản phẩm bán chạy</a></li>
-                                        <li><a asp-page="">Sản phẩm mới nhất</a></li>
-                                        <li><a asp-page="">Sản phẩm gợi ý</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about.html">About</a></li>
-                                <li>
-                                    <a asp-page="">Comestic</a>
-                                    <ul class="sub-menu">
-                                        <li><a asp-page="">Chăm sóc da</a></li>
-                                        <li><a asp-page="">Trang điểm</a></li>
-                                        <li><a asp-page="">Dưỡng thể</a></li>
-                                        <li><a asp-page="">Thức uống đẹp da</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a asp-page="">Fashion</a>
-                                    <ul class="sub-menu">
-                                        <li><a asp-page="">Quần áo phụ nữ</a></li>
-                                        <li><a asp-page="">Túi xách</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="news.html">News</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="news.html">News</a></li>
-                                        <li><a href="single-news.html">Single News</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li>
-                                    <a href="shop.html">Shop</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="checkout.html">Check Out</a></li>
-                                        <li><a href="single-product.html">Single Product</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    @if (HttpContext.Session.GetString("Role") == null && HttpContext.Session.GetString("Email") == null)
-                                    {
-                                        <div class="header-icons">
-                                            <a asp-page="/Authenticate/Login"
-                                               data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                               title="Login">
-                                                <i class="fas fa-sign-in-alt"></i>
-                                            </a>
-                                            <a asp-page="/Authenticate/SignUp"
-                                               data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                               title="Register">
-                                                <i class="fas fa-user-plus"></i>
-                                            </a>
-                                            <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                                        </div>
-                                    }
-                                    @if (HttpContext.Session.GetString("Role") == "3" && HttpContext.Session.GetString("Email") != null)
-                                    {
-                                        <div class="header-icons">
-                                            <a asp-page="/Index" asp-page-handler="Logout"><i class="fas fa-sign-out-alt"></i></a>
-                                            <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-                                            <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                                        </div>
-                                    }
-                                </li>
+                                <li class="active" data-filter="*">All</li>
+                                <li data-filter=".strawberry">Strawberry</li>
+                                <li data-filter=".berry">Berry</li>
+                                <li data-filter=".lemon">Lemon</li>
                             </ul>
-                        </nav>
-						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-						<div class="mobile-menu"></div>
-						<!-- menu end -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end header -->
-
-	<!-- search area -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end search arewa -->
-	
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<h1 style="font-family: 'Quicksand';">Sản Phẩm Bán Chạy</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end breadcrumb section -->
-
-	<!-- products -->
-	<div class="product-section mt-150 mb-150">
-		<div class="container">
-
-			@*<div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
-                            <li data-filter=".lemon">Lemon</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>*@
-
-			<div class="list-wrapper row">
-				@foreach (var item in Model.ProductsAmountSold)
-				{
-					<div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
-                    <div class="product-image">
-                        <a href="single-product.html">
-                            <img class="card-img-top" src="@item.Avatar" style="width: 100%; height: 380px" alt="">
-                        </a>
-                    </div>
-                    <div class="card-body" style="width: 100%; height: 25%">
-                        <div class="card-title" style="height: 120px">
-                            <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
-                                color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
-                                @item.Name
-                            </h5>
                         </div>
-                        <p class="product-price" style="font-size: 1.2rem; color: #333;
-                                font-family: 'Quicksand', sans-serif; font-weight: 600 ">
-                            @item.Price VND
-                        </p>
-                        <p style="font-family: 'Quicksand', sans-serif; font-weight: 500">
-                            Số lượng còn: @item.Amount sản phẩm
-                        </p>
-
-                        @if (@Model.Email != null)
-                        {
-                            <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                <i class="fas fa-shopping-cart"></i>
-                                Add to Cart
-                            </a>
-                        }
-                        else
-                        {
-                            <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                <i class="fas fa-shopping-cart"></i>
-                                Add to Cart
-                            </a>
-                        }
                     </div>
-                </div>
-				}
-			</div>
+                </div>*@
+
+            <div class="list-wrapper row">
+                @foreach (var item in Model.ProductsAmountSold)
+                {
+                    <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
+                        <div class="product-image">
+                            <a href="single-product.html">
+                                <img class="card-img-top" src="@item.Avatar" style="width: 100%; height: 380px" alt="">
+                            </a>
+                        </div>
+                        <div class="card-body" style="width: 100%; height: 25%">
+                            <div class="card-title" style="height: 120px">
+                                <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
+                                color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
+                                    @item.Name
+                                </h5>
+                            </div>
+                            <p class="product-price" style="font-size: 1.2rem; color: #333;
+                                font-family: 'Quicksand', sans-serif; font-weight: 600 ">
+                                @item.Price VND
+                            </p>
+                            <p style="font-family: 'Quicksand', sans-serif; font-weight: 500">
+                                Số lượng còn: @item.Amount sản phẩm
+                            </p>
+
+                            @if (@Model.Email != null)
+                            {
+                                <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Add to Cart
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Add to Cart
+                                </a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
             <div id="pagination-container"></div>
-            
-
-
-			
-			
-		</div>
-	</div>
-	<!-- end products -->
-
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="~/assets/img/company-logos/1.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="~/assets/img/company-logos/2.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="~/assets/img/company-logos/3.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="~/assets/img/company-logos/4.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="~/assets/img/company-logos/5.png" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end logo carousel -->
-
-	<!-- footer -->
-	<div class="footer-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">Pages</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="services.html">Shop</a></li>
-							<li><a href="news.html">News</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="https://technext.github.io/fruitkha/index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end footer -->
-	
-	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
-						Distributed By - <a href="https://themewagon.com/">Themewagon</a>
-					</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end copyright -->
-	
-	<!-- jquery -->
-	<script src="~/assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="~/assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="~/assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="~/assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="~/assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="~/assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="~/assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="~/assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="~/assets/js/main.js"></script>
-	<script>
-        (function ($) {
-            var pagify = {
-                items: {},
-                container: null,
-                totalPages: 1,
-                perPage: 3,
-                currentPage: 0,
-                createNavigation: function () {
-                    this.totalPages = Math.ceil(this.items.length / this.perPage);
-
-                    $('.pagination', this.container.parent()).remove();
-                    var pagination = $('<div class="pagination align-items-center justify-content-center"></div>').append('<a class="nav prev disabled" data-next="false"><</a>');
-
-                    for (var i = 0; i < this.totalPages; i++) {
-                        var pageElClass = "page";
-                        if (!i)
-                            pageElClass = "page current";
-                        var pageEl = '<a class="' + pageElClass + '" data-page="' + (
-                            i + 1) + '">' + (
-                                i + 1) + "</a>";
-                        pagination.append(pageEl);
-                    }
-                    pagination.append('<a class="nav next" data-next="true">></a>');
-
-                    this.container.after(pagination);
-
-                    var that = this;
-                    $("body").off("click", ".nav");
-                    this.navigator = $("body").on("click", ".nav", function () {
-                        var el = $(this);
-                        that.navigate(el.data("next"));
-                    });
-
-                    $("body").off("click", ".page");
-                    this.pageNavigator = $("body").on("click", ".page", function () {
-                        var el = $(this);
-                        that.goToPage(el.data("page"));
-                    });
-                },
-                navigate: function (next) {
-                    // default perPage to 5
-                    if (isNaN(next) || next === undefined) {
-                        next = true;
-                    }
-                    $(".pagination .nav").removeClass("disabled");
-                    if (next) {
-                        this.currentPage++;
-                        if (this.currentPage > (this.totalPages - 1))
-                            this.currentPage = (this.totalPages - 1);
-                        if (this.currentPage == (this.totalPages - 1))
-                            $(".pagination .nav.next").addClass("disabled");
-                    }
-                    else {
-                        this.currentPage--;
-                        if (this.currentPage < 0)
-                            this.currentPage = 0;
-                        if (this.currentPage == 0)
-                            $(".pagination .nav.prev").addClass("disabled");
-                    }
-
-                    this.showItems();
-                },
-                updateNavigation: function () {
-
-                    var pages = $(".pagination .page");
-                    pages.removeClass("current");
-                    $('.pagination .page[data-page="' + (
-                        this.currentPage + 1) + '"]').addClass("current");
-                },
-                goToPage: function (page) {
-
-                    this.currentPage = page - 1;
-
-                    $(".pagination .nav").removeClass("disabled");
-                    if (this.currentPage == (this.totalPages - 1))
-                        $(".pagination .nav.next").addClass("disabled");
-
-                    if (this.currentPage == 0)
-                        $(".pagination .nav.prev").addClass("disabled");
-                    this.showItems();
-                },
-                showItems: function () {
-                    this.items.hide();
-                    var base = this.perPage * this.currentPage;
-                    this.items.slice(base, base + this.perPage).show();
-
-                    this.updateNavigation();
-                },
-                init: function (container, items, perPage) {
-                    this.container = container;
-                    this.currentPage = 0;
-                    this.totalPages = 1;
-                    this.perPage = perPage;
-                    this.items = items;
-                    this.createNavigation();
-                    this.showItems();
-                }
-            };
-
-            // stuff it all into a jQuery method!
-            $.fn.pagify = function (perPage, itemSelector) {
-                var el = $(this);
-                var items = $(itemSelector, el);
-
-                // default perPage to 5
-                if (isNaN(perPage) || perPage === undefined) {
-                    perPage = 3;
-                }
-
-                // don't fire if fewer items than perPage
-                if (items.length <= perPage) {
-                    return true;
-                }
-
-                pagify.init(el, items, perPage);
-            };
-        })(jQuery);
-
-        $(".list-wrapper").pagify(9, ".list-item");
-    </script>
-</body>
-
-<!-- Mirrored from technext.github.io/fruitkha/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Dec 2022 04:43:04 GMT -->
-</html>
+        </div>
+    </div>
+    <!-- end products -->

@@ -111,30 +111,38 @@
                                     </ul>
                                 </li>
                                 <li><a href="about.html">About</a></li>
-                                <li><a asp-page="/ProductDetail">Product Detail</a></li>
+                                @*<li><a asp-page="/ProductDetail">Product Detail</a></li>*@
                                 <li>
                                     <a asp-page="">Comestic</a>
                                     <ul class="sub-menu">
-                                        <li><a asp-page="">Chăm sóc da</a></li>
+                                        @foreach (var item in Model.Category1)
+                                       {
+                                           <li><a asp-page="">@item.Name</a></li>
+                                       }
+                                        @*<li><a asp-page="">Chăm sóc da</a></li>
                                         <li><a asp-page="">Trang điểm</a></li>
                                         <li><a asp-page="">Dưỡng thể</a></li>
-                                        <li><a asp-page="">Thức uống đẹp da</a></li>
+                                        <li><a asp-page="">Thức uống đẹp da</a></li>*@
                                     </ul>
                                 </li>
                                 <li>
                                     <a asp-page="">Fashion</a>
                                     <ul class="sub-menu">
-                                        <li><a asp-page="">Quần áo phụ nữ</a></li>
-                                        <li><a asp-page="">Túi xách</a></li>
+                                        @foreach (var item in Model.Category2)
+                                       {
+                                           <li><a asp-page="">@item.Name</a></li>
+                                       }
+                                        @*<li><a asp-page="">Quần áo phụ nữ</a></li>
+                                        <li><a asp-page="">Túi xách</a></li>*@
                                     </ul>
                                 </li>
-                                <li>
+                               @* <li>
                                     <a href="news.html">News</a>
                                     <ul class="sub-menu">
                                         <li><a href="news.html">News</a></li>
                                         <li><a href="single-news.html">Single News</a></li>
                                     </ul>
-                                </li>
+                                </li>*@
                                 <li><a href="contact.html">Contact</a></li>
                                 <li>
                                     <a href="shop.html">Shop</a>

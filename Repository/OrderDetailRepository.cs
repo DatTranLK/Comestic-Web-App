@@ -1,4 +1,5 @@
-﻿using DataAccessObject;
+﻿using BusinessObject.Models;
+using DataAccessObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace Repository
     public class OrderDetailRepository : IOrderDetailRepository
     {
         public Task AddNewOrderDetail(int quantity, int orderId, int productId) => OrderDetailDAO.Instance.AddNewOrderDetail(quantity, orderId, productId);
+
+        public Task<IEnumerable<OrderDetail>> GetOrderDetailById(int orderId) => OrderDetailDAO.Instance.GetOrderDetailById(orderId);
+
     }
 }

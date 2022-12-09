@@ -14,5 +14,6 @@ namespace Repository
         Task DeleteCategory(int id);
         Task AddNewCate(Category category);
         Task UpdateCate(Category category);
+        Task<IEnumerable<Category>> GetCategoriesByType(int typeId);
     }
 }

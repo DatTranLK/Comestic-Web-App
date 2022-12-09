@@ -12,5 +12,8 @@ namespace Repository
         Task<int> CreateNewOrder(Order order);
         Task<IEnumerable<Order>> GetOrders();
         Task ChangeStatusToAccept(int orderId);
+        Task ChangeStatusToCancle(int orderId);
+        Task ChangeStatusToDone(int orderId);
+        Task<Order> GetOrderById(int id);
     }
 }

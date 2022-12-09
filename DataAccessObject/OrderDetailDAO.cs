@@ -1,4 +1,5 @@
 ﻿using BusinessObject.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,28 @@ namespace DataAccessObject
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+        public async Task<IEnumerable<OrderDetail>> GetOrderDetailById(int orderId)
+        {
+            try
+            {
+                var od = await _dbContext.OrderDetails
+                    .Include(x => x.Product)
+                    .Include(x => x.Order)
+                    .Where(x => x.OrderId == orderId)
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (od != null)
+                {
+                    return od;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
             }
         }
     }

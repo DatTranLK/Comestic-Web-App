@@ -16,6 +16,8 @@ namespace Repository
 
         public Task<IEnumerable<Category>> GetCategories() => CategoryDAO.Instance.GetCategories();
 
+        public Task<IEnumerable<Category>> GetCategoriesByType(int typeId) => CategoryDAO.Instance.GetCategoriesByType(typeId);
+
         public Task<Category> GetCategoryById(int id) => CategoryDAO.Instance.GetCategoryById(id);
 
         public Task UpdateCate(Category category) => CategoryDAO.Instance.UpdateCate(category);

@@ -1,0 +1,58 @@
+﻿@page
+@model ComesticShop.Pages.Salers.OrderPage.DoneModel
+@{
+}
+@if (@Model.Role == "2")
+{
+<h1>Xác Nhận Hoàn Thành Đơn Hàng</h1>
+
+<h3>Bạn Có Muốn Hoàn Thành Đơn Hàng?</h3>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger text-center" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+<div>
+    <hr />
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Order
+            </th>
+            <th>
+                Product
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OrderDetail) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    
+    <form method="post">
+        <input type="hidden" asp-for="OrderDetail.FirstOrDefault().Order.Id" />
+        <input type="submit" value="Xác nhận" class="btn btn-danger" /> |
+        <a asp-page="./Index">Trở về danh sách</a>
+    </form>
+</div>
+}
+else{
+    Response.Redirect("/Authenticate/Login");
+}

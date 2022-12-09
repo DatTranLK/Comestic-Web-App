@@ -16,6 +16,7 @@ namespace ComesticShop.Pages
         private readonly IProductRepository _productRepository;
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderDetailRepository _orderDetailRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
         public string Email { get; set; }
         public string Role { get; set; }
@@ -27,13 +28,16 @@ namespace ComesticShop.Pages
         [BindProperty]
         public decimal? ShippingFee { get; set; } = 30000;
         public string ShippingAddress { get; set; }
+        public IEnumerable<Category> Category1 { get; set; }
+        public IEnumerable<Category> Category2 { get; set; }
 
-        public CartModel(IAccountRepository accountRepository, IProductRepository productRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository)
+        public CartModel(IAccountRepository accountRepository, IProductRepository productRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ICategoryRepository categoryRepository)
         {
             _accountRepository = accountRepository;
             _productRepository = productRepository;
             _orderRepository = orderRepository;
             _orderDetailRepository = orderDetailRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public async Task OnGet(int? id)
@@ -42,7 +46,8 @@ namespace ComesticShop.Pages
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
             cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
-
+            Category1 = await _categoryRepository.GetCategoriesByType(1);
+            Category2 = await _categoryRepository.GetCategoriesByType(2);
             if (id == null)
             {
                 cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
@@ -102,6 +107,8 @@ namespace ComesticShop.Pages
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
             cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
+            Category1 = await _categoryRepository.GetCategoriesByType(1);
+            Category2 = await _categoryRepository.GetCategoriesByType(2);
             int index = Exists(cartCus, id);
             cartCus.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
@@ -113,6 +120,8 @@ namespace ComesticShop.Pages
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
             cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
+            Category1 = await _categoryRepository.GetCategoriesByType(1);
+            Category2 = await _categoryRepository.GetCategoriesByType(2);
             int index = Exists(cartCus, id);
             cartCus[index].Quantity++;
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
@@ -124,6 +133,8 @@ namespace ComesticShop.Pages
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
             cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
+            Category1 = await _categoryRepository.GetCategoriesByType(1);
+            Category2 = await _categoryRepository.GetCategoriesByType(2);
             int index = Exists(cartCus, id);
             cartCus[index].Quantity--;
             if (cartCus[index].Quantity <= 0)
@@ -138,6 +149,8 @@ namespace ComesticShop.Pages
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Category1 = await _categoryRepository.GetCategoriesByType(1);
+            Category2 = await _categoryRepository.GetCategoriesByType(2);
             var totalString = Request.Form["SubTotal"];
             decimal total;
             decimal? result = null;

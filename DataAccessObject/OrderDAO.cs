@@ -45,6 +45,23 @@ namespace DataAccessObject
                 throw new Exception(e.Message);
             }
         }
+        public async Task<Order> GetOrderById(int id)
+        {
+            try
+            {
+                var order = await _dbContext.Orders.FirstOrDefaultAsync(o => o.Id == id);
+                if (order != null)
+                {
+                    return order;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<IEnumerable<Order>> GetOrders()
         {
             try
@@ -71,9 +88,45 @@ namespace DataAccessObject
             try
             {
                 var order = await _dbContext.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
-                if (order != null && order.OrderStatus == "Processing")
+                if (order != null && order.OrderStatus == "Processing" || order != null && order.OrderStatus == "Cancle")
                 {
                     order.OrderStatus = "Accepted";
+                    await _dbContext.SaveChangesAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task ChangeStatusToCancle(int orderId)
+        {
+            try
+            {
+                var order = await _dbContext.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
+                if (order != null && order.OrderStatus == "Processing")
+                {
+                    order.OrderStatus = "Cancle";
+                    await _dbContext.SaveChangesAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task ChangeStatusToDone(int orderId)
+        {
+            try
+            {
+                var order = await _dbContext.Orders.FirstOrDefaultAsync(x => x.Id == orderId);
+                if (order != null && order.OrderStatus == "Accepted")
+                {
+                    order.OrderStatus = "Done";
                     await _dbContext.SaveChangesAsync();
                 }
 

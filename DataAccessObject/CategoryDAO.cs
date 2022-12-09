@@ -122,5 +122,22 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Category>> GetCategoriesByType(int typeId)
+        {
+            try
+            {
+                var cates = await _dbContext.Categories.Where(x => x.TypeId == typeId && x.IsActive == true).ToListAsync();
+                if (cates != null)
+                {
+                    return cates;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

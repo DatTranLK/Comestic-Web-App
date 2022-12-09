@@ -25,7 +25,7 @@
 </div>
 <!-- end breadcrumb section -->
 <!-- single product -->
-<div class="single-product mt-150 mb-150">
+<div class="single-product mt-150 mb-100">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
@@ -55,7 +55,7 @@
                     <p class="single-product-pricing" style="font-family: 'Quicksand', sans-serif; font-weight: 500">
                         690000 VND
                     </p>
-                    <p style="font-family: 'Quicksand', sans-serif;">Summary ...........</p>
+                    <p style="font-family: 'Quicksand', sans-serif;">Summary: Sữa rửa mặt tạo bọt nhẹ nhàng loại bỏ các tạp chất cho làn da sạch & mềm mượt.</p>
                     <div class="single-product-form">
                         @*<form action="index.html">
                                 <input type="number" placeholder="0">
@@ -76,53 +76,114 @@
     </div>
 </div>
 <!-- end single product -->
-<!-- more products -->
-<div class="more-products mb-150">
+<div class="product-section mt-150 mb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="section-title">
-                    <h3><span class="orange-text">Related Products</span></h3>
-                    <p>Những sản phẩm cùng Category sẽ xuất hiện (nhớ copy UI list sản phẩm bên Index)</p>
+            <div class="col-md-12" style="height: 120px">
+                <div class="product-filters">
+                    <ul>
+                        <li class="active" data-filter="*">All</li>
+                        <li data-filter=".description">Mô tả sản phẩm</li>
+                        <li data-filter=".usermanual">Hướng dẫn sử dụng</li>
+                        <li data-filter=".element">Thành phần</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div>
-            <a asp-page="/ProductAmountSold" class="d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: black">
-                See more
-                <i style="padding-left: 5px; padding-top: 5px" class="fas fa-angle-right"></i>
-            </a>
-        </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-                    </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-            </div>
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-                    </div>
-                    <h3>Berry</h3>
-                    <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+        <div class="row product-lists" id="product-description-section" style="font-size: .875rem; border-bottom: 1px solid #9d691b;">
+            <div class="product-detail-description-wrapper description" style="padding: 20px 0; border-top: 1px solid #9d691b;">
+                <h2 class="product-detail-information-title" style=" font-family: 'Quicksand', sans-serif;
+                        font-size: 1rem; font-weight: 600; text-transform: uppercase;">
+                    Mô tả sản phẩm
+                </h2>
+                <div style="font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 400; ">
+                    Sữa rửa mặt bán chạy nhất của SK-II là một loại sữa rửa mặt siêu nhẹ nhàng, giúp da được điều hòa và mịn màng.
+
+                    - Được bào chế từ Pitera™, giàu vitamin, axit hữu cơ, khoáng chất, axit amin và chiết xuất ​​cây liễu trắng sẽ làm sạch các tạp chất xung quanh và bên trong lỗ chân lông nhưng vẫn nuôi dưỡng làn da mềm mại, mượt mà sau khi sử dụng.
+
+                    - Công thức dạng kem với kết cấu mịn, tạo bọt làm sạch, thanh lọc và giữ ẩm cho da.
+
+                    - Mùi hương hoa hồng tự nhiên và có khả năng tẩy trang hiệu quả.
+
+                    - Phù hợp cho mọi loại da.
+
+                    Sản xuất tại Nhật Bản
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-                    </div>
-                    <h3>Lemon</h3>
-                    <p class="product-price"><span>Per Kg</span> 35$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+
+            <div class="product-user-manual-wrapper usermanual" style="padding: 20px 0; border-top: 1px solid #9d691b;">
+                <h2 class="product-detail-information-title" style=" font-family: 'Quicksand', sans-serif;
+                        font-size: 1rem; font-weight: 600; text-transform: uppercase;">
+                    Hướng dẫn sử dụng
+                </h2>
+                <div style="font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 400;">
+                    - Làm ướt da mặt sau đó lấy 1 lượng sữa rửa mặt khoảng bằng hạt đậu vào lòng bàn tay.
+                    - Thêm nước đánh bông tạo bọt, nhẹ nhàng massage thoa chuyển động vòng tròn từ trong ra ngoài, từ dưới lên trên.
+                    - Không dùng sữa rửa mặt quá 1 phút.
+                    - Rửa sạch với nước.
+                    - Sử dụng vào mỗi buổi sáng và tối.
+                </div>
+            </div>
+
+            <div class="product-user-manual-wrapper element" style="padding: 20px 0; border-top: 1px solid #9d691b;">
+                <h2 class="product-detail-information-title" style=" font-family: 'Quicksand', sans-serif;
+                        font-size: 1rem; font-weight: 600; text-transform: uppercase;">
+                    Thành phần
+                </h2>
+                <div style="font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 400;">
+                    Aqua (Water), Sodium Lauroyl Glutamate, Propylene Glycol, PEG-150 Stearate, Galactomyces Ferment Filtrate, Sodium PCA, Glycol Stearate, Butylene Glycol, Cocamide MEA, Rosa Canina Fruit Oil, Stearamide AMP, Pentylene Glycol, Salix Alba Bark Extract/Salix Alba (Willow) Bark Extract , Dipotassium Glycyrrhizate, Hydroxyphenyl Propamidobenzoic Acid, Ascorbyl Palmitate, BHT, Phenethyl Alcohol, Methylparaben, Propylparaben
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- end more products -->
+        <!-- more products -->
+        <div class="more-products mb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <div class="section-title">
+                            <h3><span class="orange-text">Related Products</span></h3>
+                            <p>Những sản phẩm cùng Category sẽ xuất hiện (nhớ copy UI list sản phẩm bên Index)</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a asp-page="/ProductAmountSold" class="d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: black">
+                        See more
+                        <i style="padding-left: 5px; padding-top: 5px" class="fas fa-angle-right"></i>
+                    </a>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
+                        <div class="product-image">
+                            <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                        </div>
+                        <h3>Strawberry</h3>
+                        <p class="product-price"><span>Per Kg</span> 85$ </p>
+                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                            </div>
+                            <h3>Berry</h3>
+                            <p class="product-price"><span>Per Kg</span> 70$ </p>
+                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                            </div>
+                            <h3>Lemon</h3>
+                            <p class="product-price"><span>Per Kg</span> 35$ </p>
+                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end more products -->

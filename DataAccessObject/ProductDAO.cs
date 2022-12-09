@@ -206,5 +206,77 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task AddNewProduct(Product product)
+        {
+            try
+            {
+                _dbContext.Products.Add(product);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<Product> GetProductByproId(int id)
+        {
+            try
+            {
+                var pro = await _dbContext.Products
+                    .Include(x => x.Category)
+                    .Include(x => x.Brand)
+                    .Include(x => x.Category.Type)
+                    .FirstOrDefaultAsync(x => x.Id == id);
+                if(pro != null)
+                {
+                    return pro;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task DeletePro(int id)
+        {
+            try
+            {
+                var pro = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
+                if (pro != null)
+                {
+                    if (pro.IsActive == false)
+                    {
+                        pro.IsActive = true;
+                        await _dbContext.SaveChangesAsync();
+                    }
+                    else if (pro.IsActive == true)
+                    {
+                        pro.IsActive = false;
+                        await _dbContext.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task UpdatePro(Product product)
+        {
+            try
+            {
+                _dbContext.ChangeTracker.Clear();
+                _dbContext.Entry(product).State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

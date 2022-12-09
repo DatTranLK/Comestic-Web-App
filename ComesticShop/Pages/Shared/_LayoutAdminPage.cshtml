@@ -88,12 +88,6 @@
 </div>
 <span>Products</span>
 </a>
-<ul>
-<li><a href="Products.html">Products</a></li>
-<li><a href="Product_Details.html">Product Details</a></li>
-<li><a href="Cart.html">Cart</a></li>
-<li><a href="Checkout.html">Checkout</a></li>
-</ul>
 </li>
 
 <li class="">
@@ -141,7 +135,7 @@
 </a>
 </li>
 
-<li class="">
+@*<li class="">
 <a class="has-arrow" href="#" aria-expanded="false">
 <div class="icon_menu">
 <img src="~/admin/img/menu-icon/11.svg" alt="">
@@ -152,14 +146,14 @@
 <li><a href="data_table.html">Data Tables</a></li>
 <li><a href="bootstrap_table.html">Bootstrap</a></li>
 </ul>
-</li>
+</li>*@
 </ul>
 <hr>
 <h4 style="text-align:center">Add Product With Type</h4>
 <ul style="text-align: center; font-size:19px">
     @foreach (var item in Model.Type)
         {
-            <li><a asp-page="#" asp-route-id="@item.Id" style="color: black">@item.Name</a></li>
+            <li><a asp-page="/Admin/AddProductWithType/Create" asp-route-id="@item.Id" style="color: black">@item.Name</a></li>
         }
 </ul>
 

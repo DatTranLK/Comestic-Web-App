@@ -1,0 +1,92 @@
+﻿@page
+@model ComesticShop.Pages.ProductByCategoryModel
+@{
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/assets/css/all.min.css">
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h2 style="font-family: 'Quicksand', sans-serif; color: white">@Model.CategoryName.Name</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-section mt-150 mb-150">
+        <div class="container">
+
+            @*<div class="row">
+                    <div class="col-md-12">
+                        <div class="product-filters">
+                            <ul>
+                                <li class="active" data-filter="*">All</li>
+                                <li data-filter=".strawberry">Strawberry</li>
+                                <li data-filter=".berry">Berry</li>
+                                <li data-filter=".lemon">Lemon</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class="list-wrapper row">
+            @if (Model.ProductsByCategory.Count() == 0)
+            {
+                <h2>Không có sản phẩm</h2>
+            }else
+            {
+                @foreach (var item in Model.ProductsByCategory)
+                {
+                    <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
+                        <div class="product-image">
+                            <a href="single-product.html">
+                                <img class="card-img-top" src="@item.Avatar" style="width: 100%; height: 380px" alt="">
+                            </a>
+                        </div>
+                        <div class="card-body" style="width: 100%; height: 25%">
+                            <div class="card-title" style="height: 120px">
+                                <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
+                                color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
+                                    @item.Name
+                                </h5>
+                            </div>
+                            <p class="product-price" style="font-size: 1.2rem; color: #333;
+                                font-family: 'Quicksand', sans-serif; font-weight: 600 ">
+                                @item.Price VND
+                            </p>
+                            <p style="font-family: 'Quicksand', sans-serif; font-weight: 500">
+                                Số lượng còn: @item.Amount sản phẩm
+                            </p>
+
+                            @if (@Model.Email != null)
+                            {
+                                <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Add to Cart
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Add to Cart
+                                </a>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            
+            </div>
+            <div id="pagination-container"></div>
+        </div>
+    </div>

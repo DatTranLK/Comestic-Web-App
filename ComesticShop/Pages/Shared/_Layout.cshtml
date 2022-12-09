@@ -103,7 +103,7 @@
                         <nav class="main-menu">
                             <ul>
                                 <li>
-                                    <a asp-page="">Home</a>
+                                    <a asp-page="/Index">Home</a>
                                     <ul class="sub-menu">
                                         <li><a asp-page="/ProductAmountSold">Sản phẩm bán chạy</a></li>
                                         <li><a asp-page="/ProductNewest">Sản phẩm mới nhất</a></li>
@@ -117,7 +117,7 @@
                                     <ul class="sub-menu">
                                         @foreach (var item in Model.Category1)
                                        {
-                                           <li><a asp-page="">@item.Name</a></li>
+                                           <li><a asp-page="/ProductByCategory" asp-route-id="@item.Id">@item.Name</a></li>
                                        }
                                         @*<li><a asp-page="">Chăm sóc da</a></li>
                                         <li><a asp-page="">Trang điểm</a></li>
@@ -130,7 +130,7 @@
                                     <ul class="sub-menu">
                                         @foreach (var item in Model.Category2)
                                        {
-                                           <li><a asp-page="">@item.Name</a></li>
+                                           <li><a asp-page="/ProductByCategory" asp-route-id="@item.Id">@item.Name</a></li>
                                        }
                                         @*<li><a asp-page="">Quần áo phụ nữ</a></li>
                                         <li><a asp-page="">Túi xách</a></li>*@

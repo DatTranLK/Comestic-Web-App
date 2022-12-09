@@ -186,5 +186,25 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Product>> GetProductByCategoryId(int cateId)
+        {
+            try
+            {
+                var pro = await _dbContext.Products
+                    .Include(x => x.Category)
+                    .Include(x => x.Brand)
+                    .Where(x => x.CategoryId == cateId && x.IsActive == true && x.Amount > 0).ToListAsync();
+                if(pro != null)
+                {
+                    return pro;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

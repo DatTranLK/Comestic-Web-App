@@ -1,0 +1,60 @@
+﻿@page
+@model ComesticShop.Pages.Customers.OrderDetailPageModel
+@{
+}
+@if(@Model.Role == "3")
+{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <h1 style="font-family: 'Quicksand', sans-serif;">Chi tiết đơn hàng</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Product
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="list-wrapper">
+@foreach (var item in Model.OrderDetail) {
+        <tr class="list-item">
+            <td></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+<div id="pagination-container"></div>
+}
+else
+{
+    Response.Redirect("/Authenticate/Login");
+}

@@ -137,5 +137,22 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Order>> GetOrdersByCusId(int cusId)
+        {
+            try
+            {
+                var or = await _dbContext.Orders.Include(x => x.Customer).Include(o => o.Staff).Where(x => x.CustomerId == cusId).OrderByDescending(x => x.Id).ToListAsync();
+                if (or != null)
+                {
+                    return or;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

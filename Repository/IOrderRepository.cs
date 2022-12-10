@@ -15,5 +15,6 @@ namespace Repository
         Task ChangeStatusToCancle(int orderId);
         Task ChangeStatusToDone(int orderId);
         Task<Order> GetOrderById(int id);
+        Task<IEnumerable<Order>> GetOrdersByCusId(int cusId);
     }
 }

@@ -17,7 +17,7 @@
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
                     <p>See more Details</p>
-                    <h1>This Name Product</h1>
+                    <h1 style="font-family: 'Quicksand', sans-serif;">@Model.Product.Name</h1>
                 </div>
             </div>
         </div>
@@ -30,17 +30,17 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="single-product-img">
-                    <img src="https://japana.vn/uploads/product/2021/09/01/1630464426-at-sk-ii-facial-treatment-gentle-cleanser-120g.jpg" alt="">
+                    <img src="@Model.Product.Avatar" alt="">
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
-                    <h3 style="font-family: 'Quicksand', sans-serif;">SK-II Skin Signature 3D Redefining Mask - Mặt nạ nâng cơ, xoá nhăn</h3>
+                    <h3 style="font-family: 'Quicksand', sans-serif;">@Model.Product.Name</h3>
                     <p style="font-family: 'Quicksand', sans-serif;">
                         <strong style="font-family: 'Quicksand', sans-serif;">
                             Thương hiệu:
                             <span class="orange-text" style="font-family: 'Quicksand', sans-serif;">
-                                SK-II
+                                @Model.Product.Brand.Name
                             </span>
                         </strong>
                     </p>
@@ -48,19 +48,32 @@
                         <strong style="font-family: 'Quicksand', sans-serif;">
                             Categories:
                             <span class="orange-text" style="font-family: 'Quicksand', sans-serif;">
-                                Name of category
+                                @Model.Product.Category.Name
                             </span>
                         </strong>
                     </p>
                     <p class="single-product-pricing" style="font-family: 'Quicksand', sans-serif; font-weight: 500">
-                        690000 VND
+                        @Model.Product.Price VND
                     </p>
-                    <p style="font-family: 'Quicksand', sans-serif;">Summary: Sữa rửa mặt tạo bọt nhẹ nhàng loại bỏ các tạp chất cho làn da sạch & mềm mượt.</p>
+                    <p style="font-family: 'Quicksand', sans-serif;">Summary: @Model.Product.Summary</p>
                     <div class="single-product-form">
                         @*<form action="index.html">
                                 <input type="number" placeholder="0">
                           </form>*@
-                        <a href="cart.html" class="cart-btn" style="font-family: 'Quicksand', sans-serif;"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        @if (@Model.Email != null)
+                        {
+                            <a asp-page="./Cart" asp-route-id="@Model.Product.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </a>
+                        }
 
                     </div>
                     @*<h4>Share:</h4>
@@ -97,17 +110,7 @@
                     Mô tả sản phẩm
                 </h2>
                 <div style="font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 400; ">
-                    Sữa rửa mặt bán chạy nhất của SK-II là một loại sữa rửa mặt siêu nhẹ nhàng, giúp da được điều hòa và mịn màng.
-
-                    - Được bào chế từ Pitera™, giàu vitamin, axit hữu cơ, khoáng chất, axit amin và chiết xuất ​​cây liễu trắng sẽ làm sạch các tạp chất xung quanh và bên trong lỗ chân lông nhưng vẫn nuôi dưỡng làn da mềm mại, mượt mà sau khi sử dụng.
-
-                    - Công thức dạng kem với kết cấu mịn, tạo bọt làm sạch, thanh lọc và giữ ẩm cho da.
-
-                    - Mùi hương hoa hồng tự nhiên và có khả năng tẩy trang hiệu quả.
-
-                    - Phù hợp cho mọi loại da.
-
-                    Sản xuất tại Nhật Bản
+                    @Model.Product.Description
                 </div>
             </div>
 
@@ -117,11 +120,7 @@
                     Hướng dẫn sử dụng
                 </h2>
                 <div style="font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 400;">
-                    - Làm ướt da mặt sau đó lấy 1 lượng sữa rửa mặt khoảng bằng hạt đậu vào lòng bàn tay.
-                    - Thêm nước đánh bông tạo bọt, nhẹ nhàng massage thoa chuyển động vòng tròn từ trong ra ngoài, từ dưới lên trên.
-                    - Không dùng sữa rửa mặt quá 1 phút.
-                    - Rửa sạch với nước.
-                    - Sử dụng vào mỗi buổi sáng và tối.
+                    @Model.Product.UserManual
                 </div>
             </div>
 
@@ -131,7 +130,7 @@
                     Thành phần
                 </h2>
                 <div style="font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 400;">
-                    Aqua (Water), Sodium Lauroyl Glutamate, Propylene Glycol, PEG-150 Stearate, Galactomyces Ferment Filtrate, Sodium PCA, Glycol Stearate, Butylene Glycol, Cocamide MEA, Rosa Canina Fruit Oil, Stearamide AMP, Pentylene Glycol, Salix Alba Bark Extract/Salix Alba (Willow) Bark Extract , Dipotassium Glycyrrhizate, Hydroxyphenyl Propamidobenzoic Acid, Ascorbyl Palmitate, BHT, Phenethyl Alcohol, Methylparaben, Propylparaben
+                    @Model.Product.Element
                 </div>
             </div>
         </div>
@@ -143,46 +142,58 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="section-title">
-                            <h3><span class="orange-text">Related Products</span></h3>
-                            <p>Những sản phẩm cùng Category sẽ xuất hiện (nhớ copy UI list sản phẩm bên Index)</p>
+                            <h3><span class="orange-text">Sản Phẩm Liên Quan</span></h3>
+                            @*<p>Những sản phẩm cùng Category sẽ xuất hiện (nhớ copy UI list sản phẩm bên Index)</p>*@
                         </div>
                     </div>
                 </div>
                 <div>
-                    <a asp-page="/ProductAmountSold" class="d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: black">
+                    <a asp-page="/ProductByCategory" asp-route-id="@Model.Product.CategoryId" class="d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: black">
                         See more
                         <i style="padding-left: 5px; padding-top: 5px" class="fas fa-angle-right"></i>
                     </a>
                 </div>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
-                        <div class="product-image">
-                            <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-                        </div>
-                        <h3>Strawberry</h3>
-                        <p class="product-price"><span>Per Kg</span> 85$ </p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <div class="single-product-item">
+                    @foreach (var item in Model.RelatedProduct)
+                    {
+                        <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
                             <div class="product-image">
-                                <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                                <a asp-page="/ProductDetail" asp-route-id="@item.Id">
+                                    <img class="card-img-top" src="@item.Avatar" style="width: 100%; height: 380px" alt="">
+                                </a>
                             </div>
-                            <h3>Berry</h3>
-                            <p class="product-price"><span>Per Kg</span> 70$ </p>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                            <div class="card-body" style="width: 100%; height: 25%">
+                                <div class="card-title" style="height: 120px">
+                                    <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
+                                        color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
+                                        @item.Name
+                                    </h5>
+                                </div>
+                                <p class="product-price" style="font-size: 1.2rem; color: #333;
+                                        font-family: 'Quicksand', sans-serif; font-weight: 600 ">
+                                    @item.Price VND
+                                </p>
+                                <p style="font-family: 'Quicksand', sans-serif; font-weight: 500">
+                                    Số lượng còn: @item.Amount sản phẩm
+                                </p>
+
+                                @if (@Model.Email != null)
+                                {
+                                    <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Add to Cart
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Add to Cart
+                                    </a>
+                                }
                             </div>
-                            <h3>Lemon</h3>
-                            <p class="product-price"><span>Per Kg</span> 35$ </p>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

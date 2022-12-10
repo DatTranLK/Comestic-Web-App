@@ -48,7 +48,7 @@
                 {
                     <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
                         <div class="product-image">
-                            <a href="single-product.html">
+                            <a asp-page="/ProductDetail" asp-route-id="@item.Id">
                                 <img class="card-img-top" src="@item.Avatar" style="width: 100%; height: 380px" alt="">
                             </a>
                         </div>

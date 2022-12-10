@@ -21,5 +21,7 @@ namespace Repository
         public Task<Order> GetOrderById(int id) => OrderDAO.Instance.GetOrderById(id);
 
         public Task<IEnumerable<Order>> GetOrders() => OrderDAO.Instance.GetOrders();
+
+        public Task<IEnumerable<Order>> GetOrdersByCusId(int cusId) => OrderDAO.Instance.GetOrdersByCusId(cusId);
     }
 }

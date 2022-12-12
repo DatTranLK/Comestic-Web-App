@@ -16,6 +16,8 @@ namespace Repository
 
         public Task<IEnumerable<Product>> GetListProductAmountSold() => ProductDAO.Instance.GetListProductAmountSold();
 
+        public Task<IEnumerable<Product>> GetListProductForSaler() => ProductDAO.Instance.GetListProductForSaler();
+
         public Task<IEnumerable<Product>> GetListProductNewest() => ProductDAO.Instance.GetListProductNewest();
 
         public Task<IEnumerable<Product>> GetListProductRecomend() => ProductDAO.Instance.GetListProductRecomend();

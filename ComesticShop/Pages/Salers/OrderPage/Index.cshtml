@@ -44,7 +44,22 @@
                 @Html.DisplayFor(modelItem => item.ShippingAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
+                @if (item.OrderStatus == "Processing")
+                    {
+                        <p class="btn btn-outline-warning">@item.OrderStatus</p>
+                    }
+                    else if (item.OrderStatus == "Accepted")
+                    {
+                        <p class="btn btn-outline-success">@item.OrderStatus</p>
+                    }
+                    else if (item.OrderStatus == "Done")
+                    {
+                        <p class="btn btn-outline-info">@item.OrderStatus</p>
+                    }
+                    else if (item.OrderStatus == "Cancle")
+                    {
+                        <p class="btn btn-outline-danger">@item.OrderStatus</p>
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Customer.Name)

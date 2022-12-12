@@ -22,5 +22,6 @@ namespace Repository
         Task<Product> GetProductByproId(int id);
         Task DeletePro(int id);
         Task UpdatePro(Product product);
+        Task<IEnumerable<Product>> GetListProductForSaler();
     }
 }

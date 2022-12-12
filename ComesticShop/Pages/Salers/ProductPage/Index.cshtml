@@ -28,20 +28,6 @@ input[type=text]:focus {
 </style>
 </head>
     <h1>Product</h1>
-    @*<form action="#">
-<div class="search_field">
-<input type="text" placeholder="Search here...">
-</div>
-<button type="submit">  </button>
-</form>*@
-    @*<div class="container">
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon">Search: </span>
-                <input type="text" id="Search" placeholder="Search" class="form-control"/>
-            </div>
-        </div>
-    </div>*@
     <form>
       <input type="text" id="Search" name="search" placeholder="Search..">
     </form>
@@ -91,11 +77,11 @@ input[type=text]:focus {
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
-            @*<td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>*@
+            <td>
+                <a asp-page="./CartSalers" class="btn btn-primary" asp-route-id="@item.Id">Add to cart</a>
+                @*<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
         </tr>
 }
     </tbody>

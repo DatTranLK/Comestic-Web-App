@@ -24,64 +24,136 @@
             </div>
         </div>
     </div>
-    <table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>
-                TotalPrice
-            </th>
-            <th>
-                CreateDate
-            </th>
-            <th>
-                ShippingAddress
-            </th>
-            <th>
-                OrderStatus
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody class="list-wrapper">
-@foreach (var item in Model.OrderHistory) {
-        <tr class="list-item">
-            <td></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShippingAddress)
-            </td>
-            <td>
-                    @if (item.OrderStatus == "Processing")
-                    {
-                        <p class="btn btn-warning">@item.OrderStatus</p>
-                    }
-                    else if (item.OrderStatus == "Accepted")
-                    {
-                        <p class="btn btn-success">@item.OrderStatus</p>
-                    }
-                    else if (item.OrderStatus == "Done")
-                    {
-                        <p class="btn btn-info">@item.OrderStatus</p>
-                    }
-                    else if (item.OrderStatus == "Cancle")
-                    {
-                        <p class="btn btn-danger">@item.OrderStatus</p>
-                    }
-            </td>
-            <td>
-                <a asp-page="/Customers/OrderDetailPage" asp-route-id="@item.Id">Xem chi tiết đơn hàng</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-<div id="pagination-container"></div>
+    <!-- end breadcrumb-section -->
+    <!-- orderhistory -->
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        TotalPrice
+                    </th>
+                    <th>
+                        CreateDate
+                    </th>
+                    <th>
+                        ShippingAddress
+                    </th>
+                    <th>
+                        OrderStatus
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="list-wrapper">
+                @foreach (var item in Model.OrderHistory)
+                {
+                    <tr class="list-item">
+                        <td></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShippingAddress)
+                        </td>
+                        <td>
+                            @if (item.OrderStatus == "Processing")
+                            {
+                                <p class="btn btn-warning">@item.OrderStatus</p>
+                            }
+                            else if (item.OrderStatus == "Accepted")
+                            {
+                                <p class="btn btn-success">@item.OrderStatus</p>
+                            }
+                            else if (item.OrderStatus == "Done")
+                            {
+                                <p class="btn btn-info">@item.OrderStatus</p>
+                            }
+                            else if (item.OrderStatus == "Cancle")
+                            {
+                                <p class="btn btn-danger">@item.OrderStatus</p>
+                            }
+                        </td>
+                        <td>
+                            <a asp-page="/Customers/OrderDetailPage" asp-route-id="@item.Id">Xem chi tiết đơn hàng</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div id="pagination-container"></div>*@
+
+    <div class="cart-section mt-100 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cart-table-wrap" style="border: 1px solid rgb(200, 198, 198);">
+                        <table class="cart-table">
+                            <thead class="cart-table-head">
+                                <tr class="table-head-row">
+                                    @*<th class="product-remove"></th>
+                                    <th class="product-image">Product Image</th>*@
+                                    <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Create Date</th>
+                                    <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Shipping Address</th>
+                                    <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Status</th>
+                                    <th class="product-total" style="font-family: 'Quicksand', sans-serif;">Total</th>
+                                    <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list-wrapper">
+                                @foreach (var item in Model.OrderHistory)
+                                {
+                                    <tr class="table-body-row">
+                                        @*<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                                        <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>*@
+                                        <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
+                                            @Html.DisplayFor(modelItem => item.CreateDate)
+                                        </td>
+                                        <td class="product-name" >
+                                            @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                        </td>
+                                        <td class="product-name" >
+                                            @if (item.OrderStatus == "Processing")
+                                            {
+                                                <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                            }
+                                            @if (item.OrderStatus == "Accepted")
+                                            {
+                                                <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                            }
+                                            @if (item.OrderStatus == "Done")
+                                            {
+                                                <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                            }
+                                            @if (item.OrderStatus == "Cancle")
+                                            {
+                                                <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                            }
+                                        </td>
+                                        <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
+                                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                                        </td>
+                                        <td>
+                                            <a asp-page="/Customers/OrderDetailPage" asp-route-id="@item.Id"
+                                               style="font-family: 'Quicksand', sans-serif;">
+                                                Xem chi tiết đơn hàng
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                }
+                            </tbody>
+                        </table>
+                        <div id="pagination-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end orderhistory -->
 
 }
 else

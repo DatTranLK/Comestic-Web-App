@@ -148,9 +148,12 @@
                     </div>
                     <div class="card-body" style="width: 100%; height: 25%">
                         <div class="card-title" style="height: 120px">
-                            <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
+                            <h5>
+                                <a asp-page="/ProductDetail" asp-route-id="@item.Id"
+                                   style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
                                 color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
-                                @item.Name
+                                    @item.Name
+                                </a>
                             </h5>
                         </div>
                         <p class="product-price" style="font-size: 1.2rem; color: #333;
@@ -213,9 +216,12 @@
                     </div>
                     <div class="card-body" style="width: 100%; height: 25%">
                         <div class="card-title" style="height: 120px">
-                            <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
+                            <h5>
+                                <a asp-page="/ProductDetail" asp-route-id="@item.Id"
+                                   style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
                                 color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
-                                @item.Name
+                                    @item.Name
+                                </a>
                             </h5>
                         </div>
                         <p class="product-price" style="font-size: 1.2rem; color: #333;
@@ -278,9 +284,12 @@
                     </div>
                     <div class="card-body" style="width: 100%; height: 25%">
                         <div class="card-title" style="height: 120px">
-                            <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
+                            <h5>
+                                <a asp-page="/ProductDetail" asp-route-id="@item.Id"
+                                   style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
                                 color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
-                                @item.Name
+                                    @item.Name
+                                </a>
                             </h5>
                         </div>
                         <p class="product-price" style="font-size: 1.2rem; color: #333;
@@ -342,7 +351,7 @@
     </section>*@
 <!-- end cart banner section -->
 <!-- testimonail-section -->
-<div class="testimonail-section mt-150 mb-150" style="font-family: 'Quicksand', sans-serif;">
+@*<div class="testimonail-section mt-150 mb-150" style="font-family: 'Quicksand', sans-serif;">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 offset-lg-1 text-center">
@@ -393,10 +402,10 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!-- end testimonail-section -->
 <!-- advertisement section -->
-<div class="abt-section mb-150" style="font-family: 'Quicksand', sans-serif;">
+@*<div class="abt-section mb-150" style="font-family: 'Quicksand', sans-serif;">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
@@ -415,19 +424,19 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!-- end advertisement section -->
 <!-- shop banner -->
-<section class="shop-banner" style="font-family: 'Quicksand', sans-serif;">
+@*<section class="shop-banner" style="font-family: 'Quicksand', sans-serif;">
     <div class="container">
         <h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
         <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
         <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
     </div>
-</section>
+</section>*@
 <!-- end shop banner -->
 <!-- latest news -->
-<div class="latest-news pt-150 pb-150" style="font-family: 'Quicksand', sans-serif;">
+@*<div class="latest-news pt-150 pb-150" style="font-family: 'Quicksand', sans-serif;">
     <div class="container">
 
         <div class="row">
@@ -489,5 +498,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!-- end latest news -->

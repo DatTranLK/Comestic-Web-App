@@ -51,9 +51,12 @@
                     </div>
                     <div class="card-body" style="width: 100%; height: 25%">
                         <div class="card-title" style="height: 120px">
-                            <h5 style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
+                            <h5>
+                                <a asp-page="/ProductDetail" asp-route-id="@item.Id"
+                                   style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
                                 color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
-                                @item.Name
+                                    @item.Name
+                                </a>
                             </h5>
                         </div>
                         <p class="product-price" style="font-size: 1.2rem; color: #333;

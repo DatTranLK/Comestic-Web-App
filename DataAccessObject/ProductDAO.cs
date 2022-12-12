@@ -69,6 +69,27 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Product>> GetListProductForSaler()
+        {
+            try
+            {
+                var lst = await _dbContext.Products
+                    .Include(x => x.Brand)
+                    .Include(x => x.Category)
+                    .Where(x => x.IsActive == true && x.Amount > 0)
+                    .OrderByDescending(x => x.Id).ToListAsync();
+                if (lst != null)
+                {
+                    return lst;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<IEnumerable<Product>> GetProductNewest()
         {
             try
@@ -88,6 +109,7 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+
         public async Task<IEnumerable<Product>> GetListProductNewest()
         {
             try

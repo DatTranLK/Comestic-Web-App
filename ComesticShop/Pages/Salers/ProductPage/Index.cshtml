@@ -4,8 +4,124 @@
 }
 @if (@Model.Role == "2")
 {
-    <h1>Hello Saler</h1>
-   
+    <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style> 
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url("../admin/img/searchicon.png");
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+</style>
+</head>
+    <h1>Product</h1>
+    @*<form action="#">
+<div class="search_field">
+<input type="text" placeholder="Search here...">
+</div>
+<button type="submit">  </button>
+</form>*@
+    @*<div class="container">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">Search: </span>
+                <input type="text" id="Search" placeholder="Search" class="form-control"/>
+            </div>
+        </div>
+    </div>*@
+    <form>
+      <input type="text" id="Search" name="search" placeholder="Search..">
+    </form>
+    <br></br>
+<table class="table" style="background-color: white; border-radius: 10px">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Category
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="list-wrapper">
+@foreach (var item in Model.Product) {
+        <tr class="list-item Search">
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            @*<td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>
+<div id="pagination-container"></div>
+<script src="~/admin/js/jquery1-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function Contains(text_one, text_two) { 
+            if (text_one.indexOf(text_two) != -1)
+                return true;
+        }
+        $("#Search").keyup(function() {
+            var searchText = $("#Search").val().toLowerCase();
+            $(".Search").each(function() {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+
+                }
+                else { 
+                    $(this).show();
+                }
+            });
+        });
+    });
+</script>
 }
 else{
     Response.Redirect("/Authenticate/Login");

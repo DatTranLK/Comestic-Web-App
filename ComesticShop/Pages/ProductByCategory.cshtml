@@ -16,7 +16,43 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <h2 style="font-family: 'Quicksand', sans-serif; color: white">@Model.CategoryName.Name</h2>
+                    <h2 style="font-family: 'Quicksand', sans-serif; color: #F28123">@Model.CategoryName.Name</h2>
+                    @if (Model.CategoryName.Name == "Chăm sóc da")
+                    {
+                        <h5 style="font-family: 'Quicksand', sans-serif; color: white">
+                            Chăm sóc da đúng cách và khoa học sẽ giúp bạn sở hữu làn da đẹp, khỏe khoắn và mịn màng. 
+                            Trong đó, các bước chăm sóc da cơ bản rất quan trọng và cần được tiến hành hàng ngày để đạt được kết quả tốt nhất. 
+                            Ngoài ra, chăm sóc da đúng cách sẽ giúp bạn có được làn da tươi trẻ, khoẻ mạnh và hạn chế tối đa quá trình lão hóa.
+                        </h5>
+                    }
+                    @if (Model.CategoryName.Name == "Trang điểm")
+                    {
+                        <h5 style="font-family: 'Quicksand', sans-serif; color: white">
+                            Đối với phụ nữ thì trang điểm và làm đẹp là dường như là hai khía cạnh không thể thiếu trong cuộc sống. 
+                            Trang điểm sẽ giúp phụ nữ đẹp hơn và tự tin hơn khi sống trong một xã hội ngày càng hiện đại và tiến bộ. 
+                            Trang điểm mang lại những lợi ích mà bất cứ phụ nữ nào cũng cần: che đi những khuyết điểm, thay đổi hình ảnh, 
+                            điều chỉnh khuôn mặt, thêm sự thu hút, củng cố sự tự tin,...
+                        </h5>
+                    }
+                    @if (Model.CategoryName.Name == "Dưỡng thể")
+                    {
+                        <h5 style="font-family: 'Quicksand', sans-serif; color: white">
+                            Có lẽ hằng ngày, vì quá chú trọng việc dưỡng da mặt mà chị em chúng mình vô tình quên đi “phần còn lại”. 
+                            Bên cạnh việc chăm sóc da mặt, thì dưỡng thể là một phần không thể thiếu của phái đẹp để có một làn da hoàn hảo từ đầu đến chân. 
+                            Đặc biệt là ở Việt Nam nơi có khí hậu nóng bức, da dễ mất nước, mất chất. Dưỡng thể sẽ giúp làm sạch, bảo vệ và tái tạo da sau ngày dài làm việc.
+                            Làn da sạch và ẩm sẽ mang lại một cơ thể trắng sáng và mềm mịn.
+                        </h5>
+                    }
+                    @if (Model.CategoryName.Name == "Thức uống đẹp da")
+                    {
+                        <h5 style="font-family: 'Quicksand', sans-serif; color: white">
+                            Làn da là biểu hiện của sức khỏe. Một làn da săn chắc, khỏe đẹp phản ánh một sức khỏe tốt,
+                            với làn da như vậy hẳn bạn cũng sẽ tự tin hơn trong giao tiếp, làm việc. 
+                            Bên cạnh việc chăm sóc da từ bên ngoài, bằng các loại mỹ phẩm dưỡng da, thì việc chăm sóc da từ bên trong cũng vô cùng quan trọng. 
+                            Phương pháp đơn giản nhất để làm đẹp da từ sâu bên trong đó chính là dùng các loại thức uống bổ sung dưỡng chất để hỗ trợ tái tạo 
+                            và chống lão hóa.
+                        </h5>
+                    }
                 </div>
             </div>
         </div>

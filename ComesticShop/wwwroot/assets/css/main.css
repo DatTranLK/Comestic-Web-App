@@ -9,17 +9,7 @@ html {
   font-weight: 400;
   line-height: 28px;
   height: 100%;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  letter-spacing: 0.1px;
-  line-height: 1.8;
-  color: #051922;
-  overflow-x: hidden;
-}
+}body {    font-family: 'Quicksand', sans-serif;    font-weight: 400;    font-size: 1rem;    letter-spacing: 0.1px;    line-height: 1.8;    color: #051922;    overflow-x: hidden;}
 
 body img {
   max-width: 100%;
@@ -36,19 +26,7 @@ a {
 a:hover {
   color: #F28123;
   text-decoration: none;
-}
-
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  margin: 0 0 1.25rem 0;
-  color: #051922;
-}
+}h1, .h1,h2, .h2,h3, .h3,h4, .h4,h5, .h5,h6, .h6 {    font-family: 'Quicksand', sans-serif;    font-weight: 700;    margin: 0 0 1.25rem 0;    color: #051922;}
 
 h1:last-child, .h1:last-child,
 h2:last-child, .h2:last-child,
@@ -135,17 +113,7 @@ h6, .h6 {
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.5rem;
-}
-
-p {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  letter-spacing: 0.1px;
-  line-height: 1.8;
-  color: #051922;
-  margin: 0 0 1.25rem 0;
-}
+}p {    font-family: 'Quicksand', sans-serif;    font-weight: 400;    font-size: 1rem;    letter-spacing: 0.1px;    line-height: 1.8;    color: #051922;    margin: 0 0 1.25rem 0;}
 
 p:last-child {
   margin: 0;
@@ -400,23 +368,7 @@ p:last-child {
 
 .blue-bg {
   background-color: #162133;
-}
-
-a.boxed-btn {
-  font-family: 'Poppins', sans-serif;
-  display: inline-block;
-  background-color: #F28123;
-  color: #fff;
-  padding: 10px 20px;
-}
-
-a.bordered-btn {
-  font-family: 'Poppins', sans-serif;
-  display: inline-block;
-  color: #fff;
-  border: 2px solid #F28123;
-  padding: 7px 20px;
-}
+}a.boxed-btn {    font-family: 'Quicksand', sans-serif;    display: inline-block;    background-color: #F28123;    color: #fff;    padding: 10px 20px;}a.bordered-btn {    font-family: 'Quicksand', sans-serif;    display: inline-block;    color: #fff;    border: 2px solid #F28123;    padding: 7px 20px;}
 
 a.read-more-btn {
   display: inline-block;
@@ -2401,29 +2353,14 @@ ul.social-link-team li a {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
-}
-
-p.product-price {
-  font-family: 'Poppins', sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
+}p.product-price {    font-family: 'Quicksand', sans-serif;    font-size: 30px;    font-weight: 700;    margin-bottom: 15px;}
 
 p.product-price span {
   display: block;
   opacity: 0.8;
   font-size: 15px;
   font-weight: 400;
-}
-
-a.cart-btn {
-  font-family: 'Poppins', sans-serif;
-  display: inline-block;
-  background-color: #F28123;
-  color: #fff;
-  padding: 10px 20px;
-}
+}a.cart-btn {    font-family: 'Quicksand', sans-serif;    display: inline-block;    background-color: #F28123;    color: #fff;    padding: 10px 20px;}
 
 a.cart-btn i {
   margin-right: 5px;

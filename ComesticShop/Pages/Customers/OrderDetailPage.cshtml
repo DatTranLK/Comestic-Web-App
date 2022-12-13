@@ -26,36 +26,6 @@
     </div>
     <!-- end breadcrumb-section -->
     <!-- orderdetail -->
-    @*<table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>
-                        Quantity
-                    </th>
-                    <th>
-                        Product
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody class="list-wrapper">
-                @foreach (var item in Model.OrderDetail)
-                {
-                    <tr class="list-item">
-                        <td></td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Quantity)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product.Name)
-                        </td>
-
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div id="pagination-container"></div>*@
 <div class="cart-section mt-100 mb-150">
     <div class="container">
         <div class="d-flex justify-content-start" style="padding-bottom: 20px">
@@ -74,7 +44,7 @@
                                 <th class="product-image" style="font-family: 'Quicksand', sans-serif;">Product Image</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Name</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Brand</th>
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Shipping Address</th>
+                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Address</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Quantity</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Status</th>
                                 <th class="product-total" style="font-family: 'Quicksand', sans-serif;">Total</th>
@@ -85,8 +55,6 @@
                             @foreach (var item in Model.OrderDetail)
                             {
                                 <tr class="list-item table-body-row">
-                                    @*<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                                    <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>*@
                                     <td class="product-image"><img src="@item.Product.Avatar" alt=""></td>
                                     <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
                                         @item.Product.Name
@@ -100,7 +68,22 @@
                                         @item.Quantity
                                     </td>
                                     <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                        Status: @item.Order.OrderStatus
+                                        @if (item.Order.OrderStatus == "Processing")
+                                        {
+                                            <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
+                                        @if (item.Order.OrderStatus == "Accepted")
+                                        {
+                                            <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
+                                        @if (item.Order.OrderStatus == "Done")
+                                        {
+                                            <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
+                                        @if (item.Order.OrderStatus == "Cancle")
+                                        {
+                                            <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
                                     </td>
                                     <td class="product-price" style="font-family: 'Quicksand', sans-serif;">
                                         @(item.Quantity * item.Product.Price)
@@ -109,7 +92,7 @@
                                         @if (@item.Order.OrderStatus == "Processing")
                                         {
                                             <a class="btn btn-danger btn-sm" asp-page="/Customers/CanclePage" asp-route-id="@item.OrderId"
-                                                style="font-family: 'Quicksand', sans-serif;">
+                                                style="font-family: 'Quicksand', sans-serif; border-radius: 8px">
                                                 Cancle
                                                 <!-- If else chỗ này, nếu mún disabled thằng nào thì ghi disabled trong class đó  -->
                                             </a>
@@ -126,7 +109,6 @@
             </div>
         </div>
     </div>
-    
 </div>
     <!-- end orderdetail -->
 }

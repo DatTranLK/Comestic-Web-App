@@ -59,7 +59,7 @@
 <div class="cart-section mt-100 mb-150">
     <div class="container">
         <div class="d-flex justify-content-start" style="padding-bottom: 20px">
-            <a class="boxed-btn">
+            <a asp-page="./OrderHistory" class="boxed-btn">
                 Back to OrderHistory
             </a>
         </div>
@@ -74,9 +74,8 @@
                                 <th class="product-image" style="font-family: 'Quicksand', sans-serif;">Product Image</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Name</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Brand</th>
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Create Date</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Shipping Address</th>
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Amount</th>
+                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Quantity</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Status</th>
                                 <th class="product-total" style="font-family: 'Quicksand', sans-serif;">Total</th>
                                 <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Action</th>
@@ -85,36 +84,37 @@
                         <tbody class="list-wrapper">
                             @foreach (var item in Model.OrderDetail)
                             {
-                                <tr class="table-body-row">
+                                <tr class="list-item table-body-row">
                                     @*<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
                                     <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>*@
-                                    <td class="product-image"><img src="https://japana.vn/uploads/product/2021/09/01/1630464426-at-sk-ii-facial-treatment-gentle-cleanser-120g.jpg" alt=""></td>
+                                    <td class="product-image"><img src="@item.Product.Avatar" alt=""></td>
                                     <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                        SK-II Facial Treatment Gentle Cleanser - Sữa rửa mặt - 120g
+                                        @item.Product.Name
                                     </td>
                                     <td class="product-name">
-                                        SK-II
-                                    <td class="product-name">
-                                        12/12/2022
-                                    </td>
+                                        @item.Product.Brand.Name
                                     <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                        224 đường số 8
+                                        @item.Order.ShippingAddress
                                     </td>
                                     <td class="product-quantity" style="font-family: 'Quicksand', sans-serif;">
-                                        1
+                                        @item.Quantity
                                     </td>
                                     <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                        Status: Proccessing
+                                        Status: @item.Order.OrderStatus
                                     </td>
                                     <td class="product-price" style="font-family: 'Quicksand', sans-serif;">
-                                        100000
+                                        @(item.Quantity * item.Product.Price)
                                     </td>
                                     <td>
-                                        <a class="btn btn-danger btn-sm disabled" asp-page="/Customers/OrderHistory" asp-route-id="@item.Id"
-                                           style="font-family: 'Quicksand', sans-serif;">
-                                            Cancle
-                                            <!-- If else chỗ này, nếu mún disabled thằng nào thì ghi disabled trong class đó  -->
-                                        </a>
+                                        @if (@item.Order.OrderStatus == "Processing")
+                                        {
+                                            <a class="btn btn-danger btn-sm" asp-page="/Customers/CanclePage" asp-route-id="@item.OrderId"
+                                                style="font-family: 'Quicksand', sans-serif;">
+                                                Cancle
+                                                <!-- If else chỗ này, nếu mún disabled thằng nào thì ghi disabled trong class đó  -->
+                                            </a>
+                                        }
+                                                
                                     </td>
                                 </tr>
 

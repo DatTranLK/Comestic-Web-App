@@ -60,6 +60,7 @@ namespace DataAccessObject
             {
                 var od = await _dbContext.OrderDetails
                     .Include(x => x.Product)
+                    .Include(x => x.Product.Brand)
                     .Include(x => x.Order)
                     .Where(x => x.OrderId == orderId)
                     .OrderByDescending(x => x.Id)

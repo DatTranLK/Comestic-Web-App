@@ -2,36 +2,31 @@
 @model ComesticShop.Pages.Salers.OrderPage.IndexModel
 @{
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/assets/css/all.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-<style>
-    .nav-pills .nav-link.active {
-        background-color: #F28123;
-        color: #fff;
-        border: 1px solid #F28123;
-    }
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>*@
 
-    .nav-pills .nav-link {
-        background-color: #fff;
-        color: #F28123;
-        border: 1px solid #F28123;
-        margin-right: 2rem;
-        padding-left: 3rem;
-        padding-right: 3rem;
-    }
-</style>
+<!-- Datatables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+<script src="https://nightly.datatables.net/js/dataTables.bootstrap.js"></script>
+
 @if (@Model.Role == "2")
 {
     <h1>Order Management</h1>
@@ -40,490 +35,751 @@
         <a asp-page="Create">Create New</a>
     </p>
     @*<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="padding-top: 5px">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-processing-tab" data-bs-toggle="pill" data-bs-target="#pills-processing" type="button" role="tab" aria-controls="pills-processing" aria-selected="false">Processing</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-accepted-tab" data-bs-toggle="pill" data-bs-target="#pills-accepted" type="button" role="tab" aria-controls="pills-accepted" aria-selected="false">Accepted</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-done-tab" data-bs-toggle="pill" data-bs-target="#pills-done" type="button" role="tab" aria-controls="pills-done" aria-selected="false">Done</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-cancle-tab" data-bs-toggle="pill" data-bs-target="#pills-cancle" type="button" role="tab" aria-controls="pills-cancle" aria-selected="false">Cancle</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <!-- all status -->
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                <thead>
+                    <tr>
+                        <th>
+                            TotalPrice
+                        </th>
+                        <th>
+                            CreateDate
+                        </th>
+                        <th>
+                            ShippingAddress
+                        </th>
+                        <th>
+                            OrderStatus
+                        </th>
+                        <th>
+                            Customer
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="list-wrapper">
+                    @foreach (var item in Model.Order)
+                    {
+                        <tr class="list-item">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreateDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShippingAddress)
+                            </td>
+                            <td>
+                                @if (item.OrderStatus == "Processing")
+                                {
+                                    <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                                else if (item.OrderStatus == "Accepted")
+                                {
+                                    <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                                else if (item.OrderStatus == "Done")
+                                {
+                                    <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                                else if (item.OrderStatus == "Cancle")
+                                {
+                                    <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer.Name)
+                            </td>
+                            <td>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
+                                <a asp-page="./Done" class="btn btn-info btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="pagination-container"></div>
+
+            </div>
+            <!-- end all status -->
+            <!-- processing status -->
+            <div class="tab-pane fade" id="pills-processing" role="tabpanel" aria-labelledby="pills-processing-tab">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Processing"))
+                        {
+                            <tr class="list-item">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Processing")
+                                    {
+                                        <p class="btn btn-outline-warning">@item.OrderStatus</p>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                    <a asp-page="./Accept" class="btn btn-success" asp-route-id="@item.Id">Accept</a> |
+                                    <a asp-page="./Cancle" class="btn btn-danger" asp-route-id="@item.Id">Cancel</a> |
+                                    <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="pagination-container"></div>
+            </div>
+            <!-- end processing status -->
+            <!-- accepted status -->
+            <div class="tab-pane fade" id="pills-accepted" role="tabpanel" aria-labelledby="pills-accepted-tab">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Accepted"))
+                        {
+                            <tr class="list-item">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Accepted")
+                                    {
+                                        <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                    <a asp-page="./Cancle" class="btn btn-danger disabled" asp-route-id="@item.Id">Cancel</a> |
+                                    <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="pagination-container"></div>
+            </div>
+            <!-- end accepted status -->
+            <!-- done status -->
+            <div class="tab-pane fade" id="pills-done" role="tabpanel" aria-labelledby="pills-done-tab">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Done"))
+                        {
+                            <tr class="list-item">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Done")
+                                    {
+                                        <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="pagination-container"></div>
+            </div>
+            <!-- end done status -->
+            <!-- cancel status -->
+            <div class="tab-pane fade" id="pills-cancle" role="tabpanel" aria-labelledby="pills-cancle-tab">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Cancle"))
+                        {
+                            <tr class="list-item">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Cancle")
+                                    {
+                                        <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="pagination-container"></div>
+            </div>
+            <!-- end cancel status -->
+        </div>*@
+    <!-- Tabs navs -->
+    @*<ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">All</a></li>
+            <li><a data-toggle="tab" href="#menu1">Processing</a></li>
+            <li><a data-toggle="tab" href="#menu2">Accepted</a></li>
+            <li><a data-toggle="tab" href="#menu3">Done</a></li>
+            <li><a data-toggle="tab" href="#menu4">Cancle</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <table class="table #home" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Order)
+                        {
+                            <tr class="list-item">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Processing")
+                                    {
+                                        <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                    else if (item.OrderStatus == "Accepted")
+                                    {
+                                        <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                    else if (item.OrderStatus == "Done")
+                                    {
+                                        <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                    else if (item.OrderStatus == "Cancle")
+                                    {
+                                        <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                    <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                                    <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
+                                    <a asp-page="./Done" class="btn btn-info btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="pagination-container"></div>
+
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <table class="table #menu1" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Processing"))
+                        {
+                            <tr class="list-item">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Processing")
+                                    {
+                                        <p class="btn btn-outline-warning">@item.OrderStatus</p>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                    <a asp-page="./Accept" class="btn btn-success" asp-route-id="@item.Id">Accept</a> |
+                                    <a asp-page="./Cancle" class="btn btn-danger" asp-route-id="@item.Id">Cancel</a> |
+                                    <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="pagination-container"></div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Accepted"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Accepted")
+                                    {
+                                        <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                    <a asp-page="./Cancle" class="btn btn-danger disabled" asp-route-id="@item.Id">Cancel</a> |
+                                    <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Done"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Done")
+                                    {
+                                        <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div id="menu4" class="tab-pane fade">
+                <table class="table" style="background-color: white; border-radius: 10px">
+                    <thead>
+                        <tr>
+                            <th>
+                                TotalPrice
+                            </th>
+                            <th>
+                                CreateDate
+                            </th>
+                            <th>
+                                ShippingAddress
+                            </th>
+                            <th>
+                                OrderStatus
+                            </th>
+                            <th>
+                                Customer
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Cancle"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                </td>
+                                <td>
+                                    @if (item.OrderStatus == "Cancle")
+                                    {
+                                        <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>*@
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#1" data-toggle="tab">All</a>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-processing-tab" data-bs-toggle="pill" data-bs-target="#pills-processing" type="button" role="tab" aria-controls="pills-processing" aria-selected="false">Processing</button>
+        <li>
+            <a href="#2" data-toggle="tab">Processing</a>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-accepted-tab" data-bs-toggle="pill" data-bs-target="#pills-accepted" type="button" role="tab" aria-controls="pills-accepted" aria-selected="false">Accepted</button>
+        <li>
+            <a href="#3" data-toggle="tab">Accepted</a>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-done-tab" data-bs-toggle="pill" data-bs-target="#pills-done" type="button" role="tab" aria-controls="pills-done" aria-selected="false">Done</button>
+        <li>
+            <a href="#4" data-toggle="tab">Done</a>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-cancle-tab" data-bs-toggle="pill" data-bs-target="#pills-cancle" type="button" role="tab" aria-controls="pills-cancle" aria-selected="false">Cancle</button>
+        <li>
+            <a href="#5" data-toggle="tab">Cancle</a>
         </li>
     </ul>
-    <div class="tab-content" id="pills-tabContent">
-        <!-- all status -->
-        <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-            <table class="table" style="background-color: white; border-radius: 10px">
-            <thead>
-                <tr>
-                    <th>
-                        TotalPrice
-                    </th>
-                    <th>
-                        CreateDate
-                    </th>
-                    <th>
-                        ShippingAddress
-                    </th>
-                    <th>
-                        OrderStatus
-                    </th>
-                    <th>
-                        Customer
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody class="list-wrapper">
-                @foreach (var item in Model.Order)
-                {
-                    <tr class="list-item">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TotalPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreateDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ShippingAddress)
-                        </td>
-                        <td>
-                            @if (item.OrderStatus == "Processing")
-                            {
-                                <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                            else if (item.OrderStatus == "Accepted")
-                            {
-                                <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                            else if (item.OrderStatus == "Done")
-                            {
-                                <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                            else if (item.OrderStatus == "Cancle")
-                            {
-                                <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Customer.Name)
-                        </td>
-                        <td>
-                            <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
-                            <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
-                            <a asp-page="./Done" class="btn btn-info btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div id="pagination-container"></div>
-            
-        </div>
-        <!-- end all status -->
-        <!-- processing status -->
-        <div class="tab-pane fade" id="pills-processing" role="tabpanel" aria-labelledby="pills-processing-tab">
-            <table class="table" style="background-color: white; border-radius: 10px">
-                <thead>
-                    <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="list-wrapper">
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Processing"))
-                    {
-                        <tr class="list-item">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
-                            <td>
-                                @if (item.OrderStatus == "Processing")
-                                {
-                                    <p class="btn btn-outline-warning">@item.OrderStatus</p>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
-                                <a asp-page="./Accept" class="btn btn-success" asp-route-id="@item.Id">Accept</a> |
-                                <a asp-page="./Cancle" class="btn btn-danger" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div id="pagination-container"></div>
-        </div>
-        <!-- end processing status -->
-        <!-- accepted status -->
-        <div class="tab-pane fade" id="pills-accepted" role="tabpanel" aria-labelledby="pills-accepted-tab">
-            <table class="table" style="background-color: white; border-radius: 10px">
-                <thead>
-                    <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="list-wrapper">
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Accepted"))
-                    {
-                        <tr class="list-item">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
-                            <td>
-                                @if (item.OrderStatus == "Accepted")
-                                {
-                                    <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
-                                <a asp-page="./Cancle" class="btn btn-danger disabled" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div id="pagination-container"></div>
-        </div>
-        <!-- end accepted status -->
-        <!-- done status -->
-        <div class="tab-pane fade" id="pills-done" role="tabpanel" aria-labelledby="pills-done-tab">
-            <table class="table" style="background-color: white; border-radius: 10px">
-                <thead>
-                    <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="list-wrapper">
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Done"))
-                    {
-                        <tr class="list-item">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
-                            <td>
-                                @if (item.OrderStatus == "Done")
-                                {
-                                    <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div id="pagination-container"></div>
-        </div>
-        <!-- end done status -->
-        <!-- cancel status -->
-        <div class="tab-pane fade" id="pills-cancle" role="tabpanel" aria-labelledby="pills-cancle-tab">
-            <table class="table" style="background-color: white; border-radius: 10px">
-                <thead>
-                    <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody class="list-wrapper">
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Cancle"))
-                    {
-                        <tr class="list-item">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
-                            <td>
-                                @if (item.OrderStatus == "Cancle")
-                                {
-                                    <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div id="pagination-container"></div>
-        </div>
-        <!-- end cancel status -->
-    </div>*@
-    <!-- Tabs navs -->
-<ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">All</a></li>
-    <li><a data-toggle="tab" href="#menu1">Processing</a></li>
-    <li><a data-toggle="tab" href="#menu2">Accepted</a></li>
-    <li><a data-toggle="tab" href="#menu3">Done</a></li>
-    <li><a data-toggle="tab" href="#menu4">Cancle</a></li>
-  </ul>
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <table class="table" style="background-color: white; border-radius: 10px">
-            <thead>
-                <tr>
-                    <th>
-                        TotalPrice
-                    </th>
-                    <th>
-                        CreateDate
-                    </th>
-                    <th>
-                        ShippingAddress
-                    </th>
-                    <th>
-                        OrderStatus
-                    </th>
-                    <th>
-                        Customer
-                    </th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody class="list-wrapper">
-                @foreach (var item in Model.Order)
-                {
-                    <tr class="list-item">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TotalPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreateDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ShippingAddress)
-                        </td>
-                        <td>
-                            @if (item.OrderStatus == "Processing")
-                            {
-                                <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                            else if (item.OrderStatus == "Accepted")
-                            {
-                                <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                            else if (item.OrderStatus == "Done")
-                            {
-                                <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                            else if (item.OrderStatus == "Cancle")
-                            {
-                                <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Customer.Name)
-                        </td>
-                        <td>
-                            <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
-                            <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
-                            <a asp-page="./Done" class="btn btn-info btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div id="pagination-container"></div>
-        
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <table class="table" style="background-color: white; border-radius: 10px">
+    <div class="tab-content">
+        <!-- All Status -->
+        <div class="tab-pane active" id="1">
+
+            <table id="example" class="table display table-striped table-hover table-bordered" width="100%">
                 <thead>
                     <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
+                        <th>Customer Name</th>
+                        <th>ShippingAddress</th>
+                        <th>TotalPrice</th>
+                        <th>CreateDate</th>
+                        <th>OrderStatus</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+
+
                 <tbody>
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Processing"))
+                    @foreach (var item in Model.Order)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Processing")
                                 {
-                                    <p class="btn btn-outline-warning">@item.OrderStatus</p>
+                                    <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                                else if (item.OrderStatus == "Accepted")
+                                {
+                                    <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                                else if (item.OrderStatus == "Done")
+                                {
+                                    <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                                else if (item.OrderStatus == "Cancle")
+                                {
+                                    <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
                                 }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
-                                <a asp-page="./Accept" class="btn btn-success" asp-route-id="@item.Id">Accept</a> |
-                                <a asp-page="./Cancle" class="btn btn-danger" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
+                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <table class="table" style="background-color: white; border-radius: 10px">
+        </div>
+        <!-- end All Status -->
+        <!-- Processing Status -->
+        <div class="tab-pane " id="2">
+
+            <table id="example1" class="table display table-striped table-hover table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
+                        <th>Customer Name</th>
+                        <th>ShippingAddress</th>
+                        <th>TotalPrice</th>
+                        <th>CreateDate</th>
+                        <th>OrderStatus</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+
+
+                <tbody>
+                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Processing"))
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                            <td>
+                                @if (item.OrderStatus == "Processing")
+                                {
+                                    <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
+                                }
+                            </td>
+                            <td>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
+                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- end Processing Status -->
+        <!-- Accepted Status -->
+        <div class="tab-pane " id="3">
+
+            <table id="example2" class="table display table-striped table-hover table-bordered" width="100%">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>ShippingAddress</th>
+                        <th>TotalPrice</th>
+                        <th>CreateDate</th>
+                        <th>OrderStatus</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+
                 <tbody>
                     @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Accepted"))
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Accepted")
                                 {
@@ -531,53 +787,40 @@
                                 }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
-                                <a asp-page="./Cancle" class="btn btn-danger disabled" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-info" asp-route-id="@item.Id" style="color: white">Done</a>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
+                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <table class="table" style="background-color: white; border-radius: 10px">
+        </div>
+        <!-- end Accepted Status -->
+        <!-- Done Status -->
+        <div class="tab-pane " id="4">
+
+            <table id="example3" class="table display table-striped table-hover table-bordered" width="100%">
                 <thead>
                     <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
+                        <th>Customer Name</th>
+                        <th>ShippingAddress</th>
+                        <th>TotalPrice</th>
+                        <th>CreateDate</th>
+                        <th>OrderStatus</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+
+
                 <tbody>
                     @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Done"))
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Done")
                                 {
@@ -585,51 +828,40 @@
                                 }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
+                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-    </div>
-    <div id="menu4" class="tab-pane fade">
-      <table class="table" style="background-color: white; border-radius: 10px">
+        </div>
+        <!-- end Done Status -->
+        <!-- Cancle Status -->
+        <div class="tab-pane " id="5">
+
+            <table id="example4" class="table table-striped table-hover table-bordered" width="100%">
                 <thead>
                     <tr>
-                        <th>
-                            TotalPrice
-                        </th>
-                        <th>
-                            CreateDate
-                        </th>
-                        <th>
-                            ShippingAddress
-                        </th>
-                        <th>
-                            OrderStatus
-                        </th>
-                        <th>
-                            Customer
-                        </th>
-                        <th></th>
-                        <th></th>
+                        <th>Customer Name</th>
+                        <th>ShippingAddress</th>
+                        <th>TotalPrice</th>
+                        <th>CreateDate</th>
+                        <th>OrderStatus</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
+
+
                 <tbody>
                     @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Cancle"))
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalPrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreateDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ShippingAddress)
-                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Cancle")
                                 {
@@ -637,16 +869,55 @@
                                 }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Customer.Name)
-                            </td>
-                            <td>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
+                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
+        </div>
+        <!-- end Cancle Status -->
     </div>
-  </div>
+    <script>
+        $(document).ready(function () {
+            function filterGlobal() {
+                $('#example').DataTable().search(
+                    $('#global_filter').val()
+                ).draw();
+                $('#example1').DataTable().search(
+                    $('#global_filter').val()
+                ).draw();
+                $('#example2').DataTable().search(
+                    $('#global_filter').val()
+                ).draw();
+                $('#example3').DataTable().search(
+                    $('#global_filter').val()
+                ).draw();
+                $('#example4').DataTable().search(
+                    $('#global_filter').val()
+                ).draw();
+            }
+
+            var table = $('#example').DataTable();
+            var table1 = $('#example1').DataTable();
+            var table1 = $('#example2').DataTable();
+            var table1 = $('#example3').DataTable();
+            var table1 = $('#example4').DataTable();
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                $($.fn.dataTable.tables(true)).DataTable()
+                    .scroller.measure();
+            });
+
+            $('input.global_filter').on('keyup click', function () {
+                filterGlobal();
+            });
+
+
+        });
+    </script>
 }
 else
 {

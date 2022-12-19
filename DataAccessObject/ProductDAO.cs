@@ -31,6 +31,23 @@ namespace DataAccessObject
                 }
             }
         }
+        public async Task<IEnumerable<Product>> Search(string searchString)
+        {
+            try
+            {
+                var lst = _dbContext.Products.Where(x => x.Name.Contains(searchString.Trim())).ToList();
+                if (lst.Count() > 0)
+                {
+                    return lst;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<IEnumerable<Product>> GetProductAmountSold()
         {
             try

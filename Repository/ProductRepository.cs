@@ -36,6 +36,8 @@ namespace Repository
 
         public Task<IEnumerable<Product>> GetProducts() => ProductDAO.Instance.GetProducts();
 
+        public Task<IEnumerable<Product>> Search(string searchString) => ProductDAO.Instance.Search(searchString);
+
         public Task UpdatePro(Product product) => ProductDAO.Instance.UpdatePro(product);
     }
 }

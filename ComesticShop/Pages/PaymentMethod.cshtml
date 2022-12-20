@@ -1,0 +1,127 @@
+﻿@page
+@model ComesticShop.Pages.PaymentMethodModel
+@{
+}
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+    <style>
+        .card{
+            margin: auto;
+            width: 600px;
+            padding: 3rem 3.5rem;
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .card-title{
+            font-weight: 700;
+            font-size: 2.5em;
+        }
+        
+        input{
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000;
+            width: 100%;
+            min-width: unset;
+            background-color: transparent;
+            border-color: transparent;
+            margin: 0;
+        }
+        form a{
+            color:grey;
+            text-decoration: none;
+            font-size: 0.87rem;
+            font-weight: bold;
+        }
+        form a:hover{
+            color:grey;
+            text-decoration: none;
+        }
+        form .row{
+            margin: 0;
+            overflow: hidden;
+        }
+        form .row-1{
+            border: 1px solid rgba(0, 0, 0, 0.137);
+            padding: 0.5rem;
+            outline: none;
+            width: 100%;
+            min-width: unset;
+            border-radius: 5px;
+            background-color: rgba(221, 228, 236, 0.301);
+            border-color: rgba(221, 228, 236, 0.459);
+            margin: 2vh 0;
+            overflow: hidden;
+        }
+        form .row-2{
+            border: none;
+            outline: none;
+            background-color: transparent;
+            margin: 0;
+            padding: 0 0.8rem;
+        }
+        form .row .row-2{
+            border: none;
+            outline: none;
+            background-color: transparent;
+            margin: 0;
+            padding: 0 0.8rem;
+        }
+        form .row .col-2,.col-7,.col-3{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 0 1vh;
+        }
+        form .row .col-2{
+            padding-right: 0;
+        }
+
+        #card-header{
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <h1 style="font-family: 'Quicksand', sans-serif;">Phương thức thanh toán</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@*@if(@Model.Role == "3")
+{*@
+    <form>
+        <a asp-page="paymentMethod" asp-page-handler="paymentvnpay" asp-route-id="@Model.OrderNek.Id" class="row row-1">
+            <div style="width:150px; height:50px"><img style="width:100%; height:100%" class="img-fluid" src="https://firebasestorage.googleapis.com/v0/b/auth-project-test-4161d.appspot.com/o/logo-vnpay-removebg-preview.png?alt=media&token=33891d04-4e2b-4253-a144-c98718c81cbc"/></div>
+            <div class="col-7">
+                <p>Thanh toán online thông qua VNPay</p>
+            </div>
+        </a>
+        <a asp-page="paymentMethod" asp-page-handler="paymentcod" asp-route-id="@Model.OrderNek.Id" class="row row-1">
+            <div style="width:50px; height:50px"><img style="width:100%; height:100%" class="img-fluid" src="https://firebasestorage.googleapis.com/v0/b/auth-project-test-4161d.appspot.com/o/2897832.png?alt=media&token=255ea3a5-b302-46e2-8f76-125ed43e4b3a"/></div>
+            <div class="col-7">
+                <p>Thanh toán khi nhận hàng COD</p>
+            </div>
+        </a>
+    </form>
+@*}
+else
+{
+    Response.Redirect("/Authenticate/Login");
+}*@

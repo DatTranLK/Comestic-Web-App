@@ -182,9 +182,10 @@ namespace ComesticShop.Pages
             }
             cartCus.Clear();
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
-            var url = _vnPayService.CreatePaymentUrl(order, HttpContext);
+            /*var url = _vnPayService.CreatePaymentUrl(order, HttpContext);
 
-            return Redirect(url);
+            return Redirect(url);*/
+            return RedirectToPage("/PaymentMethod", new { orderId = order.Id });
             /*return RedirectToPage("./Index");*/
 
         }

@@ -24,8 +24,9 @@
     </div>
 </div>
 <!-- end breadcrumb section -->
-
-<div class="container py-5">
+@if(@Model.Role == "3")
+{
+    <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
 
         <div class="col-12">
@@ -156,4 +157,10 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+}
+    
+}
+else
+{
+    Response.Redirect("/Authenticate/Login");
 }

@@ -41,6 +41,7 @@ namespace ComesticShop
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+            services.AddScoped<IVnPayService, VnPayService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }

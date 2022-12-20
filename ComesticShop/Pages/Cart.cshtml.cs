@@ -17,6 +17,7 @@ namespace ComesticShop.Pages
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderDetailRepository _orderDetailRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IVnPayService _vnPayService;
 
         public string Email { get; set; }
         public string Role { get; set; }
@@ -31,13 +32,14 @@ namespace ComesticShop.Pages
         public IEnumerable<Category> Category1 { get; set; }
         public IEnumerable<Category> Category2 { get; set; }
 
-        public CartModel(IAccountRepository accountRepository, IProductRepository productRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ICategoryRepository categoryRepository)
+        public CartModel(IAccountRepository accountRepository, IProductRepository productRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ICategoryRepository categoryRepository, IVnPayService vnPayService)
         {
             _accountRepository = accountRepository;
             _productRepository = productRepository;
             _orderRepository = orderRepository;
             _orderDetailRepository = orderDetailRepository;
             _categoryRepository = categoryRepository;
+            _vnPayService = vnPayService;
         }
 
         public async Task OnGet(int? id)
@@ -180,7 +182,10 @@ namespace ComesticShop.Pages
             }
             cartCus.Clear();
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
-            return RedirectToPage("./Index");
+            var url = _vnPayService.CreatePaymentUrl(order, HttpContext);
+
+            return Redirect(url);
+            /*return RedirectToPage("./Index");*/
 
         }
     }

@@ -2,84 +2,117 @@
 @model ComesticShop.Pages.Salers.OrderPage.OrderDetailPageModel
 @{
 }
-@if(@Model.Role == "2")
-{
-    <a asp-page="./Index" class="btn btn-primary">Quay lại danh sách</a>
-    <div class="row">
-            <div class="col">
-                <div class="cart-table-wrap" style="border: 1px solid rgb(200, 198, 198);">
-                    <table class="cart-table">
-                        <thead class="cart-table-head">
-                            <tr class="table-head-row">
-                                @*<th class="product-remove"></th>
-                                <th class="product-image">Product Image</th>*@
-@*                                <th class="product-image" style="font-family: 'Quicksand', sans-serif;">Product Image</th>*@
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Name</th>
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Brand</th>
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Address</th>
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Quantity</th>
-                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Status</th>
-                                <th class="product-total" style="font-family: 'Quicksand', sans-serif;">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody class="list-wrapper">
-                            @foreach (var item in Model.OrderDetail)
-                            {
-                                <tr class="list-item table-body-row">
-                                   @* <td class="product-image"><img src="@item.Product.Avatar" alt=""></td>*@
-                                    <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                        @item.Product.Name
-                                    </td>
-                                    <td class="product-name">
-                                        @item.Product.Brand.Name
-                                    <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                        @item.Order.ShippingAddress
-                                    </td>
-                                    <td class="product-quantity" style="font-family: 'Quicksand', sans-serif;">
-                                        @item.Quantity
-                                    </td>
-                                    <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                        @if (item.Order.OrderStatus == "Processing")
-                                        {
-                                            <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
-                                        }
-                                        @if (item.Order.OrderStatus == "Accepted")
-                                        {
-                                            <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
-                                        }
-                                        @if (item.Order.OrderStatus == "Done")
-                                        {
-                                            <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
-                                        }
-                                        @if (item.Order.OrderStatus == "Cancle")
-                                        {
-                                            <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
-                                        }
-                                    </td>
-                                    <td class="product-price" style="font-family: 'Quicksand', sans-serif;">
-                                        @(item.Quantity * item.Product.Price)
-                                    </td>
-@*                                    <td>
-                                        @if (@item.Order.OrderStatus == "Processing")
-                                        {
-                                            <a class="btn btn-danger btn-sm" asp-page="/Customers/CanclePage" asp-route-id="@item.OrderId"
-                                                style="font-family: 'Quicksand', sans-serif; border-radius: 8px">
-                                                Cancle
-                                                <!-- If else chỗ này, nếu mún disabled thằng nào thì ghi disabled trong class đó  -->
-                                            </a>
-                                        }
-                                                
-                                    </td>*@
-                                </tr>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/assets/css/all.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-                            }
-                        </tbody>
-                    </table>
-                    <div id="pagination-container"></div>
-                </div>
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>*@
+
+<!-- Datatables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+<script src="https://nightly.datatables.net/js/dataTables.bootstrap.js"></script>
+
+<style>
+    .btn_1 {
+        padding: 11px 60px;
+        margin-top: 10px;
+    }
+</style>
+
+@if (@Model.Role == "2")
+{
+    <div class="white_box_tittle list_header">
+        <h1>Order Detail</h1>
+        <div class="box_right d-flex lms_block">
+            <div class="add_button ms-2">
+                <a asp-page="./Index" class="btn_1">Quay lại danh sách</a>
             </div>
         </div>
+    </div>
+    <table id="example" class="table table-striped table-hover table-bordered" width="100%">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Brand</th>
+                <th>Address</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @foreach (var item in Model.OrderDetail)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Brand.Name</td>
+                    <td>@item.Order.ShippingAddress</td>
+                    <td>@item.Quantity</td>
+                    <td>
+                        @if (item.Order.OrderStatus == "Processing")
+                        {
+                            <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                        }
+                        @if (item.Order.OrderStatus == "Accepted")
+                        {
+                            <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                        }
+                        @if (item.Order.OrderStatus == "Done")
+                        {
+                            <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                        }
+                        @if (item.Order.OrderStatus == "Cancle")
+                        {
+                            <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                        }
+                    </td>
+                    <td>@(item.Quantity * item.Product.Price)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function () {
+            function filterGlobal() {
+                $('#example').DataTable().search(
+                    $('#global_filter').val()
+                ).draw();
+            }
+
+            var table = $('#example').DataTable();
+
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                $($.fn.dataTable.tables(true)).DataTable()
+                    .scroller.measure();
+            });
+
+            $('input.global_filter').on('keyup click', function () {
+                filterGlobal();
+            });
+
+
+        });
+    </script>
 }
-else{
+else
+{
     Response.Redirect("/Authenticate/Login");
 }

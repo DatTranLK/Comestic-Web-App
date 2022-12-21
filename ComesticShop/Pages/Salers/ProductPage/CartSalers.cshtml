@@ -10,13 +10,13 @@
             @ViewBag.ErrorMessage
         </div>
     }
-        <table border="1" class="table table-hover" style="border: 1px solid black">
+        <table class="table table-striped table-hover table-bordered">
             <tr>
+                <th>Delete</th>
                 <th>Code</th>
                 <th>Name</th>
-                <th>Quantity</th>
                 <th>Total</th>
-                <th>Delete</th>
+                <th>Quantity</th>
                 <th>Action</th>
             </tr>
             @if (@Model.cartSaler == null)
@@ -29,21 +29,19 @@
                 {
                     Model.Total += item.Product.Price * item.Quantity;
                     <tr>
-                        <td>@item.Product.Code</td>
-                        <td>@item.Product.Name</td>
-                        <td>@item.Quantity</td>
-                        <td>@(item.Product.Price * item.Quantity)</td>
                         <td>
                             <a asp-page="cartSalers" asp-page-handler="delete" asp-route-id="@item.Product.Id">X</a>
                         </td>
+                        <td>@item.Product.Code</td>
+                        <td>@item.Product.Name</td>
+                        <td>@(item.Product.Price * item.Quantity)</td>
+                        <td>@item.Quantity</td>
                         <td>
-                            <a class="btn btn-outline-secondary" asp-page="cartSalers" asp-page-handler="increase" asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-plus"></i></a>
                             <a class="btn btn-outline-secondary" asp-page="cartSalers" asp-page-handler="decrease" asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-minus"></i></a>
+                            <a class="btn btn-outline-secondary" asp-page="cartSalers" asp-page-handler="increase" asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-plus"></i></a>
                         </td>
                     </tr>
-                }
-            
-                <tr>
+                }                <tr>
                     <td colspan="3" align="center">
                         Total
                     </td>

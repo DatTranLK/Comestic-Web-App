@@ -69,17 +69,38 @@
 
                         @if (@Model.Email != null)
                         {
-                            <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                <i class="fas fa-shopping-cart"></i>
-                                Add to Cart
-                            </a>
+                            @if (@item.IsNeedContact == true)
+                            {
+                                <a asp-page="./Shop" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Liên hệ cửa hàng
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Add to Cart
+                                </a>
+                            }
+                            
                         }
                         else
                         {
-                            <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                <i class="fas fa-shopping-cart"></i>
-                                Add to Cart
-                            </a>
+                            @if (@item.IsNeedContact == true)
+                            {
+                                <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Liên hệ cửa hàng
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-page="/Authenticate/Login" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Add to Cart
+                                </a>
+                            }
                         }
                     </div>
                 </div>

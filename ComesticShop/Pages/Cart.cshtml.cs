@@ -169,6 +169,7 @@ namespace ComesticShop.Pages
             order.ShippingAddress = ShippingAddressString;
             order.TotalPrice = total;
             order.OrderStatus = "Processing";
+            order.PaymentMethod = "Thanh toán khi nhận hàng";
             int orderId = await _orderRepository.CreateNewOrder(order);
             for (int i = 0; i < cartCus.Count; i++)
             {

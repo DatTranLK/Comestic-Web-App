@@ -1,0 +1,85 @@
+﻿@page
+@model ComesticShop.Pages.Salers.OrderPage.OrderDetailPageModel
+@{
+}
+@if(@Model.Role == "2")
+{
+    <a asp-page="./Index" class="btn btn-primary">Quay lại danh sách</a>
+    <div class="row">
+            <div class="col">
+                <div class="cart-table-wrap" style="border: 1px solid rgb(200, 198, 198);">
+                    <table class="cart-table">
+                        <thead class="cart-table-head">
+                            <tr class="table-head-row">
+                                @*<th class="product-remove"></th>
+                                <th class="product-image">Product Image</th>*@
+@*                                <th class="product-image" style="font-family: 'Quicksand', sans-serif;">Product Image</th>*@
+                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Name</th>
+                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Product Brand</th>
+                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Address</th>
+                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Quantity</th>
+                                <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Status</th>
+                                <th class="product-total" style="font-family: 'Quicksand', sans-serif;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="list-wrapper">
+                            @foreach (var item in Model.OrderDetail)
+                            {
+                                <tr class="list-item table-body-row">
+                                   @* <td class="product-image"><img src="@item.Product.Avatar" alt=""></td>*@
+                                    <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
+                                        @item.Product.Name
+                                    </td>
+                                    <td class="product-name">
+                                        @item.Product.Brand.Name
+                                    <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
+                                        @item.Order.ShippingAddress
+                                    </td>
+                                    <td class="product-quantity" style="font-family: 'Quicksand', sans-serif;">
+                                        @item.Quantity
+                                    </td>
+                                    <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
+                                        @if (item.Order.OrderStatus == "Processing")
+                                        {
+                                            <div class="badge bg-secondary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
+                                        @if (item.Order.OrderStatus == "Accepted")
+                                        {
+                                            <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
+                                        @if (item.Order.OrderStatus == "Done")
+                                        {
+                                            <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
+                                        @if (item.Order.OrderStatus == "Cancle")
+                                        {
+                                            <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
+                                        }
+                                    </td>
+                                    <td class="product-price" style="font-family: 'Quicksand', sans-serif;">
+                                        @(item.Quantity * item.Product.Price)
+                                    </td>
+@*                                    <td>
+                                        @if (@item.Order.OrderStatus == "Processing")
+                                        {
+                                            <a class="btn btn-danger btn-sm" asp-page="/Customers/CanclePage" asp-route-id="@item.OrderId"
+                                                style="font-family: 'Quicksand', sans-serif; border-radius: 8px">
+                                                Cancle
+                                                <!-- If else chỗ này, nếu mún disabled thằng nào thì ghi disabled trong class đó  -->
+                                            </a>
+                                        }
+                                                
+                                    </td>*@
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                    <div id="pagination-container"></div>
+                </div>
+            </div>
+        </div>
+}
+else{
+    Response.Redirect("/Authenticate/Login");
+}

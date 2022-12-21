@@ -32,7 +32,7 @@
     <h1>Order Management</h1>
 
     <p>
-        <a asp-page="Create">Create New</a>
+        <a asp-page="/Salers/ProductPage/Index">Create New</a>
     </p>
    
     <ul class="nav nav-tabs">
@@ -66,6 +66,7 @@
                         <th>CreateDate</th>
                         <th>OrderStatus</th>
                         <th>Action</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -101,6 +102,9 @@
                                 <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
                                 <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
                             </td>
+                            <td>
+                                <a asp-page="./OrderDetailPage" asp-route-id="@item.Id">Xem chi tiết</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -119,6 +123,7 @@
                         <th>CreateDate</th>
                         <th>OrderStatus</th>
                         <th>Action</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -142,6 +147,9 @@
                                 <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> @*|*@
                                 @*<a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>*@
                             </td>
+                            <td>
+                                <a asp-page="./OrderDetailPage" asp-route-id="@item.Id">Xem chi tiết</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -160,6 +168,7 @@
                         <th>CreateDate</th>
                         <th>OrderStatus</th>
                         <th>Action</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -183,6 +192,9 @@
                                 <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |*@
                                 <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
                             </td>
+                            <td>
+                                <a asp-page="./OrderDetailPage" asp-route-id="@item.Id">Xem chi tiết</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -200,7 +212,8 @@
                         <th>TotalPrice</th>
                         <th>CreateDate</th>
                         <th>OrderStatus</th>
-                        <th>Action</th>
+                        @*<th>Action</th>*@
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -219,10 +232,13 @@
                                     <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
                                 }
                             </td>
-                            <td>
-                                @*<a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                            @*<td>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
                                 <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>*@
+                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
+                            </td>*@
+                            <td>
+                                <a asp-page="./OrderDetailPage" asp-route-id="@item.Id">Xem chi tiết</a>
                             </td>
                         </tr>
                     }
@@ -241,7 +257,8 @@
                         <th>TotalPrice</th>
                         <th>CreateDate</th>
                         <th>OrderStatus</th>
-                        <th>Action</th>
+@*                        <th>Action</th>*@
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -260,10 +277,13 @@
                                     <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
                                 }
                             </td>
-                            <td>
-                                @*<a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
+                            @*<td>
+                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
                                 <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>*@
+                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
+                            </td>*@
+                            <td>
+                                <a asp-page="./OrderDetailPage" asp-route-id="@item.Id">Xem chi tiết</a>
                             </td>
                         </tr>
                     }

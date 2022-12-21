@@ -17,6 +17,7 @@ namespace ComesticShop.Pages
         private readonly ICategoryRepository _categoryRepository;
         private readonly IVnPayService _vnPayService;
         private readonly IOrderRepository _orderRepository;
+        private readonly ComesticDBContext _context;
 
         public string Msg { get; set; }
         public Account Account { get; set; }
@@ -29,7 +30,7 @@ namespace ComesticShop.Pages
         public IEnumerable<Category> Category1 { get; set; }
         public IEnumerable<Category> Category2 { get; set; }
 
-        public PaymentMethodModel(ILogger<PaymentMethodModel> logger, IAccountRepository accountRepository, IProductRepository productRepository, ICategoryRepository categoryRepository, IVnPayService vnPayService, IOrderRepository orderRepository)
+        public PaymentMethodModel(ILogger<PaymentMethodModel> logger, IAccountRepository accountRepository, IProductRepository productRepository, ICategoryRepository categoryRepository, IVnPayService vnPayService, IOrderRepository orderRepository, ComesticDBContext context)
         {
             _logger = logger;
             _accountRepository = accountRepository;
@@ -37,6 +38,7 @@ namespace ComesticShop.Pages
             _categoryRepository = categoryRepository;
             _vnPayService = vnPayService;
             _orderRepository = orderRepository;
+            _context = context;
         }
 
         public async Task OnGetAsync(int orderId)
@@ -56,6 +58,8 @@ namespace ComesticShop.Pages
             Category1 = await _categoryRepository.GetCategoriesByType(1);
             Category2 = await _categoryRepository.GetCategoriesByType(2);
             OrderNek2 = await _orderRepository.GetOrderById(id);
+            OrderNek2.PaymentMethod = "Thanh toán online";
+            await _context.SaveChangesAsync();
             var url = _vnPayService.CreatePaymentUrl(OrderNek2, HttpContext);
 
             return Redirect(url);

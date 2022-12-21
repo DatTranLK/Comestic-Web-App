@@ -92,6 +92,10 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.OrderStatus).HasMaxLength(50);
 
+                entity.Property(e => e.PaymentMethod)
+                    .HasMaxLength(50)
+                    .IsFixedLength(true);
+
                 entity.Property(e => e.ShippingAddress).HasColumnType("ntext");
 
                 entity.Property(e => e.TotalPrice).HasColumnType("money");

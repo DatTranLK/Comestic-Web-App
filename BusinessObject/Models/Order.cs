@@ -19,6 +19,7 @@ namespace BusinessObject.Models
         public string OrderStatus { get; set; }
         public int? CustomerId { get; set; }
         public int? StaffId { get; set; }
+        public string PaymentMethod { get; set; }
 
         public virtual Account? Customer { get; set; }
         public virtual Account? Staff { get; set; }

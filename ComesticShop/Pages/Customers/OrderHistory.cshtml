@@ -36,6 +36,7 @@
                                 <tr class="table-head-row">
                                     <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Create Date</th>
                                     <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Shipping Address</th>
+                                    <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Payment Method</th>
                                     <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Status</th>
                                     <th class="product-total" style="font-family: 'Quicksand', sans-serif;">Total</th>
                                     <th class="product-name" style="font-family: 'Quicksand', sans-serif;">Action</th>
@@ -50,6 +51,9 @@
                                         </td>
                                         <td class="product-name" >
                                             @Html.DisplayFor(modelItem => item.ShippingAddress)
+                                        </td>
+                                        <td class="product-name" >
+                                            @Html.DisplayFor(modelItem => item.PaymentMethod)
                                         </td>
                                         <td class="product-name" >
                                             @if (item.OrderStatus == "Processing")

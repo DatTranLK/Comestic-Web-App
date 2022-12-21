@@ -27,6 +27,7 @@ namespace BusinessObject.Models
         public DateTime? DateCreated { get; set; }
         public string Element { get; set; }
         public string UserManual { get; set; }
+        public bool? IsNeedContact { get; set; }
 
         public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }

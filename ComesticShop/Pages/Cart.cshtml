@@ -62,7 +62,7 @@
 
                                         <div class="col-md-3 col-lg-3 col-xl-3">
                                             <h6 class="text-muted">@item.Product.Name</h6>
-                                            <h6 class="text-black mb-0">@item.Product.Price</h6>
+                                            <h6 class="text-black mb-0">@((int)item.Product.Price)</h6>
                                         </div>
 
                                         <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -81,7 +81,7 @@
 
                                         </div>
                                         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h6 class="mb-0">@(item.Product.Price * item.Quantity)</h6>
+                                            <h6 class="mb-0">@((int)item.Product.Price * item.Quantity)</h6>
                                         </div>
 
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between mb-5">
                                     <h5 class="text-uppercase">Total price</h5>
-                                    <h5> @Model.Total</h5>
+                                    <h5> @((int)Model.Total)</h5>
                                 </div>
 
                                 <hr class="my-4" style="border: 1px solid rgb(200, 198, 198);">
@@ -129,16 +129,16 @@
 
                                     @if (Model.cartCus == null)
                                     {
-                                        <input type="text" name="SubTotal" value="@Model.Total" hidden />
-                                        <button asp-for="@Model.Total" type="submit" class="btn btn-dark btn-block btn-lg"
+                                        <input type="text" name="SubTotal" value="@((int)Model.Total)" hidden />
+                                        <button asp-for="@((int)Model.Total)" type="submit" class="btn btn-dark btn-block btn-lg"
                                                 data-mdb-ripple-color="dark" disabled>
                                             Checkout
                                         </button>
                                     }
                                     else
                                     {
-                                        <input type="text" name="SubTotal" value="@Model.Total" hidden />
-                                        <button asp-for="@Model.Total" type="submit" class="btn btn-dark btn-block btn-lg"
+                                        <input type="text" name="SubTotal" value="@((int)Model.Total)" hidden />
+                                        <button asp-for="@((int)Model.Total)" type="submit" class="btn btn-dark btn-block btn-lg"
                                                 data-mdb-ripple-color="dark">
                                             Checkout
                                         </button>

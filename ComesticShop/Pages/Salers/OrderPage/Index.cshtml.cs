@@ -12,22 +12,26 @@ namespace ComesticShop.Pages.Salers.OrderPage
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IOrderRepository _orderRepository;
+        private readonly ITypeRepository _typeRepository;
 
         public string Email { get; set; }
         public string Role { get; set; }
         public Account Account { get; set; }
         public string Msg { get; set; }
         public IEnumerable<Order> Order { get; set; }
-        public IndexModel(IAccountRepository accountRepository, IOrderRepository orderRepository)
+        public IEnumerable<BusinessObject.Models.Type> Type { get; set; }
+        public IndexModel(IAccountRepository accountRepository, IOrderRepository orderRepository, ITypeRepository typeRepository)
         {
             _accountRepository = accountRepository;
             _orderRepository = orderRepository;
+            _typeRepository = typeRepository;
         }
         public async Task OnGetAsync()
         {
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Type = await _typeRepository.GetListTypes();
             Order = await _orderRepository.GetOrders();
         }
         public IActionResult OnGetLogout()

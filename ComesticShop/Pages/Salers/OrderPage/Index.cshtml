@@ -69,7 +69,7 @@
 
 </style>
 
-@if (@Model.Role == "2")
+@if (@Model.Role == "2" || @Model.Role == "1")
 {
     <div class="white_box_tittle list_header">
         <h1>Order Management</h1>
@@ -122,13 +122,13 @@
 
 
                 <tbody>
-                    @foreach (var item in Model.Order)
+                    @foreach (var item in Model.Order.OrderByDescending(x => x.Id))
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
                             <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@((int)item.TotalPrice)</td>
                             <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Processing")
@@ -181,13 +181,13 @@
 
 
                 <tbody>
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Processing"))
+                    @foreach (var item in Model.Order.OrderByDescending(x => x.Id).Where(x => x.OrderStatus == "Processing"))
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
                             <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@((int)item.TotalPrice)</td>
                             <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Processing")
@@ -228,13 +228,13 @@
 
 
                 <tbody>
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Accepted"))
+                    @foreach (var item in Model.Order.OrderByDescending(x => x.Id).Where(x => x.OrderStatus == "Accepted"))
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
                             <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@((int)item.TotalPrice)</td>
                             <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Accepted")
@@ -275,13 +275,13 @@
 
 
                 <tbody>
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Done"))
+                    @foreach (var item in Model.Order.OrderByDescending(x => x.Id).Where(x => x.OrderStatus == "Done"))
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
                             <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@((int)item.TotalPrice)</td>
                             <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Done")
@@ -322,13 +322,13 @@
 
 
                 <tbody>
-                    @foreach (var item in Model.Order.Where(x => x.OrderStatus == "Cancle"))
+                    @foreach (var item in Model.Order.OrderByDescending(x => x.Id).Where(x => x.OrderStatus == "Cancle"))
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
                             <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
-                            <td>@Html.DisplayFor(modelItem => item.TotalPrice)</td>
+                            <td>@((int)item.TotalPrice)</td>
                             <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
                             <td>
                                 @if (item.OrderStatus == "Cancle")
@@ -353,6 +353,7 @@
     </div>
     <script>
         $(document).ready(function () {
+            
             function filterGlobal() {
                 $('#example').DataTable().search(
                     $('#global_filter').val()
@@ -370,7 +371,7 @@
                     $('#global_filter').val()
                 ).draw();
             }
-
+            
             var table = $('#example').DataTable();
             var table1 = $('#example1').DataTable();
             var table1 = $('#example2').DataTable();
@@ -381,11 +382,11 @@
                 $($.fn.dataTable.tables(true)).DataTable()
                     .scroller.measure();
             });
-
+            
             $('input.global_filter').on('keyup click', function () {
                 filterGlobal();
             });
-
+            
 
         });
     </script>

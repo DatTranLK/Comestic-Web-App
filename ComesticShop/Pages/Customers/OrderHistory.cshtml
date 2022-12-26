@@ -74,7 +74,7 @@
                                             }
                                         </td>
                                         <td class="product-name" style="font-family: 'Quicksand', sans-serif;">
-                                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                                            @((int)item.TotalPrice)
                                         </td>
                                         <td>
                                             <a asp-page="/Customers/OrderDetailPage" asp-route-id="@item.Id"

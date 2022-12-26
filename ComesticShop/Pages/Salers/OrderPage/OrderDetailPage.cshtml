@@ -34,7 +34,7 @@
     }
 </style>
 
-@if (@Model.Role == "2")
+@if (@Model.Role == "2" || @Model.Role == "1")
 {
     <div class="white_box_tittle list_header">
         <h1>Order Detail</h1>
@@ -83,7 +83,7 @@
                             <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.Order.OrderStatus</div>
                         }
                     </td>
-                    <td>@(item.Quantity * item.Product.Price)</td>
+                    <td>@(item.Quantity * (int)item.Product.Price)</td>
                 </tr>
             }
         </tbody>

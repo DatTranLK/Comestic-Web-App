@@ -86,7 +86,7 @@
                                         }
                                     </td>
                                     <td class="product-price" style="font-family: 'Quicksand', sans-serif;">
-                                        @(item.Quantity * item.Product.Price)
+                                        @(item.Quantity * (int)item.Product.Price)
                                     </td>
                                     <td>
                                         @if (@item.Order.OrderStatus == "Processing")

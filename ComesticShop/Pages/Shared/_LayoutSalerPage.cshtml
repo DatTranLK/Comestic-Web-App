@@ -82,12 +82,19 @@
 </li>
 
 <li class="">
-<a class="has-arrow" asp-page="/Salers/ProductPage/Index" aria-expanded="false">
+<a class="has-arrow" href="#" aria-expanded="false">
 <div class="icon_menu">
 <img src="~/admin/img/menu-icon/8.svg" alt="">
 </div>
 <span>Products</span>
 </a>
+<ul>
+    @foreach (var item in @Model.Categories)
+    {
+       <li><a asp-page="/Salers/ProductPage/Index" asp-route-id="@item.Id">@item.Name</a></li>
+    }
+
+</ul>
 </li>
 
 <li class="">

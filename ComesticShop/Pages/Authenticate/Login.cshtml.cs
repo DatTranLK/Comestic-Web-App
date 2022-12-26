@@ -44,7 +44,7 @@ namespace ComesticShop.Pages.Authenticate
                     HttpContext.Session.SetString("Email", account.Email);
                     HttpContext.Session.SetString("Role", account.RoleId.ToString());
                     HttpContext.Session.SetString("CusID", account.Id.ToString());
-                    return RedirectToPage("/Salers/ProductPage/Index");
+                    return RedirectToPage("/Salers/ProductPage/Index", new { id = 1 });
                 }
                 if (account.RoleId == 3)
                 {

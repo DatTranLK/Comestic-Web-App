@@ -10,6 +10,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
 {
     public class OrderDetailPageModel : PageModel
     {
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IOrderDetailRepository _orderDetailRepository;
         private readonly ITypeRepository _typeRepository;
@@ -20,8 +21,10 @@ namespace ComesticShop.Pages.Salers.OrderPage
         public string Msg { get; set; }
         public IEnumerable<BusinessObject.Models.Type> Type { get; set; }
         public IEnumerable<OrderDetail> OrderDetail { get; set; }
-        public OrderDetailPageModel(IAccountRepository accountRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ITypeRepository typeRepository)
+        public IEnumerable<Category> Categories { get; set; }
+        public OrderDetailPageModel(ICategoryRepository categoryRepository, IAccountRepository accountRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ITypeRepository typeRepository)
         {
+            _categoryRepository = categoryRepository;
             _accountRepository = accountRepository;
             _orderDetailRepository = orderDetailRepository;
             _typeRepository = typeRepository;
@@ -31,6 +34,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             Type = await _typeRepository.GetListTypes();
             OrderDetail = await _orderDetailRepository.GetOrderDetailById(id);
         }

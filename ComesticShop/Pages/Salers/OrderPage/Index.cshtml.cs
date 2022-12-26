@@ -10,6 +10,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
 {
     public class IndexModel : PageModel
     {
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IOrderRepository _orderRepository;
         private readonly ITypeRepository _typeRepository;
@@ -20,8 +21,10 @@ namespace ComesticShop.Pages.Salers.OrderPage
         public string Msg { get; set; }
         public IEnumerable<Order> Order { get; set; }
         public IEnumerable<BusinessObject.Models.Type> Type { get; set; }
-        public IndexModel(IAccountRepository accountRepository, IOrderRepository orderRepository, ITypeRepository typeRepository)
+        public IEnumerable<Category> Categories { get; set; }
+        public IndexModel(ICategoryRepository categoryRepository, IAccountRepository accountRepository, IOrderRepository orderRepository, ITypeRepository typeRepository)
         {
+            _categoryRepository = categoryRepository;
             _accountRepository = accountRepository;
             _orderRepository = orderRepository;
             _typeRepository = typeRepository;
@@ -31,6 +34,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             Type = await _typeRepository.GetListTypes();
             Order = await _orderRepository.GetOrders();
         }

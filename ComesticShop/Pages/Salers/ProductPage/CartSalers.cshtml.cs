@@ -26,6 +26,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
         [BindProperty]
         public decimal? Total { get; set; } = 0;
         public string ShippingAddress { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
 
         public CartSalersModel(IAccountRepository accountRepository, IProductRepository productRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ICategoryRepository categoryRepository)
         {
@@ -41,6 +42,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             cartSaler = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartSaler");
             if (id == null)
             {
@@ -100,6 +102,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             cartSaler = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartSaler");
             int index = Exists(cartSaler, id);
             cartSaler.RemoveAt(index);
@@ -111,6 +114,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             cartSaler = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartSaler");
             int index = Exists(cartSaler, id);
             cartSaler[index].Quantity++;
@@ -122,6 +126,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             cartSaler = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartSaler");
             int index = Exists(cartSaler, id);
             cartSaler[index].Quantity--;
@@ -137,6 +142,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             var totalString = Request.Form["SubTotal"];
             decimal total;
             decimal? result = null;
@@ -166,7 +172,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             }
             cartSaler.Clear();
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartSaler", cartSaler);
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = 1 });
 
         }
     }

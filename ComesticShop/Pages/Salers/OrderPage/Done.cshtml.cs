@@ -10,6 +10,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
 {
     public class DoneModel : PageModel
     {
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderDetailRepository _orderDetailRepository;
@@ -22,8 +23,10 @@ namespace ComesticShop.Pages.Salers.OrderPage
         public IEnumerable<BusinessObject.Models.Type> Type { get; set; }
         [BindProperty]
         public IEnumerable<OrderDetail> OrderDetail { get; set; }
-        public DoneModel(IAccountRepository accountRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ITypeRepository typeRepository)
+        public IEnumerable<Category> Categories { get; set; }
+        public DoneModel(ICategoryRepository categoryRepository,IAccountRepository accountRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ITypeRepository typeRepository)
         {
+            _categoryRepository = categoryRepository;
             _accountRepository = accountRepository;
             _orderRepository = orderRepository;
             _orderDetailRepository = orderDetailRepository;
@@ -38,6 +41,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             Type = await _typeRepository.GetListTypes();
             OrderDetail = await _orderDetailRepository.GetOrderDetailById(id);
             if (OrderDetail == null)
@@ -51,6 +55,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             Type = await _typeRepository.GetListTypes();
             OrderDetail = await _orderDetailRepository.GetOrderDetailById(id);
             if (id == null)

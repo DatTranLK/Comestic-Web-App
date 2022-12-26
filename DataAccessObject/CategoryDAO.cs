@@ -51,6 +51,25 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Category>> GetCategoriesVer2()
+        {
+            try
+            {
+                var lst = await _dbContext.Categories
+                    .Include(x => x.Type)
+                    .ToListAsync();
+                if (lst != null)
+                {
+                    return lst;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<Category> GetCategoryById(int id)
         {
             try

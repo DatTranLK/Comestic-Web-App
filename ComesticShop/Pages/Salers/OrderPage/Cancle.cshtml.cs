@@ -14,6 +14,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderDetailRepository _orderDetailRepository;
         private readonly ITypeRepository _typeRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
         public string Email { get; set; }
         public string Role { get; set; }
@@ -22,12 +23,14 @@ namespace ComesticShop.Pages.Salers.OrderPage
         public IEnumerable<BusinessObject.Models.Type> Type { get; set; }
         [BindProperty]
         public IEnumerable<OrderDetail> OrderDetail { get; set; }
-        public CancleModel(IAccountRepository accountRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ITypeRepository typeRepository)
+        public IEnumerable<Category> Categories { get; set; }
+        public CancleModel(IAccountRepository accountRepository, IOrderRepository orderRepository, IOrderDetailRepository orderDetailRepository, ITypeRepository typeRepository, ICategoryRepository categoryRepository)
         {
             _accountRepository = accountRepository;
             _orderRepository = orderRepository;
             _orderDetailRepository = orderDetailRepository;
             _typeRepository = typeRepository;
+            _categoryRepository = categoryRepository;
         }
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -38,6 +41,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             Type = await _typeRepository.GetListTypes();
             OrderDetail = await _orderDetailRepository.GetOrderDetailById(id);
             if (OrderDetail == null)
@@ -51,6 +55,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
             Email = HttpContext.Session.GetString("Email");
             Role = HttpContext.Session.GetString("Role");
             Account = await _accountRepository.GetAccountByEmail(Email);
+            Categories = await _categoryRepository.GetCategoriesVer2();
             Type = await _typeRepository.GetListTypes();
             OrderDetail = await _orderDetailRepository.GetOrderDetailById(id);
             if (id == null)

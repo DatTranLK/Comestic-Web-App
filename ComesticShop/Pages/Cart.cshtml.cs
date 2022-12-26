@@ -163,7 +163,7 @@ namespace ComesticShop.Pages
             cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
             var customer = await _accountRepository.GetAccountByEmail(Email);
             var order = new Order();
-            order.CreateDate = DateTime.Now;
+            order.CreateDate = DateTime.UtcNow.AddHours(7);
             order.StaffId = null;
             order.CustomerId = customer.Id;
             order.ShippingAddress = ShippingAddressString;

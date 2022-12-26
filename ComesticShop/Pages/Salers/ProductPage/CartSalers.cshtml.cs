@@ -147,7 +147,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             cartSaler = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartSaler");
             var staff = await _accountRepository.GetAccountByEmail(Email);
             var order = new Order();
-            order.CreateDate = DateTime.Now;
+            order.CreateDate = DateTime.UtcNow.AddHours(7);
             order.CustomerId = null;
             order.StaffId = staff.Id;
             order.ShippingAddress = ShippingAddressString;

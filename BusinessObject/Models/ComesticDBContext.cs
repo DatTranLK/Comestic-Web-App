@@ -46,7 +46,7 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.Avatar).HasColumnType("ntext");
 
-                entity.Property(e => e.DateOfBirth).HasColumnType("date");
+                entity.Property(e => e.DateOfBirth).HasColumnType("datetime");
 
                 entity.Property(e => e.Email).HasMaxLength(150);
 
@@ -88,7 +88,7 @@ namespace BusinessObject.Models
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.CreateDate).HasColumnType("date");
+                entity.Property(e => e.CreateDate).HasColumnType("datetime");
 
                 entity.Property(e => e.OrderStatus).HasMaxLength(50);
 
@@ -132,7 +132,7 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.Code).HasMaxLength(50);
 
-                entity.Property(e => e.DateCreated).HasColumnType("date");
+                entity.Property(e => e.DateCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.Description).HasColumnType("ntext");
 

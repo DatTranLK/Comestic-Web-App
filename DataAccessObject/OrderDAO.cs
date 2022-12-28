@@ -83,6 +83,94 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Order>> GetOrdersProcessing()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Processing")
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrdersAccepted()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Accepted")
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrdersCancel()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Cancle")
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders.Count > 0)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrdersDone()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Done")
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task ChangeStatusToAccept(int orderId)
         {
             try

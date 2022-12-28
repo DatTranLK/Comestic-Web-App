@@ -20,7 +20,7 @@
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>*@
 
 <!-- Datatables -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -67,7 +67,7 @@
         padding: 20px
     }
 
-</style>
+</style>*@
 
 @if (@Model.Role == "2" || @Model.Role == "1")
 {
@@ -75,7 +75,7 @@
         <h1>Order Management</h1>
         <div class="box_right d-flex lms_block">
             <div class="add_button ms-2">
-                <a asp-page="/Salers/ProductPage/Index" class="btn_1">Add New</a>
+                <a asp-page="/Salers/ProductPage/Index" asp-route-id="1" class="btn_1">Add New</a>
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@
         <a asp-page="/Salers/ProductPage/Index">Create New</a>
     </p>*@
    
-    <ul class="nav nav-tabs">
+    @*<ul class="nav nav-tabs">
         <li class="nav-item active">
             <a class="nav-link" href="#1" data-toggle="tab">All</a>
         </li>
@@ -100,7 +100,7 @@
         <li class="nav-item">
             <a class="nav-link" href="#5" data-toggle="tab">Cancle</a>
         </li>
-    </ul>
+    </ul>*@
     <br>
     <div class="tab-content">
         <!-- All Status -->
@@ -121,10 +121,10 @@
                 </thead>
 
 
-                <tbody>
+                <tbody class="list-wrapper">
                     @foreach (var item in Model.Order.OrderByDescending(x => x.Id))
                     {
-                        <tr>
+                        <tr class="list-item">
                             <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
                             <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
                             <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
@@ -160,10 +160,11 @@
                     }
                 </tbody>
             </table>
+            <div id="pagination-container"></div>
         </div>
         <!-- end All Status -->
         <!-- Processing Status -->
-        <div class="tab-pane" id="2">
+        @*<div class="tab-pane" id="2">
 
             <table id="example1" class="table display table-striped table-hover table-bordered" cellspacing="0" width="100%">
                 <thead>
@@ -197,8 +198,7 @@
                             </td>
                             <td>
                                 <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
-                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> @*|*@
-                                @*<a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>*@
+                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a>
                             </td>
                             <td>
                                 <a asp-page="./OrderDetailPage" asp-route-id="@item.Id" style="color: #051922">Xem chi tiết</a>
@@ -207,10 +207,10 @@
                     }
                 </tbody>
             </table>
-        </div>
+        </div>*@
         <!-- end Processing Status -->
         <!-- Accepted Status -->
-        <div class="tab-pane" id="3">
+        @*<div class="tab-pane" id="3">
 
             <table id="example2" class="table display table-striped table-hover table-bordered" width="100%">
                 <thead>
@@ -243,8 +243,6 @@
                                 }
                             </td>
                             <td>
-                                @*<a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
-                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |*@
                                 <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
                             </td>
                             <td>
@@ -254,10 +252,10 @@
                     }
                 </tbody>
             </table>
-        </div>
+        </div>*@
         <!-- end Accepted Status -->
         <!-- Done Status -->
-        <div class="tab-pane" id="4">
+        @*<div class="tab-pane" id="4">
 
             <table id="example3" class="table display table-striped table-hover table-bordered" width="100%">
                 <thead>
@@ -268,7 +266,6 @@
                         <th>TotalPrice</th>
                         <th>CreateDate</th>
                         <th>OrderStatus</th>
-                        @*<th>Action</th>*@
                         <th></th>
                     </tr>
                 </thead>
@@ -289,11 +286,6 @@
                                     <div class="badge bg-primary text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
                                 }
                             </td>
-                            @*<td>
-                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
-                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
-                            </td>*@
                             <td>
                                 <a asp-page="./OrderDetailPage" asp-route-id="@item.Id" style="color: #051922">Xem chi tiết</a>
                             </td>
@@ -301,10 +293,10 @@
                     }
                 </tbody>
             </table>
-        </div>
+        </div>*@
         <!-- end Done Status -->
         <!-- Cancle Status -->
-        <div class="tab-pane" id="5">
+        @*<div class="tab-pane" id="5">
 
             <table id="example4" class="table table-striped table-hover table-bordered" width="100%">
                 <thead>
@@ -315,7 +307,6 @@
                         <th>TotalPrice</th>
                         <th>CreateDate</th>
                         <th>OrderStatus</th>
-@*                        <th>Action</th>*@
                         <th></th>
                     </tr>
                 </thead>
@@ -336,11 +327,6 @@
                                     <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
                                 }
                             </td>
-                            @*<td>
-                                <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a> |
-                                <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a> |
-                                <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
-                            </td>*@
                             <td>
                                 <a asp-page="./OrderDetailPage" asp-route-id="@item.Id" style="color: #051922">Xem chi tiết</a>
                             </td>
@@ -348,10 +334,10 @@
                     }
                 </tbody>
             </table>
-        </div>
+        </div>*@
         <!-- end Cancle Status -->
     </div>
-    <script>
+    @*<script>
         $(document).ready(function () {
             
             function filterGlobal() {
@@ -389,7 +375,7 @@
             
 
         });
-    </script>
+    </script>*@
 }
 else
 {

@@ -40,7 +40,25 @@
         <h1>Order Detail</h1>
         <div class="box_right d-flex lms_block">
             <div class="add_button ms-2">
-                <a asp-page="./Index" class="btn_1">Quay lại danh sách</a>
+                @if (@Model.OrderDetail.First().Order.OrderStatus == "Processing")
+                {
+                    <a asp-page="./ProcessingTab" class="btn_1">Quay lại danh sách Processing</a>
+                }
+                else if (@Model.OrderDetail.First().Order.OrderStatus == "Accepted")
+                {
+                    <a asp-page="./AcceptedTab" class="btn_1">Quay lại danh sách Accepted</a>
+                }
+                else if (@Model.OrderDetail.First().Order.OrderStatus == "Done")
+                {
+                    <a asp-page="./DoneTab" class="btn_1">Quay lại danh sách Done</a>
+                }
+                else if (@Model.OrderDetail.First().Order.OrderStatus == "Cancel")
+                {
+                    <a asp-page="./CancelTab" class="btn_1">Quay lại danh sách Cancel</a>
+                }
+
+                <a asp-page="./Index" class="btn_1">Quay lại danh sách tất cả</a>
+
             </div>
         </div>
     </div>

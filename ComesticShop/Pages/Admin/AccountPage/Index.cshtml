@@ -2,81 +2,127 @@
 @model ComesticShop.Pages.Admin.AccountPage.IndexModel
 @{
 }
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+
 @if (@Model.Role == "1")
 {
-    <h1>Accounts</h1>
+    <div class="white_card_body">
+        <div class="QA_section">
+            <div class="white_box_tittle list_header">
+                <h4>Accounts</h4>
+                <div class="box_right d-flex">
+                    @*<div class="serach_field-area d-flex align-items-center">
+                <div class="search_inner">
+                <form>
+                <input type="text" id="Search" name="search" placeholder="Search..">
+                <button type="submit"> <img src="~/admin/img/icon/icon_search.svg" alt=""> </button>
+                </form>
+                </div>
+                </div>*@
+                    <div class="add_button ms-2">
+                        <a asp-page="/Admin/AccountPage/Create" asp-route-id="1" class="btn_1">Add New</a>
+                    </div>
+                </div>
+            </div>
+            <div class="QA_table mb_30">
 
-<p>
-    <a asp-page="Create">Create New Account</a>
-</p>
-<table class="table" style="background-color: white; border-radius: 10px">
-    <thead>
-        <tr>
-            <th>
-                Email
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                DateOfBirth
-            </th>
-            <th>
-                IsActive
-            </th>
-            <th>
-                Phone
-            </th>
-            <th>
-                Role
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody class="list-wrapper">
-@foreach (var item in Model.Accounts) {
-        <tr class="list-item">
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.Name)
-            </td>
-                    @if (item.Role.Name == "Admin")
-                    {
-                        <td hidden>
-                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
+                <table class="table table-striped table-responsive border">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Email
+                            </th>
+                            <th scope="col">
+                                Name
+                            </th>
+                            <th scope="col">
+                                DateOfBirth
+                            </th>
+                            <th scope="col">
+                                IsActive
+                            </th>
+                            <th scope="col">
+                                Phone
+                            </th>
+                            <th scope="col">
+                                Role
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Accounts)
+                        {
+                            <tr class="list-item">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsActive)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Role.Name)
+                                </td>
+                                @if (item.Role.Name == "Admin")
+                                {
+                                    <td hidden>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-soft-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a asp-page="./Edit" class="dropdown-item bg-transparent" asp-route-id="@item.Id">Edit</a></li>
+                                                <li><a asp-page="./Details" class="dropdown-item bg-transparent" asp-route-id="@item.Id">Detail</a></li>
+                                                <li><a asp-page="./Delete" class="dropdown-item bg-transparent" asp-route-id="@item.Id">Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-soft-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Actions
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a asp-page="./Edit" class="dropdown-item bg-transparent" asp-route-id="@item.Id">Edit</a></li>
+                                                <li><a asp-page="./Details" class="dropdown-item bg-transparent" asp-route-id="@item.Id">Detail</a></li>
+                                                <li><a asp-page="./Delete" class="dropdown-item bg-transparent" asp-route-id="@item.Id">Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                }
 
-                    }
-                    else
-                    {
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    }
-                    
-        </tr>
-}
-    </tbody>
-</table>
-<div id="pagination-container"></div>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div id="pagination-container"></div>
+        </div>
+    </div>
 }
 else
 {

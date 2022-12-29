@@ -2,76 +2,119 @@
 @model ComesticShop.Pages.Salers.OrderPage.CancelTabModel
 @{
 }
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="~/assets/css/all.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+
 @if (@Model.Role == "2" || @Model.Role == "1")
 {
-    <div class="white_box_tittle list_header">
-        <h1>Order Management</h1>
-        <div class="box_right d-flex lms_block">
-            <div class="add_button ms-2">
-                <a asp-page="/Salers/ProductPage/Index" asp-route-id="1" class="btn_1">Add New</a>
+    <!-- Cancel Status -->
+    <div class="white_card_body">
+        <div class="QA_section">
+            <div class="white_box_tittle list_header">
+                <h4>Orders</h4>
+                <div class="box_right d-flex">
+                    @*<div class="serach_field-area d-flex align-items-center">
+                <div class="search_inner">
+                <form>
+                <input type="text" id="Search" name="search" placeholder="Search..">
+                <button type="submit"> <img src="~/admin/img/icon/icon_search.svg" alt=""> </button>
+                </form>
+                </div>
+                </div>*@
+                    <div class="add_button ms-2">
+                        <a asp-page="/Admin/ProductPage/Index" asp-route-id="1" class="btn_1">Add New</a>
+                    </div>
+                </div>
             </div>
+            <div class="QA_table mb_30">
+
+                <table class="table table-striped table-responsive border">
+                    <thead>
+                        <tr>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">ShippingAddress</th>
+                            <th scope="col">PaymentMethod</th>
+                            <th scope="col">TotalPrice</th>
+                            <th scope="col">CreateDate</th>
+                            <th scope="col">OrderStatus</th>
+                            <th scope="col">Shopping Method</th>
+                            <th scope="col">Action</th>
+                            @*<th scope="col"></th>*@
+                        </tr>
+                    </thead>
+                    <tbody class="list-wrapper">
+                        @foreach (var item in Model.Order.OrderByDescending(x => x.Id))
+                        {
+                            <tr class="list-item Search">
+                                <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
+                                <td>@((int)item.TotalPrice)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                                <td>
+                                    @if (item.OrderStatus == "Cancle")
+                                    {
+                                        <span class="badge badge rounded-pill d-block badge-soft-warning" style="font-family: 'Quicksand', sans-serif;">
+                                            @item.OrderStatus
+                                            <svg class="svg-inline--fa fa-ban fa-w-16 ms-1" data-fa-transform="shrink-2" aria-hidden="true"
+                                     focusable="false" data-prefix="fas" data-icon="ban" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""
+                                     style="transform-origin: 0.5em 0.5em;">
+                                                <g transform="translate(256 256)">
+                                                    <g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)">
+                                                        <path fill="currentColor" d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z" transform="translate(-256 -256)">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (@item.StaffId == null)
+                                    {
+                                        <span class="badge bg-info text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">Shopping Online</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">Staff At Store</span>
+                                    }
+
+                                </td>
+                                @*<td class="action_button">
+                        <a asp-page="./Accept" class="btn btn-success btn-sm" asp-route-id="@item.Id">Accept</a>
+                        <a asp-page="./Cancle" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Cancel</a>
+                        <a asp-page="./Done" class="btn btn-primary btn-sm" asp-route-id="@item.Id" style="color: white">Done</a>
+                        </td>*@
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-soft-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Actions
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a asp-page="./OrderDetailPage" class="dropdown-item" asp-route-id="@item.Id">Xem chi tiết</a></li>
+                                        </ul>
+                                    </div>
+                                    @*<a asp-page="./OrderDetailPage" asp-route-id="@item.Id" style="color: #051922">Xem chi tiết</a>*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div id="pagination-container"></div>
         </div>
     </div>
-    <br>
-    <table id="example4" class="table table-striped table-hover table-bordered" width="100%">
-                <thead>
-                    <tr>
-                        <th>Customer Name</th>
-                        <th>ShippingAddress</th>
-                        <th>PaymentMethod</th>
-                        <th>TotalPrice</th>
-                        <th>CreateDate</th>
-                        <th>OrderStatus</th>
-                        <th>Shopping Method</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-
-                <tbody class="list-wrapper">
-                    @foreach (var item in Model.Order)
-                    {
-                        <tr class="list-item">
-                            <td>@Html.DisplayFor(modelItem => item.Customer.Name)</td>
-                            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
-                            <td>@Html.DisplayFor(modelItem => item.PaymentMethod)</td>
-                            <td>@((int)item.TotalPrice)</td>
-                            <td>@Html.DisplayFor(modelItem => item.CreateDate)</td>
-                            <td>
-                                @if (item.OrderStatus == "Cancle")
-                                {
-                                    <div class="badge bg-danger text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">@item.OrderStatus</div>
-                                }
-                            </td>
-                            <td>
-                                @if (@item.StaffId == null)
-                                {
-                                    <div class="badge bg-info text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">Shopping Online</div>
-                                }
-                                else
-                                {
-                                    <div class="badge bg-warning text-white rounded-pill" style="font-family: 'Quicksand', sans-serif;">Staff At Store</div>
-                                }
-                                
-                            </td>
-                            <td>
-                                <a asp-page="./OrderDetailPage" asp-route-id="@item.Id" style="color: #051922">Xem chi tiết</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-    <div id="pagination-container"></div>
+    <!-- end Cancel Status -->
 }
 else
 {

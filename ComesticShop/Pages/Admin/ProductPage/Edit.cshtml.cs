@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,6 +25,16 @@ namespace ComesticShop.Pages.Admin.ProductPage
         [BindProperty]
         public Product Product { get; set; }
         public Product Product2 { get; set; }
+        [BindProperty]
+        public IFormFile Img1 { get; set; }
+        [BindProperty]
+        public IFormFile? Img2 { get; set; } = null;
+        [BindProperty]
+        public IFormFile? Img3 { get; set; } = null;
+        [BindProperty]
+        public IFormFile? Img4 { get; set; } = null;
+        [BindProperty]
+        public IFormFile? Img5 { get; set; } = null;
         public IEnumerable<BusinessObject.Models.Type> Type { get; set; }
         public EditModel(IAccountRepository accountRepository, IProductRepository productRepository, ITypeRepository typeRepository, ComesticDBContext context)
         {
@@ -66,7 +77,71 @@ namespace ComesticShop.Pages.Admin.ProductPage
             {
                 return Page();
             }
+            /*if (Img1.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    Img1.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    Product.Image1 = fileBytes;
+                }
+            }
+            if (Img2 == null)
+            {
+                Product.Image2 = null;
+            }
+            else
+            {
+                using (var ms = new MemoryStream())
+                {
+                    Img2.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    Product.Image2 = fileBytes;
+                }
+            }
 
+            if (Img3 == null)
+            {
+                Product.Image3 = null;
+
+            }
+            else
+            {
+                using (var ms = new MemoryStream())
+                {
+                    Img3.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    Product.Image3 = fileBytes;
+                }
+            }
+
+            if (Img4 == null)
+            {
+                Product.Image4 = null;
+            }
+            else
+            {
+                using (var ms = new MemoryStream())
+                {
+                    Img4.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    Product.Image4 = fileBytes;
+                }
+            }
+
+            if (Img5 == null)
+            {
+                Product.Image5 = null;
+            }
+            else
+            {
+                using (var ms = new MemoryStream())
+                {
+                    Img5.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    Product.Image5 = fileBytes;
+                }
+            }*/
             Product.IsActive = true;
             await _productRepository.UpdatePro(Product);
 

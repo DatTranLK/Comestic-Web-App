@@ -61,9 +61,15 @@ namespace ComesticShop.Pages.Customers
                 return NotFound();
             }
             var checkOrderExist = await _orderRepository.GetOrderById(id);
-            if (checkOrderExist != null && checkOrderExist.OrderStatus != "Processing")
+            
+            if (checkOrderExist != null && checkOrderExist.OrderStatus != "Processing" && checkOrderExist.OrderStatus != "Cancle")
             {
                 ViewData["ErrorMessage"] = "Đơn hàng không thể hủy khi đã được Accept";
+                return Page();
+            }
+            if (checkOrderExist.OrderStatus != "Processing")
+            {
+                ViewData["ErrorMessage"] = "Đơn hàng đã hủy";
                 return Page();
             }
             await _orderRepository.ChangeStatusToCancle(id);

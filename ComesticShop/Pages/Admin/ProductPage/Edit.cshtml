@@ -46,11 +46,36 @@
                 <input asp-for="Product.Description" class="form-control" required/>
                 <span asp-validation-for="Product.Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Product.Avatar" class="control-label"></label>
                 <input asp-for="Product.Avatar" class="form-control" required/>
                 <span asp-validation-for="Product.Avatar" class="text-danger"></span>
-            </div> 
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Img1" class="control-label"></label>
+                <input type="file" asp-for="Img1" class="form-control" required/>
+                <span asp-validation-for="Img1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Img2" class="control-label"></label>
+                <input type="file" asp-for="Img2" class="form-control" />
+                <span asp-validation-for="Img2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Img3" class="control-label"></label>
+                <input type="file" asp-for="Img3" class="form-control" />
+                <span asp-validation-for="Img3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Img4" class="control-label"></label>
+                <input type="file" asp-for="Img4" class="form-control" />
+                <span asp-validation-for="Img4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Img5" class="control-label"></label>
+                <input type="file" asp-for="Img5" class="form-control" />
+                <span asp-validation-for="Img5" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Product.Summary" class="control-label"></label>
                 <input asp-for="Product.Summary" class="form-control" required/>

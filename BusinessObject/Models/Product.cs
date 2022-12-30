@@ -19,7 +19,11 @@ namespace BusinessObject.Models
         public decimal? Price { get; set; }
         public string Description { get; set; }
         public bool? IsActive { get; set; }
-        public string Avatar { get; set; }
+        public byte[] Image1 { get; set; }
+        public byte[] Image2 { get; set; }
+        public byte[] Image3 { get; set; }
+        public byte[] Image4 { get; set; }
+        public byte[] Image5 { get; set; }
         public int? CategoryId { get; set; }
         public int? BrandId { get; set; }
         public string Summary { get; set; }

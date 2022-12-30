@@ -128,8 +128,6 @@ namespace BusinessObject.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.Property(e => e.Avatar).HasColumnType("ntext");
-
                 entity.Property(e => e.Code).HasMaxLength(50);
 
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");

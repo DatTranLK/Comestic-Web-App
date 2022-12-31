@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,6 +61,7 @@ namespace DataAccessObject
             try
             {
                 var lst = await _dbContext.Products
+                    .Include(x => x.Category)
                     .Where(x => x.IsActive == true && x.Amount > 0)
                     .OrderByDescending(x => x.AmountSold).ToListAsync();
                 if (lst != null)

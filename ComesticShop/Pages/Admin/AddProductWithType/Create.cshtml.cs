@@ -68,7 +68,7 @@ namespace ComesticShop.Pages.Admin.AddProductWithType
             {
                 return Page();
             }
-            if (Img1.Length > 0)
+            /*if (Img1.Length > 0)
             {
                 using (var ms = new MemoryStream())
                 {
@@ -132,11 +132,101 @@ namespace ComesticShop.Pages.Admin.AddProductWithType
                     var fileBytes = ms.ToArray();
                     Product.Image5 = fileBytes;
                 }
-            }
+            }*/
             /*if (Img5.Length > 0 && Img5 != null)
             {
 
             }*/
+            string imgText1 = Path.GetExtension(Img1.FileName);
+            if (imgText1 == ".jpg" || imgText1 == ".png" || imgText1 == ".jpeg")
+            {
+                var imgSave1 = Path.Combine(_webHostEnvironment.WebRootPath, "ImagesPro", Img1.FileName);
+                var stream = new FileStream(imgSave1, FileMode.Create);
+                await Img1.CopyToAsync(stream);
+                stream.Close();
+
+                Product.ImgName1 = Img1.FileName;
+                Product.ImgPath1 = imgSave1.Substring(imgSave1.IndexOf("w"));
+            }
+            if (Img2 == null)
+            {
+                Product.ImgName2 = null;
+                Product.ImgPath2 = null;
+            }
+            else 
+            {
+                string imgText2 = Path.GetExtension(Img2.FileName);
+                if (imgText2 == ".jpg" || imgText2 == ".png" || imgText2 == ".jpeg")
+                {
+                    var imgSave2 = Path.Combine(_webHostEnvironment.WebRootPath, "ImagesPro", Img2.FileName);
+                    var stream = new FileStream(imgSave2, FileMode.Create);
+                    await Img2.CopyToAsync(stream);
+                    stream.Close();
+
+                    Product.ImgName2 = Img2.FileName;
+                    Product.ImgPath2 = imgSave2.Substring(imgSave2.IndexOf("w"));
+                }
+            }
+
+            if (Img3 == null)
+            {
+                Product.ImgName3 = null;
+                Product.ImgPath3 = null;
+            }
+            else
+            {
+                string imgText3 = Path.GetExtension(Img3.FileName);
+                if (imgText3 == ".jpg" || imgText3 == ".png" || imgText3 == ".jpeg")
+                {
+                    var imgSave3 = Path.Combine(_webHostEnvironment.WebRootPath, "ImagesPro", Img3.FileName);
+                    var stream = new FileStream(imgSave3, FileMode.Create);
+                    await Img3.CopyToAsync(stream);
+                    stream.Close();
+
+                    Product.ImgName3 = Img3.FileName;
+                    Product.ImgPath3 = imgSave3.Substring(imgSave3.IndexOf("w"));
+                }
+            }
+
+            if (Img4 == null)
+            {
+                Product.ImgName4 = null;
+                Product.ImgPath4 = null;
+            }
+            else
+            {
+                string imgText4 = Path.GetExtension(Img4.FileName);
+                if (imgText4 == ".jpg" || imgText4 == ".png" || imgText4 == ".jpeg")
+                {
+                    var imgSave4 = Path.Combine(_webHostEnvironment.WebRootPath, "ImagesPro", Img4.FileName);
+                    var stream = new FileStream(imgSave4, FileMode.Create);
+                    await Img4.CopyToAsync(stream);
+                    stream.Close();
+
+                    Product.ImgName4 = Img4.FileName;
+                    Product.ImgPath4 = imgSave4.Substring(imgSave4.IndexOf("w"));
+                }
+            }
+
+            if (Img5 == null)
+            {
+                Product.ImgName5 = null;
+                Product.ImgPath5 = null;
+            }
+            else
+            {
+                string imgText5 = Path.GetExtension(Img5.FileName);
+                if (imgText5 == ".jpg" || imgText5 == ".png" || imgText5 == ".jpeg")
+                {
+                    var imgSave5 = Path.Combine(_webHostEnvironment.WebRootPath, "ImagesPro", Img5.FileName);
+                    var stream = new FileStream(imgSave5, FileMode.Create);
+                    await Img5.CopyToAsync(stream);
+                    stream.Close();
+
+                    Product.ImgName5 = Img5.FileName;
+                    Product.ImgPath5 = imgSave5.Substring(imgSave5.IndexOf("w"));
+                }
+            }
             Product.IsActive = true;
             await _productRepository.AddNewProduct(Product);
 

@@ -136,6 +136,16 @@ namespace BusinessObject.Models
 
                 entity.Property(e => e.Element).HasColumnType("ntext");
 
+                entity.Property(e => e.ImgName1).HasMaxLength(150);
+
+                entity.Property(e => e.ImgName2).HasMaxLength(150);
+
+                entity.Property(e => e.ImgName3).HasMaxLength(150);
+
+                entity.Property(e => e.ImgName4).HasMaxLength(150);
+
+                entity.Property(e => e.ImgName5).HasMaxLength(150);
+
                 entity.Property(e => e.Name).HasMaxLength(150);
 
                 entity.Property(e => e.Price).HasColumnType("money");

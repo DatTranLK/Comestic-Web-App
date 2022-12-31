@@ -312,7 +312,7 @@
                     </div>
                 </div>
                 <div>
-                    <a asp-page="/ProductByCategory" class="more-product d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: #343a40">
+                    <a asp-page="/ProductByCategory" asp-route-id="@Model.Product.CategoryId" class="more-product d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: #343a40">
                         See more
                         <span><i style="padding-left: 5px; padding-top: 5px" class="fas fa-angle-right"></i></span>
                     </a>

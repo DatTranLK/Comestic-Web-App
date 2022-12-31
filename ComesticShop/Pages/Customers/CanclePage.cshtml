@@ -97,13 +97,13 @@
                                     <tr class="list-item table-body-row">
                                         @*<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
                                     <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>*@
-                                        @if (@item.Product.Image1 == null)
+                                        @if (@item.Product.ImgName1 == null)
                                         {
                                             <p>No content</p>
                                         }
                                         else
                                         {
-                                            <td class="product-image"><img src="data:image/jpg;base64,@(Convert.ToBase64String(item.Product.Image1))" alt=""></td>
+                                            <td class="product-image"><img src="~/ImagesPro/@item.Product.ImgName1" alt=""></td>
                                         }
                                         
                                         <td class="product-name" style="font-family: 'Quicksand', sans-serif;">

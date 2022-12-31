@@ -38,13 +38,13 @@ namespace DataAccessObject
                 var lst = _dbContext.Products.Where(x => x.Name.Contains(searchString.Trim())).ToList();
                 if (lst.Count() > 0)
                 {
-                    foreach (var item in lst)
+                    /*foreach (var item in lst)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return lst;
                 }
                 return null;
@@ -65,13 +65,13 @@ namespace DataAccessObject
                 if (lst != null)
                 {
                     
-                    foreach (var item in lst)
+                    /*foreach (var item in lst)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return lst.Take(3);
                 }
                 return null;
@@ -100,13 +100,13 @@ namespace DataAccessObject
                     .OrderByDescending(x => x.AmountSold).ToListAsync();
                 if (lst != null)
                 {
-                    foreach (var item in lst)
+                    /*foreach (var item in lst)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return lst;
                 }
                 return null;
@@ -147,13 +147,13 @@ namespace DataAccessObject
                     .OrderByDescending(x => x.DateCreated).ToListAsync();
                 if (lst != null)
                 {
-                    foreach (var item in lst)
+                    /*foreach (var item in lst)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return lst.Take(3);
                 }
                 return null;
@@ -174,13 +174,13 @@ namespace DataAccessObject
                     .OrderByDescending(x => x.DateCreated).ToListAsync();
                 if (lst != null)
                 {
-                    foreach (var item in lst)
+                    /*foreach (var item in lst)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return lst;
                 }
                 return null;
@@ -201,13 +201,13 @@ namespace DataAccessObject
                 int toSkip = rand.Next(6,lst);*/
                 if (lst != null)
                 {
-                    foreach (var item in lst)
+                    /*foreach (var item in lst)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return lst.OrderBy(x => Guid.NewGuid()).Take(6);
                 }
                 return null;
@@ -226,13 +226,13 @@ namespace DataAccessObject
                     .Where(x => x.IsActive == true && x.Amount > 0).ToListAsync();
                 if (lst != null)
                 {
-                    foreach (var item in lst)
+                    /*foreach (var item in lst)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return lst.OrderBy(x => Guid.NewGuid());
                 }
                 return null;
@@ -294,13 +294,13 @@ namespace DataAccessObject
                     .Where(x => x.CategoryId == cateId && x.IsActive == true && x.Amount > 0).ToListAsync();
                 if(pro != null)
                 {
-                    foreach (var item in pro)
+                    /*foreach (var item in pro)
                     {
                         if (item.Image1 != null)
                         {
                             item.Image1 = GetImages(Convert.ToBase64String(item.Image1));
                         }
-                    }
+                    }*/
                     return pro;
                 }
                 return null;
@@ -315,7 +315,7 @@ namespace DataAccessObject
         {
             try
             {
-                _dbContext.Products.Add(product);
+                await _dbContext.Products.AddAsync(product);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -335,27 +335,6 @@ namespace DataAccessObject
                     .FirstOrDefaultAsync(x => x.Id == id);
                 if(pro != null)
                 {
-
-                    if (pro.Image1 != null)
-                    {
-                        pro.Image1 = GetImages(Convert.ToBase64String(pro.Image1));
-                    }
-                    if (pro.Image2 != null)
-                    {
-                        pro.Image2 = GetImages(Convert.ToBase64String(pro.Image2));
-                    }
-                    if (pro.Image3 != null)
-                    {
-                        pro.Image3 = GetImages(Convert.ToBase64String(pro.Image3));
-                    }
-                    if (pro.Image4 != null)
-                    {
-                        pro.Image4 = GetImages(Convert.ToBase64String(pro.Image4));
-                    }
-                    if (pro.Image5 != null)
-                    {
-                        pro.Image5 = GetImages(Convert.ToBase64String(pro.Image5));
-                    }
                     return pro;
                 }
                 return null;
@@ -395,7 +374,7 @@ namespace DataAccessObject
             try
             {
                 _dbContext.ChangeTracker.Clear();
-                _dbContext.Entry(product).State = EntityState.Modified;
+                _dbContext.Update(product);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)

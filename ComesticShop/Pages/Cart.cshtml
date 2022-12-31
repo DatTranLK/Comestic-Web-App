@@ -56,13 +56,13 @@
                                             <hr class="my-4" style="border: 1px solid rgb(200, 198, 198);">
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    @if (item.Product.Image1 == null)
+                                                    @if (item.Product.ImgName1 == null)
                                                     {
                                                         <p>No content</p>
                                                     }
                                                     else
                                                     {
-                                                        <img src="data:image/jpg;base64,@(Convert.ToBase64String(item.Product.Image1))" class="img-fluid rounded-3" alt="Book ava">
+                                                        <img src="~/ImagesPro/@item.Product.ImgName1" class="img-fluid rounded-3" alt="Book ava">
                                                     }
                                                     
                                         </div>

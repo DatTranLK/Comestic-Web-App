@@ -44,8 +44,10 @@
             <div class="list-wrapper row">
                 @foreach (var item in Model.ProductsRecommend)
                 {
-                    <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
-                        <div class="product-image">
+                <div class="list-item col-lg-4 col-md-6">
+                    <div class="card">
+
+                        <div class="product-images">
                             @if (item.Image1 == null)
                             {
                                 <p>No content</p>
@@ -53,65 +55,67 @@
                             else
                             {
                                 <a asp-page="/ProductDetail" asp-route-id="@item.Id">
-                                    <img class="card-img-top" src="data:image/jpg;base64,@(Convert.ToBase64String(item.Image1))" style="width: 100%; height: 380px" alt="">
+                                    <img class="card-img-top" src="data:image/jpg;base64,@(Convert.ToBase64String(item.Image1))" alt="">
                                 </a>
                             }
                         </div>
-                        <div class="card-body" style="width: 100%; height: 25%">
-                            <div class="card-title" style="height: 120px">
+                        <div class="card-body" style="width: 100%;">
+                            <div class="fs-0">
                                 <h5>
-                                    <a asp-page="/ProductDetail" asp-route-id="@item.Id"
-                                       style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
-                                color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
+                                    <a asp-page="/ProductDetail" asp-route-id="@item.Id" class="text-name text-dark">
                                         @item.Name
                                     </a>
                                 </h5>
+                                <p class="fs--1 mb-3 text-secondary">
+                                    @item.Category.Name & @item.Brand.Name
+                                </p>
                             </div>
-                            <p class="product-price" style="font-size: 1.2rem; color: #333;
-                                font-family: 'Quicksand', sans-serif; font-weight: 600 ">
+                            <p class="fs-md-2 mb-0 d-flex align-items-center mb-3">
                                 @((int)item.Price) VND
                             </p>
-                            <p style="font-family: 'Quicksand', sans-serif; font-weight: 500">
-                                Số lượng còn: @item.Amount sản phẩm
-                            </p>
-
+                            @*<p style="font-family: 'Quicksand', sans-serif; font-weight: 500">
+                        Số lượng còn: @item.Amount sản phẩm
+                        </p>*@
+                        </div>
+                        <div class="card_footer bg-transparent">
                             @if (@Model.Email != null)
-                        {
-                            @if (@item.IsNeedContact == true)
                             {
-                                <a asp-page="./Shop" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    Liên hệ cửa hàng
-                                </a>
+                                @if (@item.IsNeedContact == true)
+                                {
+                                    <a asp-page="./Shop" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Liên hệ cửa hàng
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Add to Cart
+                                    </a>
+                                }
+
                             }
                             else
                             {
-                                <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    Add to Cart
-                                </a>
+                                @if (@item.IsNeedContact == true)
+                                {
+                                    <a asp-page="/Authenticate/Login" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Liên hệ cửa hàng
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-page="/Authenticate/Login" asp-route-id="@item.Id" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Add to Cart
+                                    </a>
+                                }
                             }
-                            
-                        }
-                        else
-                        {
-                            @if (@item.IsNeedContact == true)
-                            {
-                                <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    Liên hệ cửa hàng
-                                </a>
-                            }
-                            else
-                            {
-                                <a asp-page="/Authenticate/Login" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    Add to Cart
-                                </a>
-                            }
-                        }
                         </div>
                     </div>
+                </div>
                 }
             </div>
             <div id="pagination-container"></div>

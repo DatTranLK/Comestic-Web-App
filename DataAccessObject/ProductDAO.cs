@@ -62,6 +62,7 @@ namespace DataAccessObject
             {
                 var lst = await _dbContext.Products
                     .Include(x => x.Category)
+                    .Include(x => x.Brand)
                     .Where(x => x.IsActive == true && x.Amount > 0)
                     .OrderByDescending(x => x.AmountSold).ToListAsync();
                 if (lst != null)

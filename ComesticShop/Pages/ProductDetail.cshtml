@@ -2,13 +2,108 @@
 @model ComesticShop.Pages.ProductDetailModel
 @{
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="~/assets/css/all.min.css">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+
+    <link rel="stylesheet" href="~/NewFolder/css/mdb.min.css">
+    <script src="~/NewFolder/js/mdb.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <style>
+        .carousel-control-next, .carousel-control-prev {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 15%;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            background: none;
+            border: 0;
+            opacity: .5;
+            transition: opacity .15s ease;
+        }
+
+        .carousel-control-next:focus, .carousel-control-next:hover, .carousel-control-prev:focus, .carousel-control-prev:hover {
+            color: #6c757d;
+            text-decoration: none;
+            outline: 0;
+            opacity: .9;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin-right: 15%;
+            margin-bottom: 1rem;
+            margin-left: 15%;
+            list-style: none;
+        }
+
+        .carousel-control-next-icon, .carousel-control-prev-icon {
+            background-image: none;
+        }
+
+        .carousel-control-next-icon, .carousel-control-prev-icon {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: 100% 100%;
+        }
+
+        .carousel-control-next:focus, .carousel-control-next:hover, .carousel-control-prev:focus, .carousel-control-prev:hover {
+            color: #6c757d;
+            text-decoration: none;
+            outline: 0;
+            opacity: .9;
+        }
+
+        .visually-hidden, .visually-hidden-focusable:not(:focus):not(:focus-within) {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0,0,0,0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
+        .col-md-7 {
+            padding-top: 60px;
+        }
+
+        .product-filters ul li:hover {
+            color: white;
+            background-color: #F28123;
+        }
+
+        img.d-block.w-100.shadow-1-strong.rounded.img-fluid:hover {
+            opacity: 0.9;
+        }
+    </style>
+
+</head>
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -29,9 +124,57 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                @*<div class="single-product-img">
-                    <img src="@Model.Product.Avatar" alt="">
-                </div>*@
+                <!-- IMG Slider -->
+                <div class="single-product-img">
+                    <!-- Carousel wrapper -->
+                    <div id="carouselMDExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+                        <!-- Slides -->
+                        <div class="carousel-inner mb-5 shadow-1-strong rounded-3">
+                            <div class="carousel-item active">
+                                <img src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-deep-clean-deep-moist.png?v=1.3" class="d-block w-100" alt="..." />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-2.png?v=1.3" class="d-block w-100" alt="..." />
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-3.png?v=1.3" class="d-block w-100" alt="..." />
+                            </div>
+                        </div>
+                        <!-- Slides -->
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselMDExample"
+                                data-mdb-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-mdb-target="#carouselMDExample"
+                                data-mdb-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <!-- Controls -->
+                        <!-- Thumbnails -->
+                        <div class="carousel-indicators" style="margin-bottom: -20px;">
+                            <button type="button" data-mdb-target="#carouselMDExample" data-mdb-slide-to="0" class="active"
+                                    aria-current="true" aria-label="Slide 1" style="width: 100px;">
+                                <img class="d-block w-100 shadow-1-strong rounded img-fluid"
+                                     src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-deep-clean-deep-moist.png?v=1.3" />
+                            </button>
+                            <button type="button" data-mdb-target="#carouselMDExample" data-mdb-slide-to="1" aria-label="Slide 2"
+                                    style="width: 100px;">
+                                <img class="d-block w-100 shadow-1-strong rounded img-fluid"
+                                     src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-2.png?v=1.3" />
+                            </button>
+                            <button type="button" data-mdb-target="#carouselMDExample" data-mdb-slide-to="2" aria-label="Slide 3"
+                                    style="width: 100px;">
+                                <img class="d-block w-100 shadow-1-strong rounded img-fluid"
+                                     src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-3.png?v=1.3" />
+                            </button>
+                        </div>
+                        <!-- Thumbnails -->
+                    </div>
+                </div>
+                <!-- IMG Slider -->
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
@@ -52,7 +195,7 @@
                             </span>
                         </strong>
                     </p>
-                    <p class="single-product-pricing" style="font-family: 'Quicksand', sans-serif; font-weight: 500">
+                    <p class="single-product-pricing" style="font-family: 'Quicksand', sans-serif; font-weight: 500; color: #F28123">
                         @((int)Model.Product.Price) VND
                     </p>
                     <p style="font-family: 'Quicksand', sans-serif;">Summary: @Model.Product.Summary</p>
@@ -169,56 +312,86 @@
                     </div>
                 </div>
                 <div>
-                    <a asp-page="/ProductByCategory" asp-route-id="@Model.Product.CategoryId" class="d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: black">
+                    <a asp-page="/ProductByCategory" class="more-product d-flex justify-content-end" style="font-family: 'Quicksand', sans-serif; font-weight: 400; color: #343a40">
                         See more
-                        <i style="padding-left: 5px; padding-top: 5px" class="fas fa-angle-right"></i>
+                        <span><i style="padding-left: 5px; padding-top: 5px" class="fas fa-angle-right"></i></span>
                     </a>
                 </div>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    @foreach (var item in Model.RelatedProduct)
-                    {
-                        <div class="list-item card col-md-4" style="border: 1px solid #F28123; border-radius: 1rem;">
-                            <div class="product-image">
-                                @*<a asp-page="/ProductDetail" asp-route-id="@item.Id">
-                                    <img class="card-img-top" src="@item.Avatar" style="width: 100%; height: 380px" alt="">
-                                </a>*@
-                            </div>
-                            <div class="card-body" style="width: 100%; height: 25%">
-                                <div class="card-title" style="height: 120px">
-                                    <h5>
-                                        <a asp-page="/ProductDetail" asp-route-id="@item.Id"
-                                           style="font-size: 1.6rem; line-height: 1.42em; letter-spacing: -0.5pt;
-                                color: #333; font-family: 'Quicksand', sans-serif; font-weight: 700 ">
-                                            @item.Name
-                                        </a>
-                                    </h5>
-                                </div>
-                                <p class="product-price" style="font-size: 1.2rem; color: #333;
-                                        font-family: 'Quicksand', sans-serif; font-weight: 600 ">
-                                    @((int)item.Price) VND
-                                </p>
-                                <p style="font-family: 'Quicksand', sans-serif; font-weight: 500">
-                                    Số lượng còn: @item.Amount sản phẩm
-                                </p>
+        <div class="row">
 
-                                @if (@Model.Email != null)
+            @foreach (var item in Model.RelatedProduct)
+            {
+                <div class="list-item col-lg-4 col-md-6">
+                    <div class="card">
+
+                        <div class="product-images">
+                            @if (item.Image1 == null)
+                            {
+                                <p>No content</p>
+                            }
+                            else
+                            {
+                                <a asp-page="/ProductDetail" asp-route-id="@item.Id">
+                                    <img class="card-img-top" src="data:image/jpg;base64,@(Convert.ToBase64String(item.Image1))" alt="">
+                                </a>
+                            }
+                        </div>
+                        <div class="card-body" style="width: 100%;">
+                            <div class="fs-0">
+                                <h5>
+                                    <a asp-page="/ProductDetail" asp-route-id="@item.Id" class="text-name text-dark">
+                                        @item.Name
+                                    </a>
+                                </h5>
+                                <p class="fs--1 mb-3 text-secondary">
+                                    @item.Category.Name & @item.Brand.Name
+                                </p>
+                            </div>
+                            <p class="fs-md-2 mb-0 d-flex align-items-center mb-3">
+                                @((int)item.Price) VND
+                            </p>
+                        </div>
+                        <div class="card_footer bg-transparent">
+                            @if (@Model.Email != null)
+                            {
+                                @if (@item.IsNeedContact == true)
                                 {
-                                    <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <a asp-page="./Shop" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
                                         <i class="fas fa-shopping-cart"></i>
-                                        Add to Cart
+                                        Liên hệ cửa hàng
                                     </a>
                                 }
                                 else
                                 {
-                                    <a asp-page="/Authenticate/Login" class="cart-btn" style="font-family: 'Quicksand', sans-serif;">
+                                    <a asp-page="./Cart" asp-route-id="@item.Id" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
                                         <i class="fas fa-shopping-cart"></i>
                                         Add to Cart
                                     </a>
                                 }
-                            </div>
+
+                            }
+                            else
+                            {
+                                @if (@item.IsNeedContact == true)
+                                {
+                                    <a asp-page="/Authenticate/Login" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Liên hệ cửa hàng
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-page="/Authenticate/Login" asp-route-id="@item.Id" class="cart-btn btn-card" style="font-family: 'Quicksand', sans-serif;">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Add to Cart
+                                    </a>
+                                }
+                            }
                         </div>
-                    }
+                    </div>
                 </div>
+            }
+        </div>
             </div>
         </div>
         <!-- end more products -->

@@ -47,40 +47,182 @@
         body {
             font-family: 'Quicksand', sans-serif;
         }
+
+        .disable {
+            pointer-events: none;
+            cursor: default;
+        }
+
         .page {
             padding: 0px 10px;
+            color: #F28123;
         }
 
         .pagination {
             padding: 20px;
-            &, *
-
-        {
+            cursor: pointer;
             user-select: none;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 10px;
+            margin-bottom: 5px;
+            list-style: none;
+            border: 1px solid #F28123;
+            border-radius: 0.25rem;
+            font-size: 14px;
         }
 
         a {
             display: inline-block;
-            padding: 0 10px;
+            margin: 5px;
             cursor: pointer;
-            &.disabled
+            color: #fff;
+        }
 
-        {
+            a.page.current {
+                color: #fff;
+            }
+
+                a.page.current:hover {
+                    color: #fff;
+                    background-color: #F28123;
+                }
+
+
+        .disabled {
             opacity: .3;
             pointer-events: none;
             cursor: not-allowed;
         }
 
-        &.current {
-            background: #F28123;
+        a:not([href]):hover {
+            color: #fff;
+            text-decoration: none;
+            background-color: #F28123;
         }
 
-        .disabled {
-            pointer-events: none;
-            cursor: default;
+        .page {
+            border: 1px solid #F28123;
+            border-radius: 0.25rem;
         }
 
+        a.page:hover {
+            transition: none;
+            background-color: #F28123;
+            color: white;
         }
+
+        .current {
+            background-color: #F28123;
+            color: #fff;
+        }
+
+        .table-bordered > :not(caption) > * {
+            border-width: 1px 1px;
+        }
+
+        .btn-group-sm > .btn, .btn-sm {
+            padding: 0.1875rem 0.75rem;
+            font-size: .675rem;
+            border-radius: 0.25rem;
+        }
+
+        .badge-soft-primary {
+            color: #1c4f93;
+            background-color: #d5e5fa;
+        }
+
+        .badge-soft-success {
+            color: #00864e;
+            background-color: #ccf6e4;
+        }
+
+        .badge-soft-secondary {
+            color: #7d899b;
+            background-color: #e3e6ea;
+        }
+
+        .badge-soft-warning {
+            color: #9d5228;
+            background-color: #fde6d8;
+        }
+
+        .btn-soft-primary {
+            color: #fff;
+            background-color: #64c5b1;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0 20px #e4e4e4;
+            padding-bottom: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            transition: 0.3s;
+            min-height:500px;
+        }
+
+        .card-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 200px;
+            padding: 1.25rem;
+        }
+
+        .card:hover {
+            box-shadow: none;
+        }
+
+        .product-images img {
+            width: 100%;
+            min-height: 240px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        h5, .h5 {
+            margin-bottom: 0.01rem;
+            font-size: 1rem;
+        }
+
+        .fs-md-2 {
+            font-size: 1.44rem !important;
+            color: #F28123;
+            padding-left: 5px;
+        }
+
+        .fs-0 {
+            font-size: 1rem !important;
+        }
+
+        .text-name {
+            text-decoration: none;
+        }
+
+        .text-name:hover {
+            text-decoration: underline;
+        }
+
+        .fs--1 {
+            font-size: .8333333333rem !important;
+            padding-left: 5px;
+        }
+
+        a.btn-card {
+            margin-left: 20px;
+        }
+
+        a.more-product {
+            text-decoration:none;
+        }
+
+        a.more-product:hover {
+            text-decoration: underline;
+        }
+
     </style>
     <!--PreLoader-->
     <div class="loader">
@@ -116,10 +258,7 @@
                                 </li>
                                 <li><a href="about.html">About</a></li>
                                 <li>
-                                    <a asp-page="/Shop">Shop</a>
-                                </li>
-                                <li>
-                                    <a class="disabled">Comestic</a>
+                                    <a class="disable">Comestic</a>
                                     <ul class="sub-menu">
                                         @foreach (var item in Model.Category1)
                                         {
@@ -132,7 +271,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="disabled">Fashion</a>
+                                    <a class="disable">Fashion</a>
                                     <ul class="sub-menu">
                                         @foreach (var item in Model.Category2)
                                         {
@@ -142,7 +281,10 @@
                 <li><a asp-page="">Túi xách</a></li>*@
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li>
+                                    <a asp-page="/Shop">Shop</a>
+                                </li>
+                                
                                 <li>
                                     @if (Context.Session.GetString("Role") == null && Context.Session.GetString("Email") == null)
                                     {
@@ -150,12 +292,14 @@
                                             <a asp-page="/Authenticate/Login"
                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                title="Login">
-                                                <i class="fas fa-sign-in-alt"></i>
+                                               Login
+                                                @*<i class="fas fa-sign-in-alt"></i>*@
                                             </a>
                                             <a asp-page="/Authenticate/SignUp"
                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                title="Register">
-                                                <i class="fas fa-user-plus"></i>
+                                               Register
+                                                @*<i class="fas fa-user-plus"></i>*@
                                             </a>
                                             <a class="mobile-hide search-bar-icon" asp-page="/SearchPage"><i class="fas fa-search"></i></a>
                                         </div>
@@ -163,9 +307,9 @@
                                     @if (Context.Session.GetString("Role") == "3" && Context.Session.GetString("Email") != null)
                                     {
                                         <div class="header-icons">
-                                            <a asp-page="/Index" asp-page-handler="Logout"><i class="fas fa-sign-out-alt"></i></a>
+                                            <a asp-page="/Index" asp-page-handler="Logout">@*<i class="fas fa-sign-out-alt"></i>*@Logout</a>
+                                            <a asp-page="/Customers/OrderHistory">@*<i class="fas fa-list-alt"></i>*@History</a>
                                             <a class="shopping-cart" asp-page="/Cart"><i class="fas fa-shopping-cart"></i></a>
-                                            <a asp-page="/Customers/OrderHistory"><i class="fas fa-list-alt"></i></a>
                                             <a class="mobile-hide search-bar-icon" asp-page="/SearchPage"><i class="fas fa-search"></i></a>
                                         </div>
                                     }
@@ -240,7 +384,7 @@
                             <li><a asp-page="">About</a></li>
                             <li><a asp-page="">Comestic</a></li>
                             <li><a asp-page="">Fashion</a></li>
-                            <li><a asp-page="">Contact</a></li>
+                            <li><a asp-page="/Shop">Shop</a></li>
                         </ul>
                     </div>
                 </div>

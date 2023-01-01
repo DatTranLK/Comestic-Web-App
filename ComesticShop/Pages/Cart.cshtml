@@ -2,13 +2,91 @@
 @model ComesticShop.Pages.CartModel
 @{
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="~/assets/css/all.min.css">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <style>
+        label.box{
+            width: 100%;
+            height: 80px;
+            display: flex;
+            margin-top: 10px;
+            padding:10px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+        
+        #one:checked~label.first, #two:checked~label.second {
+            border-color: #F28123;
+        }
+
+        #one:checked ~ label.first .circle_icon, #two:checked ~ label.second .circle_icon {
+            border: 6px solid #F28123;
+            background-color: #fff;
+        }
+        
+        label.box:hover {
+            background: #edc7a8;
+        }
+        
+        label.box .detail {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        label.box .detail-title {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        label.box .detail-detail {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        label.box .detail-description {
+            display: inline-grid;
+        }
+        
+        label.box .circle_icon{
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #ddd;
+            display: inline-block
+        }
+        input[type="radio"]{
+            display:none
+        }
+
+        .text-body:hover {
+            text-decoration: underline;
+        }
+
+        .text-body {
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
 
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -100,11 +178,50 @@
                                 }
                                 
                                 <div class="pt-5">
-                                    <h6 class="mb-0">
-                                        <a asp-page="index" class="text-body">
-                                            <i class="fas fa-long-arrow-alt-left me-2"></i> Back to shop
-                                        </a>
-                                    </h6>
+                                    
+
+                                        <h5 class="text-uppercase mb-3">Chọn cách thanh toán</h5>
+
+                                        <div style="padding-top: 5px"> 
+                                            <input type="radio" name="box" id="one"> 
+                                            <input type="radio" name="box" id="two">
+                                            
+                                            <label for="one" class="box first">
+                                        
+                                                <div class="detail"> 
+                                                    <span class="circle_icon"></span> 
+                                                    <div class="detail-description">
+                                                        <span class="detail-title"> 
+                                                            Thanh toán bằng tiền mặt  
+                                                        </span>
+                                                        <span class="detail-detail">
+                                                            Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                    
+                                            </label> 
+                                            <label for="two" class="box second">
+
+                                                <div class="detail">
+                                                    <span class="circle_icon"></span>
+                                                    <div class="detail-description">
+                                                        <span class="detail-title">
+                                                            Thanh toán bằng chuyển khoản 
+                                                        </span>
+                                                        <span class="detail-detail">
+                                                            STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền 
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                    
+                                            </label> 
+                                    </div>
+                                        <h6 class="mb-0" style="padding-top: 20px">
+                                            <a asp-page="index" class="text-body">
+                                                <i class="fas fa-long-arrow-alt-left me-2" style="margin-right: 5px"></i>Back to shop
+                                            </a>
+                                        </h6>
                                 </div>
                             </div>
                         </div>
@@ -128,9 +245,8 @@
                                 <form method="post">
                                     <div class="mb-5">
                                         <div class="form-outline">
-                                            <textarea id="w3review" name="w3review" rows="7" cols="30" asp-for="@Model.ShippingAddress" name="SubShippingAddr" required></textarea>
+                                            <textarea id="w3review" placeholder="Enter address" name="w3review" rows="7" cols="30" asp-for="@Model.ShippingAddress" name="SubShippingAddr" required></textarea>
                                             <span asp-validation-for="@Model.ShippingAddress" class="text-danger"></span>
-                                            <label class="form-label" for="form3Examplea2">Enter your address</label>
                                         </div>
                                     </div>
 
@@ -159,6 +275,38 @@
         </div>
     </div>
 </div>
+
+<script>
+        var select_card = document.querySelectorAll(".select");
+
+        var title = document.getElementById("title");
+        var price = document.getElementById("price");
+
+        var selected = 2;
+
+
+
+        var reset = () => {
+
+            select_card.forEach((k) => {
+
+                k.setAttribute("data-selected", "false");
+            })
+        }
+
+        select_card.forEach((a, i) => {
+
+            a.addEventListener("click", (e) => {
+                reset();
+                a.setAttribute("data-selected", "true")
+                selected = i + 1;
+
+
+
+
+            })
+        })
+</script>
 
 @section Scripts {
     @{

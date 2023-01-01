@@ -131,14 +131,32 @@
                         <!-- Slides -->
                         <div class="carousel-inner mb-5 shadow-1-strong rounded-3">
                             <div class="carousel-item active">
-                                <img src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-deep-clean-deep-moist.png?v=1.3" class="d-block w-100" alt="..." />
+                                <img src="~/ImagesPro/@Model.Product.ImgName1" class="d-block w-100" alt="..." />
                             </div>
-                            <div class="carousel-item">
-                                <img src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-2.png?v=1.3" class="d-block w-100" alt="..." />
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-3.png?v=1.3" class="d-block w-100" alt="..." />
-                            </div>
+                            @if (@Model.Product.ImgName2 != null)
+                            {
+                                <div class="carousel-item">
+                                    <img src="~/ImagesPro/@Model.Product.ImgName2" class="d-block w-100" alt="..." />
+                                </div>
+                            }
+                            @if (@Model.Product.ImgName3 != null)
+                            {
+                                <div class="carousel-item">
+                                    <img src="~/ImagesPro/@Model.Product.ImgName3" class="d-block w-100" alt="..." />
+                                </div>
+                            }
+                            @if (@Model.Product.ImgName4 != null)
+                            {
+                                <div class="carousel-item">
+                                    <img src="~/ImagesPro/@Model.Product.ImgName4" class="d-block w-100" alt="..." />
+                                </div>
+                            }
+                            @if (@Model.Product.ImgName5 != null)
+                            {
+                                <div class="carousel-item">
+                                    <img src="~/ImagesPro/@Model.Product.ImgName5" class="d-block w-100" alt="..." />
+                                </div>
+                            }
                         </div>
                         <!-- Slides -->
                         <!-- Controls -->
@@ -154,7 +172,7 @@
                         </button>
                         <!-- Controls -->
                         <!-- Thumbnails -->
-                        <div class="carousel-indicators" style="margin-bottom: -20px;">
+                        @*<div class="carousel-indicators" style="margin-bottom: -20px;">
                             <button type="button" data-mdb-target="#carouselMDExample" data-mdb-slide-to="0" class="active"
                                     aria-current="true" aria-label="Slide 1" style="width: 100px;">
                                 <img class="d-block w-100 shadow-1-strong rounded img-fluid"
@@ -170,7 +188,7 @@
                                 <img class="d-block w-100 shadow-1-strong rounded img-fluid"
                                      src="https://www.milem.vn/fileserver/images/file/fixsize-360x360/upload/product/PR5bf4d0fd72812/huxley-cleansing-oil-3.png?v=1.3" />
                             </button>
-                        </div>
+                        </div>*@
                         <!-- Thumbnails -->
                     </div>
                 </div>

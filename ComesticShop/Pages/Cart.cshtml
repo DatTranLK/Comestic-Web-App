@@ -180,43 +180,7 @@
                                 <div class="pt-5">
                                     
 
-                                        <h5 class="text-uppercase mb-3">Chọn cách thanh toán</h5>
-
-                                        <div style="padding-top: 5px"> 
-                                            <input type="radio" name="box" id="one"> 
-                                            <input type="radio" name="box" id="two">
-                                            
-                                            <label for="one" class="box first">
                                         
-                                                <div class="detail"> 
-                                                    <span class="circle_icon"></span> 
-                                                    <div class="detail-description">
-                                                        <span class="detail-title"> 
-                                                            Thanh toán bằng tiền mặt  
-                                                        </span>
-                                                        <span class="detail-detail">
-                                                            Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                    
-                                            </label> 
-                                            <label for="two" class="box second">
-
-                                                <div class="detail">
-                                                    <span class="circle_icon"></span>
-                                                    <div class="detail-description">
-                                                        <span class="detail-title">
-                                                            Thanh toán bằng chuyển khoản 
-                                                        </span>
-                                                        <span class="detail-detail">
-                                                            STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền 
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                    
-                                            </label> 
-                                    </div>
                                         <h6 class="mb-0" style="padding-top: 20px">
                                             <a asp-page="index" class="text-body">
                                                 <i class="fas fa-long-arrow-alt-left me-2" style="margin-right: 5px"></i>Back to shop
@@ -249,7 +213,73 @@
                                             <span asp-validation-for="@Model.ShippingAddress" class="text-danger"></span>
                                         </div>
                                     </div>
+                                    <h5 class="text-uppercase mb-3">Chọn cách thanh toán</h5>
 
+                                        <div style="padding-top: 5px"> 
+                                            <select asp-for="PaymentMethodValue" class="form-control" required>
+                                                <option value="Thanh toán khi nhận hàng">
+                                                    <div class="detail"> 
+                                                            <span class="circle_icon"></span> 
+                                                            <div class="detail-description">
+                                                                <span class="detail-title"> 
+                                                                    Thanh toán bằng tiền mặt  
+                                                                </span>
+                                                                <span class="detail-detail">
+                                                                    Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                </option>
+                                                <option value="Thanh toán online">
+                                                    <div class="detail">
+                                                            <span class="circle_icon"></span>
+                                                            <div class="detail-description">
+                                                                <span class="detail-title">
+                                                                    Thanh toán bằng chuyển khoản
+                                                                     
+                                                                </span>
+                                                                <span class="detail-detail">
+                                                                    STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền 
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                </option>
+                                            </select>
+                                            @*<input type="radio" name="box" id="one">
+                                            <input type="radio" name="box" id="two">
+                                                    <label for="one" class="box first">
+                                        
+                                                        <div class="detail"> 
+                                                            <span class="circle_icon"></span> 
+                                                            <div class="detail-description">
+                                                                <span class="detail-title"> 
+                                                                    Thanh toán bằng tiền mặt  
+                                                                </span>
+                                                                <span class="detail-detail">
+                                                                    Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                    
+                                                    </label> 
+                                                    <label for="two" class="box second">
+
+                                                        <div class="detail">
+                                                            <span class="circle_icon"></span>
+                                                            <div class="detail-description">
+                                                                <span class="detail-title">
+                                                                    Thanh toán bằng chuyển khoản
+                                                                     
+                                                                </span>
+                                                                <span class="detail-detail">
+                                                                    STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền 
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                    
+                                                    </label>*@
+                                            
+                                    </div>
                                     @if (Model.cartCus == null)
                                     {
                                         <input type="text" name="SubTotal" value="@((int)Model.Total)" hidden />

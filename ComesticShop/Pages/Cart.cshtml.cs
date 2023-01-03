@@ -144,7 +144,7 @@ namespace ComesticShop.Pages
             cartCus[index].Quantity--;
             if (cartCus[index].Quantity <= 0)
             {
-                OnGetDelete(id);
+                await OnGetDelete(id);
             }
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartCus", cartCus);
         }

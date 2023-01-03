@@ -132,7 +132,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             cartSaler[index].Quantity--;
             if (cartSaler[index].Quantity <= 0)
             {
-                OnGetDelete(id);
+                await OnGetDelete(id);
             }
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartSaler", cartSaler);
         }

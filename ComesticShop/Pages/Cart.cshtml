@@ -14,64 +14,23 @@
             crossorigin="anonymous"></script>
 
     <style>
-        label.box{
-            width: 100%;
-            height: 80px;
-            display: flex;
-            margin-top: 10px;
-            padding:10px 12px;
-            border-radius: 5px;
+        .btn-method {
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            vertical-align: middle;
             cursor: pointer;
-            border: 1px solid #ddd;
-        }
-        
-        #one:checked~label.first, #two:checked~label.second {
-            border-color: #F28123;
-        }
-
-        #one:checked ~ label.first .circle_icon, #two:checked ~ label.second .circle_icon {
-            border: 6px solid #F28123;
-            background-color: #fff;
-        }
-        
-        label.box:hover {
-            background: #edc7a8;
-        }
-        
-        label.box .detail {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
-
-        label.box .detail-title {
-            font-style: normal;
-            font-weight: bold;
-            font-size: 14px;
-            line-height: 18px;
-        }
-
-        label.box .detail-detail {
-            font-style: normal;
-            font-weight: normal;
-            font-size: 14px;
-            line-height: 18px;
-        }
-
-        label.box .detail-description {
-            display: inline-grid;
-        }
-        
-        label.box .circle_icon{
-            height: 22px;
-            width: 22px;
-            border-radius: 50%;
-            margin-right: 15px;
-            border: 2px solid #ddd;
-            display: inline-block
-        }
-        input[type="radio"]{
-            display:none
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
 
         .text-body:hover {
@@ -81,7 +40,6 @@
         .text-body {
             text-decoration: none;
         }
-
     </style>
 
 </head>
@@ -152,21 +110,23 @@
 
                                         <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
 
-                                            <a class="btn" asp-page="cart"
+                                            <a class="btn-method" asp-page="cart" style="padding: none;"
                                                asp-page-handler="decrease" asp-route-id="@item.Product.Id">
                                                 <i class="fas fa-fw fa-minus"></i>
                                             </a>
 
 
-                                            <div class="border" style="padding: 5px; width:60px;">@item.Quantity</div>
+                                                    <div class="border" style="padding-top: 3px;padding-right: 10px;padding-left: 10px">
+                                                        @item.Quantity
+                                                    </div>
 
-                                            <a class="btn"
+                                            <a class="btn-method" style="padding: none;"
                                                asp-page="cart" asp-page-handler="increase"
                                                asp-route-id="@item.Product.Id"><i class="fas fa-fw fa-plus"></i></a>
 
                                         </div>
                                         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                            <h6 class="mb-0">@((int)item.Product.Price * item.Quantity)</h6>
+                                            <h6 class="mb-0">@((int)item.Product.Price * item.Quantity) VND</h6>
                                         </div>
 
                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
@@ -213,21 +173,14 @@
                                             <span asp-validation-for="@Model.ShippingAddress" class="text-danger"></span>
                                         </div>
                                     </div>
-                                    <h5 class="text-uppercase mb-3">Chọn cách thanh toán</h5>
+                                    @*<h5 class="text-uppercase mb-3">Chọn cách thanh toán</h5>
 
                                         <div style="padding-top: 5px"> 
                                             <select asp-for="PaymentMethodValue" class="form-control" required>
                                                 <option value="Thanh toán khi nhận hàng">
                                                     <div class="detail"> 
-                                                            <span class="circle_icon"></span> 
-                                                            <div class="detail-description">
-                                                                <span class="detail-title"> 
                                                                     Thanh toán bằng tiền mặt  
-                                                                </span>
-                                                                <span class="detail-detail">
-                                                                    Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
-                                                                </span>
-                                                            </div>
+                                                                
                                                         </div>
                                                 </option>
                                                 <option value="Thanh toán online">
@@ -244,7 +197,7 @@
                                                             </div>
                                                         </div>
                                                 </option>
-                                            </select>
+                                            </select>*@
                                             @*<input type="radio" name="box" id="one">
                                             <input type="radio" name="box" id="two">
                                                     <label for="one" class="box first">
@@ -279,7 +232,13 @@
                                     
                                                     </label>*@
                                             
-                                    </div>
+                                    @*</div>
+                                        <div class="hide box">
+                                            Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
+                                        </div>
+                                        <div class="hide1 box">
+                                            STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền
+                                        </div>*@
                                     @if (Model.cartCus == null)
                                     {
                                         <input type="text" name="SubTotal" value="@((int)Model.Total)" hidden />
@@ -305,39 +264,6 @@
         </div>
     </div>
 </div>
-
-<script>
-        var select_card = document.querySelectorAll(".select");
-
-        var title = document.getElementById("title");
-        var price = document.getElementById("price");
-
-        var selected = 2;
-
-
-
-        var reset = () => {
-
-            select_card.forEach((k) => {
-
-                k.setAttribute("data-selected", "false");
-            })
-        }
-
-        select_card.forEach((a, i) => {
-
-            a.addEventListener("click", (e) => {
-                reset();
-                a.setAttribute("data-selected", "true")
-                selected = i + 1;
-
-
-
-
-            })
-        })
-</script>
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

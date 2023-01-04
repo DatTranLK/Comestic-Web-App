@@ -188,8 +188,9 @@ namespace ComesticShop.Pages
             /*var url = _vnPayService.CreatePaymentUrl(order, HttpContext);
 
             return Redirect(url);*/
-            return RedirectToPage("/Customers/OrderDetailPage", new { id = order.Id });
+            /*return RedirectToPage("/Customers/OrderDetailPage", new { id = order.Id });*/
             /*return RedirectToPage("./Index");*/
+            return RedirectToPage("./PaymentMethod", new { orderId = order.Id });
 
         }
     }

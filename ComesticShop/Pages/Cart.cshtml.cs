@@ -171,7 +171,7 @@ namespace ComesticShop.Pages
             order.CustomerId = customer.Id;
             order.ShippingAddress = ShippingAddressString;
             order.TotalPrice = total;
-            order.PaymentMethod = PaymentMethodValue;
+            order.OrderStatus = "Processing";
             int orderId = await _orderRepository.CreateNewOrder(order);
             for (int i = 0; i < cartCus.Count; i++)
             {

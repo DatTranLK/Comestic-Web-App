@@ -59,7 +59,6 @@ namespace ComesticShop.Pages
             Category2 = await _categoryRepository.GetCategoriesByType(2);
             OrderNek2 = await _orderRepository.GetOrderById(id);
             OrderNek2.PaymentMethod = "Thanh toán online";
-            OrderNek2.OrderStatus = "Processing";
             await _context.SaveChangesAsync();
             /*var url = _vnPayService.CreatePaymentUrl(OrderNek2, HttpContext);
 
@@ -75,7 +74,6 @@ namespace ComesticShop.Pages
             Category2 = await _categoryRepository.GetCategoriesByType(2);
             OrderNek2 = await _orderRepository.GetOrderById(id);
             OrderNek2.PaymentMethod = "Thanh toán khi nhận hàng";
-            OrderNek2.OrderStatus = "Processing";
             await _context.SaveChangesAsync();
             return RedirectToPage("/Customers/OrderDetailPage", new { id = OrderNek2.Id});
         }

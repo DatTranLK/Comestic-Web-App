@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/assets/css/all.min.css">
     <style>
-        .card{
+        /*.card{
             margin: auto;
             width: 600px;
             padding: 3rem 3.5rem;
@@ -87,6 +87,75 @@
         #card-header{
             font-weight: bold;
             font-size: 0.9rem;
+        }*/
+        label.box{
+            width: 100%;
+            height: 80px;
+            display: flex;
+            margin-top: 10px;
+            padding:10px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+        
+        #one:checked~label.first, #two:checked~label.second {
+            border-color: #F28123;
+        }
+
+        #one:checked ~ label.first .circle_icon, #two:checked ~ label.second .circle_icon {
+            border: 6px solid #F28123;
+            background-color: #fff;
+        }
+        
+        label.box:hover {
+            background: #edc7a8;
+        }
+        
+        label.box .detail {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        label.box .detail-title {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 18px;
+            color: #051922;
+        }
+
+        label.box .detail-detail {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 18px;
+            color: #051922;
+        }
+
+        label.box .detail-description {
+            display: inline-grid;
+        }
+        
+        label.box .circle_icon{
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 2px solid #ddd;
+            display: inline-block
+        }
+        input[type="radio"]{
+            display:none
+        }
+
+        .text-body:hover {
+            text-decoration: underline;
+        }
+
+        .text-body {
+            text-decoration: none;
         }
     </style>
 </head>
@@ -106,20 +175,75 @@
 
 @*@if(@Model.Role == "3")
 {*@
-    <form>
-        <a asp-page="paymentMethod" asp-page-handler="paymentvnpay" asp-route-id="@Model.OrderNek.Id" class="row row-1">
-            <div style="width:150px; height:50px"><img style="width:100%; height:100%" class="img-fluid" src="https://firebasestorage.googleapis.com/v0/b/auth-project-test-4161d.appspot.com/o/logo-vnpay-removebg-preview.png?alt=media&token=33891d04-4e2b-4253-a144-c98718c81cbc"/></div>
-            <div class="col-7">
-                <p>Thanh toán online thông qua VNPay</p>
+<div class="cart-section mt-100 mb-150">
+    <div class="container">
+        @*<div class="payment">
+            <form>
+                    <div class="payment-detail" style="display: flex;align-items: center;flex-wrap: wrap;justify-content: space-around;">
+                    <div class="chuyenkhoan">
+                        <a asp-page="paymentMethod" asp-page-handler="paymentvnpay" asp-route-id="@Model.OrderNek.Id" class="btn bg-transparent border btn-lg" style="padding: 10px; border-radius: 8px">
+                                <p>Thanh toán bằng chuyển khoản</p>
+                        </a>
+                    </div>
+                    <div class="tienmat">
+                            <a asp-page="paymentMethod" asp-page-handler="paymentcod" asp-route-id="@Model.OrderNek.Id" class="btn bg-transparent border btn-lg" style="padding: 10px; border-radius: 8px">
+                                <p> Thanh toán bằng tiền mặt </p>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="payment-detail">
+            <div class="payment-detail-tienmat" style="display: flex;align-items: center;flex-wrap: wrap;justify-content: space-around;">
+                <p>STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền</p>
+                <p>Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻx</p>
             </div>
-        </a>
-        <a asp-page="paymentMethod" asp-page-handler="paymentcod" asp-route-id="@Model.OrderNek.Id" class="row row-1">
-            <div style="width:50px; height:50px"><img style="width:100%; height:100%" class="img-fluid" src="https://firebasestorage.googleapis.com/v0/b/auth-project-test-4161d.appspot.com/o/2897832.png?alt=media&token=255ea3a5-b302-46e2-8f76-125ed43e4b3a"/></div>
-            <div class="col-7">
-                <p>Thanh toán khi nhận hàng COD</p>
+        </div>*@
+            @*<div class="hide">
+                Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
             </div>
-        </a>
-    </form>
+            <div class="hide1">
+                STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền
+            </div>*@
+        @*<input type="radio" name="box" id="one">
+        <input type="radio" name="box" id="two">*@
+        <div class="d-flex justify-content-center">
+        <form>
+        <label for="one" class="box first">
+
+            <div class="detail">
+                <div style="margin-right: 10px; width: 63px; height: 56px"><img style="width:100%; height:100%" class="img-fluid" 
+                    src="https://firebasestorage.googleapis.com/v0/b/auth-project-test-4161d.appspot.com/o/2897832.png?alt=media&token=255ea3a5-b302-46e2-8f76-125ed43e4b3a" /></div>
+                <a asp-page="paymentMethod" asp-page-handler="paymentcod" asp-route-id="@Model.OrderNek.Id" class="detail-description">
+                    <span class="detail-title">
+                        Thanh toán bằng tiền mặt
+                    </span>
+                    <span class="detail-detail">
+                        Thanh toán cho người giao hàng hoặc người gửi hàng bằng tiền mặt hoặc thẻ
+                    </span>
+                </a>
+            </div>
+
+        </label>
+                <label for="two" class="box second" style="margin-top: 10px ; ">
+
+            <div class="detail">
+                <i class="fab fa-cc-visa fa-4x text-black pe-3" style="margin-right: 10px; width: 63px; height: 56px"></i>
+                    <a asp-page="paymentMethod" asp-page-handler="paymentvnpay" asp-route-id="@Model.OrderNek.Id" class="detail-description">
+                        <span class="detail-title">
+                            Thanh toán bằng chuyển khoản
+                        </span>
+                        <span class="detail-detail">
+                            STK: 6495697 - Ngân hàng: ACB - Tên: Ngô Chí Bảo - Nội dung: Tên bạn + số tiền
+                        </span>
+                    </a>
+            </div>
+
+        </label>
+        </form>
+        </div>
+    </div>
+</div>
 @*}
 else
 {

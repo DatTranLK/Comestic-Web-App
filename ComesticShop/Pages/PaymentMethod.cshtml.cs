@@ -1,4 +1,4 @@
-using BusinessObject.Models;
+﻿using BusinessObject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -58,11 +58,13 @@ namespace ComesticShop.Pages
             Category1 = await _categoryRepository.GetCategoriesByType(1);
             Category2 = await _categoryRepository.GetCategoriesByType(2);
             OrderNek2 = await _orderRepository.GetOrderById(id);
-            OrderNek2.PaymentMethod = "Thanh to�n online";
+            OrderNek2.PaymentMethod = "Thanh toán online";
+            OrderNek2.OrderStatus = "Processing";
             await _context.SaveChangesAsync();
-            var url = _vnPayService.CreatePaymentUrl(OrderNek2, HttpContext);
+            /*var url = _vnPayService.CreatePaymentUrl(OrderNek2, HttpContext);
 
-            return Redirect(url);
+            return Redirect(url);*/
+            return RedirectToPage("/Customers/OrderDetailPage", new { id = OrderNek2.Id });
         }
         public async Task<IActionResult> OnGetPaymentcod(int id)
         {
@@ -72,6 +74,9 @@ namespace ComesticShop.Pages
             Category1 = await _categoryRepository.GetCategoriesByType(1);
             Category2 = await _categoryRepository.GetCategoriesByType(2);
             OrderNek2 = await _orderRepository.GetOrderById(id);
+            OrderNek2.PaymentMethod = "Thanh toán khi nhận hàng";
+            OrderNek2.OrderStatus = "Processing";
+            await _context.SaveChangesAsync();
             return RedirectToPage("/Customers/OrderDetailPage", new { id = OrderNek2.Id});
         }
     }

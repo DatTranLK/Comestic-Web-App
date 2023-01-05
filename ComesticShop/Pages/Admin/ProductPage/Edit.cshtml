@@ -4,9 +4,213 @@
 @model ComesticShop.Pages.Admin.ProductPage.EditModel
 @{
 }
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <style>
+
+        .btn-outline-dark:hover {
+            color: #fff;
+            background-color: #7f8285;
+            border-color: #7f8285;
+        }
+
+        .btn-success-create {
+            background-color: #64c5b1;
+            color: #fff;
+        }
+
+            .btn-success-create:hover {
+                background-color: #3c8b7a;
+                color: #fff;
+            }
+
+    </style>
+</head>
 @if (@Model.Role == "1")
 {
-    <h1>Edit</h1>
+    <div class="row">
+        <div class="col mt-4">
+            <form method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 style="color: #3c8b7a">Edit Product</h2>
+                    </div>
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ProductEdit.Id" />
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.Code" class="control-label"></label>
+                                    <input type="text" asp-for="ProductEdit.Code" class="form-control" aria-describedby="helpCodeHcode" placeholder="Product Code" required />
+                                    @*<small id="productCodeHcode" class="form-text text-muted">Help text</small>*@
+                                    <span asp-validation-for="ProductEdit.Code" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.Name" class="control-label"></label>
+                                    <input type="text" asp-for="ProductEdit.Name" class="form-control" placeholder="Product Name" required />
+                                    <span asp-validation-for="ProductEdit.Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.Amount" class="control-label"></label>
+                                    <input type="text" asp-for="ProductEdit.Amount" class="form-control" placeholder="Product Amount" required />
+                                    <span asp-validation-for="ProductEdit.Amount" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.DateCreated" class="control-label"></label>
+                                    <input asp-for="ProductEdit.DateCreated" class="form-control" required />
+                                    <span asp-validation-for="ProductEdit.DateCreated" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.IsNeedContact" class="control-label"></label>
+                                    <select asp-for="ProductEdit.IsNeedContact" class="form-control" required>
+                                        <option value="false">Không liên hệ cửa hàng</option>
+                                        <option value="true">Liên hệ cửa hàng</option>
+                                    </select>
+                                    <span asp-validation-for="ProductEdit.IsNeedContact" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.Summary" class="control-label"></label>
+                                    <input rows="3" asp-for="ProductEdit.Summary" class="form-control" placeholder="Product Summary" required />
+                                    <span asp-validation-for="ProductEdit.Summary" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.CategoryId" class="control-label"></label>
+                                    <select asp-for="ProductEdit.CategoryId" class="form-control" asp-items="ViewBag.CategoryId" required></select>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 10px">
+                                    <label asp-for="ProductEdit.BrandId" class="control-label"></label>
+                                    <select asp-for="ProductEdit.BrandId" class="form-control" asp-items="ViewBag.BrandId" required></select>
+                                </div>
+                                <div class="input-group form-group" style="margin-top: 10px;">
+                                    <span class="input-group-text">Unit Price</span>
+                                    <input type="number" asp-for="ProductEdit.Price" class="form-control" placeholder="Unit Price" required />
+                                    <span class="input-group-text">.đ</span>
+                                    @*<span asp-validation-for="Product.Price" class="text-danger"></span>*@
+                                </div>
+                                <div class="form-group" style="margin-top: 18.5px">
+                                    <label class="control-label">Img5</label>
+                                    <input type="file" name="Img5" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgName5" class="control-label"></label>
+                                    <input asp-for="ProductEdit.ImgName5" class="form-control" readonly />
+                                    <span asp-validation-for="ProductEdit.ImgName5" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgPath5" class="control-label"></label>
+                                    <img src="~/ImagesPro/@Html.DisplayFor(model => model.ProductEdit.ImgName5)" height="100" width="120" />
+                                    <span asp-validation-for="ProductEdit.ImgPath5" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label class="control-label">Img1</label>
+                                    <input type="file" name="Img1" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgName1" class="control-label"></label>
+                                    <input asp-for="ProductEdit.ImgName1" class="form-control" readonly />
+                                    <span asp-validation-for="ProductEdit.ImgName1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgPath1" class="control-label"></label>
+                                    <img src="~/ImagesPro/@Html.DisplayFor(model => model.ProductEdit.ImgName1)" height="100" width="120" />
+                                    <span asp-validation-for="ProductEdit.ImgPath1" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Img2</label>
+                                    <input type="file" name="Img2" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgName2" class="control-label"></label>
+                                    <input asp-for="ProductEdit.ImgName2" class="form-control" readonly />
+                                    <span asp-validation-for="ProductEdit.ImgName2" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgPath2" class="control-label"></label>
+                                    <img src="~/ImagesPro/@Html.DisplayFor(model => model.ProductEdit.ImgName2)" height="100" width="120" />
+                                    <span asp-validation-for="ProductEdit.ImgPath2" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Img3</label>
+                                    <input type="file" name="Img3" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgName3" class="control-label"></label>
+                                    <input asp-for="ProductEdit.ImgName3" class="form-control" readonly />
+                                    <span asp-validation-for="ProductEdit.ImgName3" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgPath3" class="control-label"></label>
+                                    <img src="~/ImagesPro/@Html.DisplayFor(model => model.ProductEdit.ImgName3)" height="100" width="120" />
+                                    <span asp-validation-for="ProductEdit.ImgPath3" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Img4</label>
+                                    <input type="file" name="Img4" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgName4" class="control-label"></label>
+                                    <input asp-for="ProductEdit.ImgName4" class="form-control" readonly />
+                                    <span asp-validation-for="ProductEdit.ImgName4" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductEdit.ImgPath4" class="control-label"></label>
+                                    <img src="~/ImagesPro/@Html.DisplayFor(model => model.ProductEdit.ImgName4)" height="100" width="120" />
+                                    <span asp-validation-for="ProductEdit.ImgPath4" class="text-danger"></span>
+                                </div>
+
+                                
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+
+                                <div class="form-group" style="margin-bottom: 16px; margin-top: 16px">
+                                    <label asp-for="ProductEdit.Description" class="control-label"></label>
+                                    <textarea rows="3" asp-for="ProductEdit.Description" class="form-control" placeholder="Product Description" required></textarea>
+                                    <span asp-validation-for="ProductEdit.Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.Element" class="control-label"></label>
+                                    <textarea rows="3" asp-for="ProductEdit.Element" class="form-control" placeholder="Product Element" required></textarea>
+                                    <span asp-validation-for="ProductEdit.Element" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 16px">
+                                    <label asp-for="ProductEdit.UserManual" class="control-label"></label>
+                                    <textarea rows="3" asp-for="ProductEdit.UserManual" class="form-control" placeholder="UserManual" required></textarea>
+                                    <span asp-validation-for="ProductEdit.UserManual" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="form-group">
+                            <a asp-page="./Index" class="btn btn-outline-dark">Back to List</a>
+                            <input type="submit" value="Save" class="btn btn-success-create" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @*<h1>Edit</h1>
 
 <h4>Product</h4>
 <hr />
@@ -48,16 +252,6 @@
                 <input asp-for="ProductEdit.Description" class="form-control" required/>
                 <span asp-validation-for="ProductEdit.Description" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Product.Avatar" class="control-label"></label>
-                <input asp-for="Product.Avatar" class="form-control" required/>
-                <span asp-validation-for="Product.Avatar" class="text-danger"></span>
-            </div> *@
-            @*<div class="form-group">
-                <label asp-for="Product.Image1" class="control-label"></label>
-                <input type="file" asp-for="@filetest" class="form-control" required/>
-                <span asp-validation-for="Product.Image1" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label class="control-label">Img1</label>
                 <input type="file" name="Img1" class="form-control"/>
@@ -132,26 +326,6 @@
                 <img src="~/ImagesPro/@Html.DisplayFor(model => model.ProductEdit.ImgName5)" height="100" width="120"/>
                 <span asp-validation-for="ProductEdit.ImgPath5" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Img2" class="control-label"></label>
-                <input type="file" asp-for="Img2" class="form-control" />
-                <span asp-validation-for="Img2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Img3" class="control-label"></label>
-                <input type="file" asp-for="Img3" class="form-control" />
-                <span asp-validation-for="Img3" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Img4" class="control-label"></label>
-                <input type="file" asp-for="Img4" class="form-control" />
-                <span asp-validation-for="Img4" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Img5" class="control-label"></label>
-                <input type="file" asp-for="Img5" class="form-control" />
-                <span asp-validation-for="Img5" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
                 <label asp-for="ProductEdit.Summary" class="control-label"></label>
                 <input asp-for="ProductEdit.Summary" class="form-control" required/>
@@ -191,7 +365,7 @@
 
 <div>
     <a asp-page="./Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

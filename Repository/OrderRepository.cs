@@ -24,12 +24,22 @@ namespace Repository
 
         public Task<IEnumerable<Order>> GetOrdersAccepted() => OrderDAO.Instance.GetOrdersAccepted();
 
+        public Task<IEnumerable<Order>> GetOrdersAcceptedIn7Days() => OrderDAO.Instance.GetOrdersAcceptedIn7Days();
+
         public Task<IEnumerable<Order>> GetOrdersByCusId(int cusId) => OrderDAO.Instance.GetOrdersByCusId(cusId);
 
         public Task<IEnumerable<Order>> GetOrdersCancel() => OrderDAO.Instance.GetOrdersCancel();
 
+        public Task<IEnumerable<Order>> GetOrdersCancelIn7Days() => OrderDAO.Instance.GetOrdersCancelIn7Days();
+
         public Task<IEnumerable<Order>> GetOrdersDone() => OrderDAO.Instance.GetOrdersDone();
 
+        public Task<IEnumerable<Order>> GetOrdersDoneIn7Days() => OrderDAO.Instance.GetOrdersDoneIn7Days();
+
+        public Task<IEnumerable<Order>> GetOrdersIn7Days() => OrderDAO.Instance.GetOrdersIn7Days();
+
         public Task<IEnumerable<Order>> GetOrdersProcessing() => OrderDAO.Instance.GetOrdersProcessing();
+
+        public Task<IEnumerable<Order>> GetOrdersProcessingIn7Days() => OrderDAO.Instance.GetOrdersProcessingIn7Days();
     }
 }

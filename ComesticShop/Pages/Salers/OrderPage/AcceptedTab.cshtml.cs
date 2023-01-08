@@ -36,7 +36,7 @@ namespace ComesticShop.Pages.Salers.OrderPage
             Account = await _accountRepository.GetAccountByEmail(Email);
             Categories = await _categoryRepository.GetCategoriesVer2();
             Type = await _typeRepository.GetListTypes();
-            Order = await _orderRepository.GetOrdersAccepted();
+            Order = await _orderRepository.GetOrdersAcceptedIn7Days();
 
         }
         public IActionResult OnGetLogout()

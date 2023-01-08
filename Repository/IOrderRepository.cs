@@ -20,5 +20,10 @@ namespace Repository
         Task<IEnumerable<Order>> GetOrdersAccepted();
         Task<IEnumerable<Order>> GetOrdersDone();
         Task<IEnumerable<Order>> GetOrdersCancel();
+        Task<IEnumerable<Order>> GetOrdersIn7Days();
+        Task<IEnumerable<Order>> GetOrdersProcessingIn7Days();
+        Task<IEnumerable<Order>> GetOrdersAcceptedIn7Days();
+        Task<IEnumerable<Order>> GetOrdersCancelIn7Days();
+        Task<IEnumerable<Order>> GetOrdersDoneIn7Days();
     }
 }

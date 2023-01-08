@@ -83,6 +83,116 @@ namespace DataAccessObject
                 throw new Exception(ex.Message);
             }
         }
+        public async Task<IEnumerable<Order>> GetOrdersIn7Days()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .OrderByDescending(x => x.Id)
+                    .Where(x => x.CreateDate >= DateTime.UtcNow.AddDays(-7))
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrdersProcessingIn7Days()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Processing" && x.CreateDate >= DateTime.UtcNow.AddDays(-7))
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrdersAcceptedIn7Days()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Accepted" && x.CreateDate >= DateTime.UtcNow.AddDays(-7))
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrdersCancelIn7Days()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Cancle" && x.CreateDate >= DateTime.UtcNow.AddDays(-7))
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders.Count > 0)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<IEnumerable<Order>> GetOrdersDoneIn7Days()
+        {
+            try
+            {
+                var orders = await _dbContext.Orders
+                    .Include(x => x.Customer)
+                    .Include(x => x.Staff)
+                    .Where(x => x.OrderStatus == "Done" && x.CreateDate >= DateTime.UtcNow.AddDays(-7))
+                    .OrderByDescending(x => x.Id)
+                    .ToListAsync();
+                if (orders != null)
+                {
+                    return orders;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
         public async Task<IEnumerable<Order>> GetOrdersProcessing()
         {
             try

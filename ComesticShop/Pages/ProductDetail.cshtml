@@ -101,7 +101,8 @@
         .carousel-inner > .item > a > img {
             margin: auto;
             max-width: 500px;
-            max-height: 280px !important
+            max-height: 280px !important;
+            border-radius: 10px;
         }
 
         #myCarousel {
@@ -119,6 +120,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            
         }
 
             #thumbCarousel .thumb {
@@ -126,6 +128,7 @@
                 margin-right: 10px;
                 border: 1px solid #e6e6e6;
                 background: #fff;
+                border-radius: 10px;
             }
 
                 #thumbCarousel .thumb:last-child {
@@ -241,18 +244,18 @@
 
                         <div id="thumbCarousel">
                             <div data-target="#myCarousel" data-slide-to="0" class="thumb active">
-                                <img src="~/ImagesPro/@Model.Product.ImgName1" alt="XZ" style="width: 120px; height: 80px" />
+                                <img src="~/ImagesPro/@Model.Product.ImgName1" alt="XZ" style="width: 120px; height: 80px; border-radius: 8px" />
                             </div>
                             @if (@Model.Product.ImgName2 != null)
                             {
                                 <div data-target="#myCarousel" data-slide-to="1" class="thumb">
-                                    <img src="~/ImagesPro/@Model.Product.ImgName2" alt="XZ" style="width: 120px; height: 80px" />
+                                    <img src="~/ImagesPro/@Model.Product.ImgName2" alt="XZ" style="width: 120px; height: 80px; border-radius: 8px" />
                                 </div>
                             }
                             @if (@Model.Product.ImgName3 != null)
                             {
                                 <div data-target="#myCarousel" data-slide-to="2" class="thumb">
-                                    <img src="~/ImagesPro/@Model.Product.ImgName3" alt="XZ" style="width: 120px; height: 80px" />
+                                    <img src="~/ImagesPro/@Model.Product.ImgName3" alt="XZ" style="width: 120px; height: 80px; border-radius: 8px" />
                                 </div>
                             }
                             @if (@Model.Product.ImgName4 != null)

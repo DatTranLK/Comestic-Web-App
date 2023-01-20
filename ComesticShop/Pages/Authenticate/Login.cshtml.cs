@@ -30,6 +30,22 @@ namespace ComesticShop.Pages.Authenticate
         public async Task<IActionResult> OnPost()
         {
             var account = await _accountRepository.CheckLogin(Email, Password);
+            /*if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+            {
+                ViewData["ErrorMessage"] = "Email Or Password Have WhiteSpace!!!";
+                return Page();
+            }*/
+            if (Email.Length > 50)
+            {
+                ViewData["ErrorMessage"] = "Email Has More Than 50 Characters!!!";
+                return Page();
+            }
+            if (Password.Length > 20 || Password.Length < 6)
+            {
+                ViewData["ErrorMessage"] = "Password must have between 6 to 20 Characters!!!";
+                return Page();
+            }
+
             if (account != null)
             {
                 if (account.RoleId == 1)

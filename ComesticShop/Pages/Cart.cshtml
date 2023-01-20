@@ -80,10 +80,6 @@
                                         @ViewBag.ErrorMessage
                                     </div>
                                 }
-                                @if (@Model.cartCus == null)
-                                {
-                                    <p style="color:red">Giỏ hàng không có sản phẩm</p>
-                                }
                                 else
                                 {
                                     @foreach (var item in Model.cartCus)

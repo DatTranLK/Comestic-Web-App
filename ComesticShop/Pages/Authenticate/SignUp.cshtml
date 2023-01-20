@@ -62,10 +62,10 @@
 
                 <div class="card bg-glass">
                     <div class="card-body px-4 py-5 px-md-5">
-                        @if (@Model.Message != null)
+                        @if (ViewBag.ErrorMessage != null)
                         {
                             <div class="alert alert-danger text-center" role="alert">
-                                @Model.Message
+                                @ViewBag.ErrorMessage
                             </div>
                         }
                         <form method="post" asp-page="SignUp">
@@ -107,7 +107,7 @@
                             </p>
 
                             <!-- Register buttons -->
-                            <div class="text-center">
+                            @*<div class="text-center">
                                 <p>or sign up with:</p>
                                 <button type="button" class="btn btn-link btn-floating mx-1">
                                     <i class="fab fa-facebook-f"></i>
@@ -124,7 +124,7 @@
                                 <button type="button" class="btn btn-link btn-floating mx-1">
                                     <i class="fab fa-github"></i>
                                 </button>
-                            </div>
+                            </div>*@
                         </form>
                     </div>
                 </div>

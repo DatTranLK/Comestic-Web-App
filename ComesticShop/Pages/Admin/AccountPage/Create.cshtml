@@ -40,6 +40,12 @@
 
 <div class="row">
     <div class="col mt-4" >
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger text-center" role="alert">
+                @ViewBag.ErrorMessage
+            </div>
+        }
         <form method="post">
             <div class="card">
                 <div class="card-header">
@@ -49,17 +55,17 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Accounts.Email" class="control-label"></label>
-                        <input type="email" asp-for="Accounts.Email" placeholder="Account Email" class="form-control" required/>
+                        <input type="email" asp-for="Accounts.Email" placeholder="Account Email" class="form-control" maxlength="50" required/>
                         <span asp-validation-for="Accounts.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Accounts.Password" class="control-label"></label>
-                        <input type="text" asp-for="Accounts.Password" placeholder="Account Password" class="form-control" required/>
+                        <input type="text" asp-for="Accounts.Password" placeholder="Account Password" class="form-control" maxlength="20" required/>
                         <span asp-validation-for="Accounts.Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Accounts.Name" class="control-label"></label>
-                        <input type="text" asp-for="Accounts.Name" placeholder="Account Name" class="form-control" required/>
+                        <input type="text" asp-for="Accounts.Name" placeholder="Account Name" class="form-control" maxlength="20" required/>
                         <span asp-validation-for="Accounts.Name" class="text-danger"></span>
                     </div>
                     @*<div class="form-group">
@@ -69,7 +75,7 @@
                     </div>*@
                     <div class="form-group">
                         <label asp-for="Accounts.Phone" class="control-label"></label>
-                        <input type="number" asp-for="Accounts.Phone" placeholder="Phone Number" class="form-control" required/>
+                        <input type="text" asp-for="Accounts.Phone" placeholder="Phone Number" class="form-control" maxlength="10" required/>
                         <span asp-validation-for="Accounts.Phone" class="text-danger"></span>
                     </div>
                     <div class="form-group">

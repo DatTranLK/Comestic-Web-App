@@ -161,7 +161,12 @@
                                 <hr class="my-4" style="border: 1px solid rgb(200, 198, 198);">
                                 <h5 class="text-uppercase mb-3">Shipping Address</h5>
 
-
+                                @if (ViewBag.ErrorMessage2 != null)
+                                {
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        @ViewBag.ErrorMessage2
+                                    </div>
+                                }
                                 <form method="post">
                                     <div class="mb-5">
                                         <div class="form-outline">

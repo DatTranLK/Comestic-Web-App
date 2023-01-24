@@ -118,12 +118,6 @@
                     <div class="card QA_section border-0">
                         <div class="card-body QA_table ">
                             <div class="table-responsive shopping-cart ">
-                                @if (ViewBag.ErrorMessage != null)
-                                {
-                                    <div class="alert alert-danger text-center" role="alert">
-                                        @ViewBag.ErrorMessage
-                                    </div>
-                                }
                                 <table class="table table-responsive border-0 mb-0">
                                     <thead>
                                         <tr>
@@ -136,9 +130,11 @@
                                         </tr>
                                     </thead>
 
-                                    @if (@Model.cartSaler == null)
+                                    @if (ViewBag.ErrorMessage != null)
                                     {
-                                        <caption class="datacell" style="color:red;padding-top: 2rem; padding-bottom: 1rem; text-align: center;">Giỏ hàng không có sản phẩm</caption>
+                                        <div class="alert alert-danger text-center" role="alert">
+                                            @ViewBag.ErrorMessage
+                                        </div>
                                     }
                                     else
                                     {

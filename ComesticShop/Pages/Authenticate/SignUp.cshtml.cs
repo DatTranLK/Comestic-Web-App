@@ -34,15 +34,15 @@ namespace ComesticShop.Pages.Authenticate
 
         public async Task<IActionResult> OnPost()
         {
-            Regex r = new Regex(@"^[a-zA-Z][a-zA-Z0-9]*$");
+            Regex r = new Regex(@"[A-Za-z0-9\s]{1,}");
             if (Name.StartsWith(" "))
             {
-                ViewData["ErrorMessage"] = "Name have whitespace!!! Please try again";
+                ViewData["ErrorMessage"] = "Name has whitespace in the head!!! Please try again";
                 return Page();
             }
             if (!r.IsMatch(Name))
             {
-                ViewData["ErrorMessage"] = "Name have special characters!!! Please try again";
+                ViewData["ErrorMessage"] = "Name has special characters!!! Please try again";
                 return Page();
             }
             if (Name.Length > 20)

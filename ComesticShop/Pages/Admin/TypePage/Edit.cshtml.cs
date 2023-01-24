@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repository;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages.Admin.TypePage
@@ -51,6 +52,19 @@ namespace ComesticShop.Pages.Admin.TypePage
             {
                 return Page();
             }
+            Regex r = new Regex(@"^[a-zA-Z0-9\s]+$");
+            /*if (!r.IsMatch(Type1.Name))
+            {
+                ViewData["ErrorMessage"] = "The Name of the Type has special characters!!! Please try again";
+                return Page();
+            }
+            if (Type1.Name.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "The Name of the Type has whitespace in the head!!! Please try again";
+                return Page();
+            }
+            */
+            
             Type1.IsActive = true;
             await _typeRepository.UpdateType(Type1);
             return RedirectToPage("./Index");

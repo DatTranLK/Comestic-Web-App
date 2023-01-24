@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages.Admin.CategoryPage
@@ -51,6 +52,17 @@ namespace ComesticShop.Pages.Admin.CategoryPage
             ViewData["TypeId"] = new SelectList(_context.Types, "Id", "Name");
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
+            Regex r = new Regex(@"^[a-zA-Z0-9\s]+$");
+            if (!r.IsMatch(Category.Name))
+            {
+                ViewData["ErrorMessage"] = "The Name of the Category has special characters!!! Please try again";
+                return Page();
+            }
+            if (Category.Name.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "The Name of the Category has whitespace in the head!!! Please try again";
                 return Page();
             }
             Category.IsActive = true;

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repository;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages.Admin.BrandPage
@@ -56,7 +57,17 @@ namespace ComesticShop.Pages.Admin.BrandPage
             {
                 return Page();
             }
-
+            Regex r = new Regex(@"^[a-zA-Z0-9\s]+$");
+            if (!r.IsMatch(Brand.Name))
+            {
+                ViewData["ErrorMessage"] = "The Name of the Brand has special characters!!! Please try again";
+                return Page();
+            }
+            if (Brand.Name.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "The Name of the Brand has whitespace in the head!!! Please try again";
+                return Page();
+            }
             Brand.IsActive = true;
             await _brandRepository.UpdateBrand(Brand);
 

@@ -59,7 +59,7 @@ namespace ComesticShop.Pages.Admin.AccountPage
                 ViewData["ErrorMessage"] = "Password must have between 6 to 20 Characters!!! Please try again";
                 return Page();
             }
-            Regex r = new Regex(@"[A-Za-z0-9\s]{1,}");
+            Regex r = new Regex(@"^[a-zA-Z0-9\s]+$");
             if (Accounts.Name.StartsWith(" "))
             {
                 ViewData["ErrorMessage"] = "Name has whitespace in the head!!! Please try again";

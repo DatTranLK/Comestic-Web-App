@@ -34,7 +34,7 @@ namespace ComesticShop.Pages.Authenticate
 
         public async Task<IActionResult> OnPost()
         {
-            Regex r = new Regex(@"[A-Za-z0-9\s]{1,}");
+            Regex r = new Regex(@"^[a-zA-Z0-9\s]+$");
             if (Name.StartsWith(" "))
             {
                 ViewData["ErrorMessage"] = "Name has whitespace in the head!!! Please try again";

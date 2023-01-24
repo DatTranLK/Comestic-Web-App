@@ -366,12 +366,14 @@
         <hr>
         <h4 style="text-align:center; color: #144339">Add Product With Type</h4>
         <ul style="text-align: center; font-size:19px;">
+
             @foreach (var item in Model.Type)
             {
                 <li class="type_hover">
                     <a asp-page="/Admin/AddProductWithType/Create" asp-route-id="@item.Id" style="color: #64c5b1; font-size: 16px; font-weight: 400;">@item.Name</a>
                 </li>
             }
+            
         </ul>
     </nav>
 

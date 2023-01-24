@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages
@@ -169,6 +170,22 @@ namespace ComesticShop.Pages
 
             cartCus = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartCus");
             var customer = await _accountRepository.GetAccountByEmail(Email);
+            Regex r = new Regex(@"[A-Za-z0-9\s]{1,}");
+            if (ShippingAddressString.ToString().StartsWith(" "))
+            {
+                ViewData["ErrorMessage2"] = "Shipping Address have whitespace!!! Please try again";
+                return Page();
+            }
+            if (!r.IsMatch(ShippingAddressString))
+            {
+                ViewData["ErrorMessage2"] = "Shipping Address have special characters!!! Please try again";
+                return Page();
+            }
+            if (ShippingAddressString.ToString().Length > 200)
+            {
+                ViewData["ErrorMessage2"] = "Shipping Address Has More Than 200 Characters!!! Please try again";
+                return Page();
+            }
             var order = new Order();
             order.CreateDate = DateTime.UtcNow.AddHours(7);
             order.StaffId = null;

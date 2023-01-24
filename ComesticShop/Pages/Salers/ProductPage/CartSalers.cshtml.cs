@@ -47,7 +47,7 @@ namespace ComesticShop.Pages.Salers.ProductPage
             if (id == null)
             {
                 cartSaler = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cartSaler");
-
+                ViewData["ErrorMessage"] = "Giỏ hàng không có sản phẩm";
             }
             else
             {
@@ -107,6 +107,10 @@ namespace ComesticShop.Pages.Salers.ProductPage
             int index = Exists(cartSaler, id);
             cartSaler.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cartSaler", cartSaler);
+            if (cartSaler.Count == 0)
+            {
+                ViewData["ErrorMessage"] = "Giỏ hàng không có sản phẩm";
+            }
         }
 
         public async Task OnGetIncrease(int id)

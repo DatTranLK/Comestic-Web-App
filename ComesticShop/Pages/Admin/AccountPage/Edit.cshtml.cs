@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages.Admin.AccountPage
@@ -67,6 +69,44 @@ namespace ComesticShop.Pages.Admin.AccountPage
             if (checkExist == null)
             {
                 return NotFound();
+            }
+            if (Accounts.Password.Length < 6 || Accounts.Password.Length > 20)
+            {
+                ViewData["ErrorMessage"] = "Password must have between 6 to 20 Characters!!! Please try again";
+                return Page();
+            }
+            Regex r = new Regex(@"[A-Za-z0-9\s]{1,}");
+            if (Accounts.Name.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "Name has whitespace in the head!!! Please try again";
+                return Page();
+            }
+            if (!r.IsMatch(Accounts.Name))
+            {
+                ViewData["ErrorMessage"] = "Name has special characters!!! Please try again";
+                return Page();
+            }
+            if (Accounts.Name.Length > 20)
+            {
+                ViewData["ErrorMessage"] = "Name Has More Than 50 Characters!!! Please try again";
+                return Page();
+            }
+
+            Regex phoneRegex = new Regex(@"^[0-9]{10}$");
+            if (!phoneRegex.IsMatch(Accounts.Phone))
+            {
+                ViewData["ErrorMessage"] = "The Phone Number is wrong format or the length of the phone is greater than 10 !!! Please try again";
+                return Page();
+            }
+            if (Accounts.Phone.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "Phone has whitespace in the head!!! Please try again";
+                return Page();
+            }
+            if (Accounts.DateOfBirth > DateTime.UtcNow)
+            {
+                ViewData["ErrorMessage"] = "The Date of Birth is greater than now !!! Please try again";
+                return Page();
             }
             await _accountRepository.UpdateAccount(Accounts);
 

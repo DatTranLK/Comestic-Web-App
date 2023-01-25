@@ -9,6 +9,7 @@ using Repository;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages.Admin.ProductPage
@@ -87,6 +88,108 @@ namespace ComesticShop.Pages.Admin.ProductPage
             {
                 var productNeedToDelete = await _context.Products.FindAsync(id);
                 _context.Products.Remove(productNeedToDelete);
+                var checkExistWithCode = await _context.Products.FirstOrDefaultAsync(x => x.Code == ProductEdit.Code);
+                /*if (checkExistWithCode != null)
+                {
+                    ViewData["ErrorMessage"] = "The Code has exist!!! Please enter new code";
+                    return Page();
+                }*/
+
+                if (ProductEdit.Code.StartsWith(" "))
+                {
+                    ViewData["ErrorMessage"] = "Code has whitespace in the head!!! Please try again";
+                    return Page();
+                }
+                Regex r = new Regex(@"^[a-zA-Z0-9\s]+$");
+                if (!r.IsMatch(ProductEdit.Code))
+                {
+                    ViewData["ErrorMessage"] = "Code has special characters!!! Please try again";
+                    return Page();
+                }
+
+                if (ProductEdit.Name.StartsWith(" "))
+                {
+                    ViewData["ErrorMessage"] = "Name has whitespace in the head!!! Please try again";
+                    return Page();
+                }
+
+                if (!r.IsMatch(ProductEdit.Name))
+                {
+                    ViewData["ErrorMessage"] = "Name has special characters!!! Please try again";
+                    return Page();
+                }
+
+                if (ProductEdit.Amount.ToString().StartsWith(" "))
+                {
+                    ViewData["ErrorMessage"] = "Amount has whitespace in the head!!! Please try again";
+                    return Page();
+                }
+                Regex rAmount = new Regex(@"^[0-9]*$");
+                if (!rAmount.IsMatch(ProductEdit.Amount.ToString()))
+                {
+                    ViewData["ErrorMessage"] = "Amount must be a number!!! Please try again";
+                    return Page();
+                }
+                if (ProductEdit.Amount <= 0)
+                {
+                    ViewData["ErrorMessage"] = "Amount must greater than 0!!! Please try again";
+                    return Page();
+                }
+
+
+                if (ProductEdit.Price < 0)
+                {
+                    ViewData["ErrorMessage"] = "The Price must equal or greater than 0!!! Please try again";
+                    return Page();
+                }
+
+                if (ProductEdit.Summary.StartsWith(" "))
+                {
+                    ViewData["ErrorMessage"] = "Summary has whitespace in the head!!! Please try again";
+                    return Page();
+                }
+
+                if (!r.IsMatch(ProductEdit.Summary))
+                {
+                    ViewData["ErrorMessage"] = "Summary has special characters!!! Please try again";
+                    return Page();
+                }
+
+                if (ProductEdit.Description.StartsWith(" "))
+                {
+                    ViewData["ErrorMessage"] = "Description has whitespace in the head!!! Please try again";
+                    return Page();
+                }
+
+                if (!r.IsMatch(ProductEdit.Description))
+                {
+                    ViewData["ErrorMessage"] = "Description has special characters!!! Please try again";
+                    return Page();
+                }
+
+                if (ProductEdit.Element.StartsWith(" "))
+                {
+                    ViewData["ErrorMessage"] = "Element has whitespace in the head!!! Please try again";
+                    return Page();
+                }
+
+                if (!r.IsMatch(ProductEdit.Element))
+                {
+                    ViewData["ErrorMessage"] = "Element has special characters!!! Please try again";
+                    return Page();
+                }
+
+                if (ProductEdit.UserManual.StartsWith(" "))
+                {
+                    ViewData["ErrorMessage"] = "UserManual has whitespace in the head!!! Please try again";
+                    return Page();
+                }
+
+                if (!r.IsMatch(ProductEdit.UserManual))
+                {
+                    ViewData["ErrorMessage"] = "UserManual has special characters!!! Please try again";
+                    return Page();
+                }
                 //Image1
                 if (Img1 == null)
                 {

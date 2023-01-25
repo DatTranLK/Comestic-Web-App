@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ComesticShop.Pages.Admin.AddProductWithType
@@ -68,75 +70,108 @@ namespace ComesticShop.Pages.Admin.AddProductWithType
             {
                 return Page();
             }
-            /*if (Img1.Length > 0)
+            var checkExistWithCode = await _context.Products.FirstOrDefaultAsync(x => x.Code == Product.Code);
+            if (checkExistWithCode != null)
             {
-                using (var ms = new MemoryStream())
-                {
-                    Img1.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    Product.Image1 = fileBytes;
-                }
-            }
-            if (Img2 == null)
-            {
-                Product.Image2 = null;
-            }
-            else
-            {
-                using (var ms = new MemoryStream())
-                {
-                    Img2.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    Product.Image2 = fileBytes;
-                }
+                ViewData["ErrorMessage"] = "The Code has exist!!! Please enter new code";
+                return Page();
             }
 
-            if (Img3 == null)
+            if (Product.Code.StartsWith(" "))
             {
-                Product.Image3 = null;
-
+                ViewData["ErrorMessage"] = "Code has whitespace in the head!!! Please try again";
+                return Page();
             }
-            else 
+            Regex r = new Regex(@"^[a-zA-Z0-9\s]+$");
+            if (!r.IsMatch(Product.Code))
             {
-                using (var ms = new MemoryStream())
-                {
-                    Img3.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    Product.Image3 = fileBytes;
-                }
+                ViewData["ErrorMessage"] = "Code has special characters!!! Please try again";
+                return Page();
             }
 
-            if (Img4 == null)
+            if (Product.Name.StartsWith(" "))
             {
-                Product.Image4 = null;
+                ViewData["ErrorMessage"] = "Name has whitespace in the head!!! Please try again";
+                return Page();
             }
-            else
+            
+            if (!r.IsMatch(Product.Name))
             {
-                using (var ms = new MemoryStream())
-                {
-                    Img4.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    Product.Image4 = fileBytes;
-                }
+                ViewData["ErrorMessage"] = "Name has special characters!!! Please try again";
+                return Page();
             }
 
-            if (Img5 == null)
+            if (Product.Amount.ToString().StartsWith(" "))
             {
-                Product.Image5 = null;
+                ViewData["ErrorMessage"] = "Amount has whitespace in the head!!! Please try again";
+                return Page();
             }
-            else 
+            Regex rAmount = new Regex(@"^[0-9]*$");
+            if (!rAmount.IsMatch(Product.Amount.ToString()))
             {
-                using (var ms = new MemoryStream())
-                {
-                    Img5.CopyTo(ms);
-                    var fileBytes = ms.ToArray();
-                    Product.Image5 = fileBytes;
-                }
-            }*/
-            /*if (Img5.Length > 0 && Img5 != null)
+                ViewData["ErrorMessage"] = "Amount must be a number!!! Please try again";
+                return Page();
+            }
+            if (Product.Amount <= 0)
             {
+                ViewData["ErrorMessage"] = "Amount must greater than 0!!! Please try again";
+                return Page();
+            }
 
-            }*/
+
+            if (Product.Price < 0)
+            {
+                ViewData["ErrorMessage"] = "The Price must equal or greater than 0!!! Please try again";
+                return Page();
+            }
+
+            if (Product.Summary.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "Summary has whitespace in the head!!! Please try again";
+                return Page();
+            }
+           
+            if (!r.IsMatch(Product.Summary))
+            {
+                ViewData["ErrorMessage"] = "Summary has special characters!!! Please try again";
+                return Page();
+            }
+
+            if (Product.Description.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "Description has whitespace in the head!!! Please try again";
+                return Page();
+            }
+
+            if (!r.IsMatch(Product.Description))
+            {
+                ViewData["ErrorMessage"] = "Description has special characters!!! Please try again";
+                return Page();
+            }
+
+            if (Product.Element.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "Element has whitespace in the head!!! Please try again";
+                return Page();
+            }
+
+            if (!r.IsMatch(Product.Element))
+            {
+                ViewData["ErrorMessage"] = "Element has special characters!!! Please try again";
+                return Page();
+            }
+
+            if (Product.UserManual.StartsWith(" "))
+            {
+                ViewData["ErrorMessage"] = "UserManual has whitespace in the head!!! Please try again";
+                return Page();
+            }
+
+            if (!r.IsMatch(Product.UserManual))
+            {
+                ViewData["ErrorMessage"] = "UserManual has special characters!!! Please try again";
+                return Page();
+            }
             string imgText1 = Path.GetExtension(Img1.FileName);
             if (imgText1 == ".jpg" || imgText1 == ".png" || imgText1 == ".jpeg")
             {
